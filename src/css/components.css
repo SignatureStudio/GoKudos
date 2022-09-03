@@ -1,0 +1,13 @@
+.menu {
+  @apply flex items-center p-2 bg-white border-gray-300 cursor-pointer hover:bg-gray-100 rounded
+}
+.menu-text {
+  @apply px-2 flex-1 text-base truncate
+}
+.subnav {
+  @apply bg-gray-100 w-56 min-h-screen
+}
+/* .task-table table {
+  width: auto;
+  min-width: auto;
+} */
