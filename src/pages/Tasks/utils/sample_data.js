@@ -4,23 +4,33 @@ import { TASK } from "@/constants";
 
 const timeframe = {
   start: dayjs("2022-12-01"), 
-  end: dayjs("2022-01-31")
+  end: dayjs("2023-01-31")
 }
 const members = [
   {
     id: faker.datatype.uuid(),
     name: "A Member",
-    avatar: faker.image.avatar(),
+    avatar: "/dummy/face1.jpg",
   },
   {
     id: faker.datatype.uuid(),
     name: "B Member",
-    avatar: faker.image.avatar(),
+    avatar: "/dummy/face2.jpg",
   },
   {
     id: faker.datatype.uuid(),
     name: "C Member",
-    avatar: faker.image.avatar(),
+    avatar: "/dummy/face3.jpg",
+  },
+];
+const groups = [
+  {
+    id: faker.datatype.uuid(),
+    name: "A Group",
+  },
+  {
+    id: faker.datatype.uuid(),
+    name: "B Group",
   },
 ];
 const singleProject = (name, groups) => {
@@ -85,7 +95,7 @@ const singleTask = (start, duration, status, project, group, no_of_comment, no_o
     checklist: [],
     timeTracker: null,
     priority: null,
-    subtask: subtask,
+    subtasks: subtask,
   };
 };
 
@@ -93,39 +103,40 @@ export const tasksData = {
   timeframe,
   status: TASK.STATUS,
   members,
+  groups,
   projects: [
     singleProject("A Project", [
       singleGroup("A Group", [
-        singleTask(0, 10, TASK.STATUS[0], "A Project", "A Group", 2, 0, []),
-        singleTask(5, 15, TASK.STATUS[1], "A Project", "A Group", 0, 3, []),
-        singleTask(8, 8, TASK.STATUS[2], "A Project", "A Group", 0, 0, []),
-        singleTask(10, 10, TASK.STATUS[3], "A Project", "A Group", 2, 2, [
+        singleTask(0, 10, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
+        singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
+        singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
+        singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, [
           // singleTask(12, 5, TASK.STATUS[2], "A Project", "A Group", 0, 0, []),
           // singleTask(15, 5, TASK.STATUS[3], "A Project", "A Group", 0, 0, []),  
         ]),
       ]),
       singleGroup("B Group", [
-        singleTask(15, 10, TASK.STATUS[0], "A Project", "B Group", 0, 0, []),
-        singleTask(20, 15, TASK.STATUS[1], "A Project", "B Group", 1, 0, [
-          // singleTask(22, 5, TASK.STATUS[0], "A Project", "B Group", 0, 0, []),
-          // singleTask(25, 10, TASK.STATUS[1], "A Project", "B Group", 0, 0, []),  
+        singleTask(15, 10, TASK.STATUS[0], "A Project", groups[1], 0, 0, []),
+        singleTask(20, 15, TASK.STATUS[1], "A Project", groups[1], 1, 0, [
+          // singleTask(22, 5, TASK.STATUS[0], "A Project", groups[1], 0, 0, []),
+          // singleTask(25, 10, TASK.STATUS[1], "A Project", groups[1], 0, 0, []),  
         ]),
-        singleTask(25, 8, TASK.STATUS[2], "A Project", "B Group", 2, 3, []),
-        singleTask(30, 10, TASK.STATUS[3], "A Project", "B Group", 0, 2, []),
+        singleTask(25, 8, TASK.STATUS[2], "A Project", groups[1], 2, 3, []),
+        singleTask(30, 10, TASK.STATUS[3], "A Project", groups[1], 0, 2, []),
       ]),
     ]),
     singleProject("B Project", [
       singleGroup("A Group", [
-        singleTask(10, 10, TASK.STATUS[0], "B Project", "A Group", 0, 0, []),
-        singleTask(15, 15, TASK.STATUS[1], "B Project", "A Group", 2, 0, []),
-        singleTask(18, 8, TASK.STATUS[2], "B Project", "A Group", 0, 0, []),
-        singleTask(20, 10, TASK.STATUS[3], "B Project", "A Group", 0, 2, []),
+        singleTask(10, 10, TASK.STATUS[0], "B Project", groups[0], 0, 0, []),
+        singleTask(15, 15, TASK.STATUS[1], "B Project", groups[0], 2, 0, []),
+        singleTask(18, 8, TASK.STATUS[2], "B Project", groups[0], 0, 0, []),
+        singleTask(20, 10, TASK.STATUS[3], "B Project", groups[0], 0, 2, []),
       ]),
       singleGroup("B Group", [
-        singleTask(25, 10, TASK.STATUS[0], "B Project", "B Group", 0, 2, []),
-        singleTask(30, 15, TASK.STATUS[1], "B Project", "B Group", 2, 2, []),
-        singleTask(35, 8, TASK.STATUS[2], "B Project", "B Group", 2, 0, []),
-        singleTask(40, 10, TASK.STATUS[3], "B Project", "B Group", 2, 0, []),
+        singleTask(25, 10, TASK.STATUS[0], "B Project", groups[1], 0, 2, []),
+        singleTask(30, 15, TASK.STATUS[1], "B Project", groups[1], 2, 2, []),
+        singleTask(35, 8, TASK.STATUS[2], "B Project", groups[1], 2, 0, []),
+        singleTask(40, 10, TASK.STATUS[3], "B Project", groups[1], 2, 0, []),
       ]),
     ]),
   ]

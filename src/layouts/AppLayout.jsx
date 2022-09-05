@@ -10,11 +10,13 @@ import TaskSubnav from "@/pages/Tasks/components/Subnav";
 
 const AppLayout = () => {
   const [aside, setAside] = useState(window.innerWidth < 768 ? false : true);
+  // const [mainHeight, setMainHeight] = useState(window.innerHeight - 64);
 
   window.addEventListener(
     "resize",
     debounce(() => {
       window.innerWidth < 768 ? setAside(false) : setAside(true);
+      // setMainHeight(window.innerHeight - 64)
     }, 200)
   );
 
@@ -35,15 +37,20 @@ const AppLayout = () => {
   }
 
   useEffect(() => {
+    // if (moduleWithSubnavPath.includes(currentModulePath)) {
+    //   setSubnav(true)
+    // } else {
+    //   setSubnav(false)
+    // }
     moduleWithSubnavPath.includes(currentModulePath)
       ? setSubnav(true)
       : setSubnav(false);
   }, [currentModulePath]);
 
   return (
-    <div className="flex bg-gray-200 min-h-screen">
+    <div className="bg-gray-200 min-h-screen">
       <aside
-        className={`bg-white min-h-screen transition-all ${
+        className={`bg-white min-h-screen transition-all fixed top-0 left-0 z-50 overflow-hidden ${
           aside ? "w-72" : "w-16"
         }`}
       >
@@ -58,9 +65,9 @@ const AppLayout = () => {
           {aside && moduleSubnav}
         </div>
       </aside>
-      <div className="flex-1 overflow-auto">
-        <Header aside={aside} setAside={setAside} />
-        <main className="p-4">
+      <Header aside={aside} setAside={setAside} />
+      <div className={`overflow-auto pt-16 transition-all ${aside ? "pl-72" : "pl-16"}`}>
+        <main className="p-2">
           <Outlet />
         </main>
       </div>

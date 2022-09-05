@@ -1,6 +1,7 @@
 @import "./css/base.css";
 @import "./css/arco.css";
 @import "./css/components.css";
+@import "./css/tasks.css";
 
 @tailwind base;
 @tailwind components;

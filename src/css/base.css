@@ -10,6 +10,15 @@ body {
   --primary-7: 178,0,23;
   --primary-8: 143,0,19;
   --primary-9: 107,0,14;
+  /* --neutral-1: 243, 244, 246;
+  --neutral-2: 229, 231, 235;
+  --neutral-3: 209, 213, 219;
+  --neutral-4: 156, 163, 175;
+  --neutral-5: 107, 114, 128;
+  --neutral-6: 75, 85, 99;
+  --neutral-7: 55, 65, 81;
+  --neutral-8: 31, 41, 55;
+  --neutral-9: 17, 24, 39; */
   font-family: 'Source Sans Pro', sans-serif;  
 }
 h1, h2, h3, h4 {
@@ -22,4 +31,10 @@ h1 {
 h2 {
   padding: 1rem 0 0.5rem;
   font-size: 1rem!important;
+}
+.font-heading {
+  font-family: 'Poppins', sans-serif;
+}
+.font-body {
+  font-family: 'Source Sans Pro', sans-serif;  
 }

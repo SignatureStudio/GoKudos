@@ -79,6 +79,18 @@ export const utils = {
         return <Avatar.Group size={24}>{avatars}</Avatar.Group>;
       },
     },
+    tracking: {
+      dataIndex: "tracking",
+      title: "Tracking",
+      width: 100,
+      render: (col, record, index) => {
+        return (
+          <Button size="mini" type="secondary" className="w-full text-center">
+            Start
+          </Button>
+        );
+      },
+    },
   },
   mapData: function (data) {
     let projects = [];
@@ -89,7 +101,7 @@ export const utils = {
         let tasks = [];
         group.tasks.map((task) => {
           let subtasks = [];
-          task.subtask.map((subtask) => {
+          task.subtasks.map((subtask) => {
             subtasks.push({
               key: subtask.id,
               name: subtask.name,

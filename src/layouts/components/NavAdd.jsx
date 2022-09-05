@@ -7,7 +7,7 @@ import {
 const NavAdd = (props) => {
   return (
     <div className="menu mx-1.5">
-      <Avatar size={32} className="bg-brand-600">
+      <Avatar size={32} className="bg-brand-500">
         <IconPlus />
       </Avatar>
       {props.aside && !props.subnav && (

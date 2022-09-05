@@ -6,19 +6,19 @@ import { faker } from "@faker-js/faker";
 const companies = {
   selected: {
     id: 1,
-    name: faker.company.name(),
-    avatar: faker.image.avatar(),
+    name: "Acme Corp",
+    avatar: "/dummy/logo1.png",
   },
   list: [
     {
       id: 1,
-      name: faker.company.name(),
-      avatar: faker.image.avatar(),
+      name: "Barbara Inc.",
+      avatar: "/dummy/logo2.png",
     },
     {
       id: 2,
-      name: faker.company.name(),
-      avatar: "",
+      name: "Coco Co.",
+      avatar: "/dummy/logo3.png",
     },
   ],
 };

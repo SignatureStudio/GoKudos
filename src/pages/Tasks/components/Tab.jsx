@@ -24,6 +24,9 @@ const TasksTab = (props) => {
       <Link to="/tasks/chart">
         <Menu.Item key="chart">Chart</Menu.Item>
       </Link>
+      <Link to="/tasks/billing">
+        <Menu.Item key="billing">Billing</Menu.Item>
+      </Link>
     </Menu>
   );
 }

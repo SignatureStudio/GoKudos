@@ -1,7 +1,9 @@
 import { tasksData } from "./utils/sample_data";
 import { utils } from "./utils/Table.utils";
-import { Table } from "@arco-design/web-react";
+import { Table, Button } from "@arco-design/web-react";
 import TasksTableNav from "./components/TableNav";
+import TasksHeader from "./components/Header";
+import { IconPlus } from "@arco-design/web-react/icon";
 
 const TasksTable = (props) => {
   const columns = [
@@ -9,6 +11,7 @@ const TasksTable = (props) => {
     utils.columns.status,
     utils.columns.duedate,
     utils.columns.members,
+    utils.columns.tracking,
     {
       dataIndex: "addproperty",
       title: <span className="text-lg">+</span>,
@@ -22,8 +25,9 @@ const TasksTable = (props) => {
 
   return (
     <>
+      <TasksHeader name={tasksData.projects[0].name} />
       <TasksTableNav />
-      <div className="p-3">
+      <div className="p-3 bg-gray-50">
         {projects[0].groups.map((group) => (
           <div key={group.id}>
             <h2>{group.name}</h2>
@@ -40,9 +44,10 @@ const TasksTable = (props) => {
               data={group.tasks}
               pagination={false}
               noDataElement={<div>NOTHING</div>}
-              className="task-table"
+              className="border-gray-300 border rounded"
               // defaultExpandAllRows={true}
             />
+            <Button size="mini" type="text" icon={<IconPlus />} className="mt-2">Add Task</Button>
           </div>
         ))}
       </div>

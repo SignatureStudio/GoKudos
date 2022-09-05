@@ -1,7 +1,11 @@
+import { tasksData } from "./utils/sample_data";
+import TasksHeader from "./components/Header";
+import TasksWorkspaceNav from "./components/WorkspaceNav";
 const TasksWorkspace = (props) => {
   return (
     <>
-      Workspace
+      <TasksHeader name={tasksData.projects[0].name} />
+      <TasksWorkspaceNav />
     </>
   );
 };

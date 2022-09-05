@@ -1,0 +1,210 @@
+.gk-calendar {
+  @apply text-sm;
+}
+.gk-calendar .rbc-month-view {
+  @apply border-gray-300;
+}
+.gk-calendar .rbc-header,
+.gk-calendar .rbc-agenda-view table.rbc-agenda-table thead > tr > th {
+  @apply bg-gray-100 py-3 px-2 font-normal text-left;
+}
+.gk-calendar .rbc-day-bg {
+  @apply border-gray-300 bg-white;
+}
+.gk-calendar .rbc-off-range-bg {
+  @apply bg-gray-50;
+}
+.gk-calendar .rbc-date-cell {
+  @apply px-2 py-1 text-left text-lg;
+}
+.gk-calendar .rbc-button-link {
+  @apply text-sm;
+}
+.gk-calendar .rbc-show-more {
+  @apply text-xs font-normal text-brand-500 hover:text-brand-700 px-2;
+}
+.gk-calendar .rbc-event,
+.gk-calendar .rbc-day-slot .rbc-background-event {
+  @apply rounded-sm border border-solid mb-1;
+}
+.gk-calendar .rbc-event.red,
+.gk-calendar .rbc-day-slot .rbc-background-event.red,
+.gk-timeline .bar.red {
+  @apply bg-red-50 border-red-500 text-red-500;
+}
+.gk-calendar .rbc-event.blue,
+.gk-calendar .rbc-day-slot .rbc-background-event.blue,
+.gk-timeline .bar.blue {
+  @apply bg-blue-50 border-blue-500 text-blue-500;
+}
+.gk-calendar .rbc-event.orangered,
+.gk-calendar .rbc-day-slot .rbc-background-event.orangered,
+.gk-timeline .bar.orangered {
+  @apply bg-orangered-50 border-orangered-500 text-orangered-500;
+}
+.gk-calendar .rbc-event.orange,
+.gk-calendar .rbc-day-slot .rbc-background-event.orange,
+.gk-timeline .bar.orange {
+  @apply bg-orange-50 border-orange-500 text-orange-500;
+}
+.gk-calendar .rbc-event.gold,
+.gk-calendar .rbc-day-slot .rbc-background-event.gold,
+.gk-timeline .bar.gold {
+  @apply bg-gold-50 border-gold-500 text-gold-500;
+}
+.gk-calendar .rbc-event.lime,
+.gk-calendar .rbc-day-slot .rbc-background-event.lime,
+.gk-timeline .bar.lime {
+  @apply bg-lime-50 border-lime-500 text-lime-500;
+}
+.gk-calendar .rbc-event.green,
+.gk-calendar .rbc-day-slot .rbc-background-event.green,
+.gk-timeline .bar.green {
+  @apply bg-green-50 border-green-500 text-green-500;
+}
+.gk-calendar .rbc-event.cyan,
+.gk-calendar .rbc-day-slot .rbc-background-event.cyan,
+.gk-timeline .bar.cyan {
+  @apply bg-cyan-50 border-cyan-500 text-cyan-500;
+}
+.gk-calendar .rbc-event.purple,
+.gk-calendar .rbc-day-slot .rbc-background-event.purple,
+.gk-timeline .bar.purple {
+  @apply bg-purple-50 border-purple-500 text-purple-500;
+}
+.gk-calendar .rbc-event.pinkpurple,
+.gk-calendar .rbc-day-slot .rbc-background-event.pinkpurple,
+.gk-timeline .bar.pinkpurple {
+  @apply bg-pinkpurple-50 border-pinkpurple-500 text-pinkpurple-500;
+}
+.gk-calendar .rbc-event.magenta,
+.gk-calendar .rbc-day-slot .rbc-background-event.magenta,
+.gk-timeline .bar.magenta {
+  @apply bg-magenta-50 border-magenta-500 text-magenta-500;
+}
+.gk-calendar .rbc-event.gray,
+.gk-calendar .rbc-day-slot .rbc-background-event.gray,
+.gk-timeline .bar.gray {
+  @apply bg-gray-50 border-gray-500 text-gray-500;
+}
+.gk-calendar .rbc-time-view .rbc-row {
+  @apply min-h-max;
+}
+.gk-calendar .rbc-time-view .rbc-row .rbc-header {
+  @apply text-center;
+}
+.gk-calendar .rbc-day-slot {
+  @apply bg-white;
+}
+.gk-calendar .rbc-agenda-table td {
+  @apply border border-gray-200 bg-white;
+}
+.gk-calendar .rbc-agenda-table tr.red .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.red .rbc-agenda-event-cell {
+  @apply bg-red-50 text-red-500;
+}
+.gk-calendar .rbc-agenda-table tr.blue .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.blue .rbc-agenda-event-cell {
+  @apply bg-blue-50 text-blue-500;
+}
+.gk-calendar .rbc-agenda-table tr.orangered .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.orangered .rbc-agenda-event-cell {
+  @apply bg-orangered-50 text-orangered-500;
+}
+.gk-calendar .rbc-agenda-table tr.orange .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.orange .rbc-agenda-event-cell {
+  @apply bg-orange-50 text-orange-500;
+}
+.gk-calendar .rbc-agenda-table tr.gold .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.gold .rbc-agenda-event-cell {
+  @apply bg-gold-50 text-gold-500;
+}
+.gk-calendar .rbc-agenda-table tr.lime .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.lime .rbc-agenda-event-cell {
+  @apply bg-lime-50 text-lime-500;
+}
+.gk-calendar .rbc-agenda-table tr.green .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.green .rbc-agenda-event-cell {
+  @apply bg-green-50 text-green-500;
+}
+.gk-calendar .rbc-agenda-table tr.cyan .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.cyan .rbc-agenda-event-cell {
+  @apply bg-cyan-50 text-cyan-500;
+}
+.gk-calendar .rbc-agenda-table tr.purple .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.purple .rbc-agenda-event-cell {
+  @apply bg-purple-50 text-purple-500;
+}
+.gk-calendar .rbc-agenda-table tr.pinkpurple .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.pinkpurple .rbc-agenda-event-cell {
+  @apply bg-pinkpurple-50 text-pinkpurple-500;
+}
+.gk-calendar .rbc-agenda-table tr.magenta .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.magenta .rbc-agenda-event-cell {
+  @apply bg-magenta-50 text-magenta-500;
+}
+.gk-calendar .rbc-agenda-table tr.gray .rbc-agenda-time-cell,
+.gk-calendar .rbc-agenda-table tr.gray .rbc-agenda-event-cell {
+  @apply bg-gray-50 text-gray-500;
+}
+.gk-timeline .bar {
+  @apply h-6 mt-1 absolute border px-2;
+}
+.gk-timeline .bar span {
+  @apply whitespace-nowrap;
+}
+.gk-timeline .row {
+  @apply h-8 divide-x divide-gray-300 flex flex-nowrap;
+}
+.gk-timeline .head {
+  @apply h-8 p-2 bg-gray-100 capitalize text-sm;
+}
+.gk-timeline .col {
+  @apply h-8 p-2 capitalize text-sm;
+}
+
+.gk-chart {
+  @apply border border-gray-300 bg-white;
+}
+.gk-chart header {
+  @apply border-b border-gray-300 bg-gray-100 p-2;
+}
+.gk-chart article {
+  @apply p-4;
+}
+.gk-chart .recharts-layer [color="red"] {
+  @apply fill-red-100 stroke-red-300
+}
+.gk-chart .recharts-layer [color="blue"] {
+  @apply fill-blue-100 stroke-blue-300
+}
+.gk-chart .recharts-layer [color="orangered"] {
+  @apply fill-orangered-100 stroke-orangered-300
+}
+.gk-chart .recharts-layer [color="orange"] {
+  @apply fill-orange-100 stroke-orange-300
+}
+.gk-chart .recharts-layer [color="gold"] {
+  @apply fill-gold-100 stroke-gold-300
+}
+.gk-chart .recharts-layer [color="lime"] {
+  @apply fill-lime-100 stroke-lime-300
+}
+.gk-chart .recharts-layer [color="green"] {
+  @apply fill-green-100 stroke-green-300
+}
+.gk-chart .recharts-layer [color="cyan"] {
+  @apply fill-cyan-100 stroke-cyan-300
+}
+.gk-chart .recharts-layer [color="purple"] {
+  @apply fill-purple-100 stroke-purple-300
+}
+.gk-chart .recharts-layer [color="pinkpurple"] {
+  @apply fill-pinkpurple-100 stroke-pinkpurple-300
+}
+.gk-chart .recharts-layer [color="magenta"] {
+  @apply fill-magenta-100 stroke-magenta-300
+}
+.gk-chart .recharts-layer [color="gray"] {
+  @apply fill-gray-100 stroke-gray-300
+}
