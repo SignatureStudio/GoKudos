@@ -8,8 +8,8 @@ import {
 import { Button, Avatar } from "@arco-design/web-react";
 
 const Header = (props) => {
-  const moduleWithSubnavPath = ["tasks"];
-
+  // const moduleWithSubnavPath = ["tasks"];
+  // props.setSubnav(true)
   return (
     <header
       className={`flex items-center bg-white shadow-md w-full h-16 fixed top-0 left-0 z-40 transition-all ${
@@ -18,10 +18,10 @@ const Header = (props) => {
     >
       <div className="flex-1">
         <Button type="text" className="px-2" onClick={() => {
-        props.setAside(!props.aside)
-        moduleWithSubnavPath.includes(currentModulePath)
-        ? setSubnav(true)
-        : setSubnav(false);  
+        props.setAside(!props.aside);
+        if (!props.moduleWithSubnavPath.includes(props.currentModulePath)) {
+          props.aside ? props.setSubnav(true) : props.setSubnav(false)
+        }
       }}>
           <span className="text-gray-400">
             {props.aside ? <IconLeft /> : <IconRight />}

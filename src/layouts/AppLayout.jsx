@@ -37,14 +37,11 @@ const AppLayout = () => {
   }
 
   useEffect(() => {
-    // if (moduleWithSubnavPath.includes(currentModulePath)) {
-    //   setSubnav(true)
-    // } else {
-    //   setSubnav(false)
-    // }
-    moduleWithSubnavPath.includes(currentModulePath)
-      ? setSubnav(true)
-      : setSubnav(false);
+    if (!moduleWithSubnavPath.includes(currentModulePath)) {
+      aside ? setSubnav(false) : setSubnav(true)
+    } else {
+      setSubnav(true)
+    }
   }, [currentModulePath]);
 
   return (
@@ -65,7 +62,7 @@ const AppLayout = () => {
           {aside && moduleSubnav}
         </div>
       </aside>
-      <Header aside={aside} setAside={setAside} />
+      <Header aside={aside} setAside={setAside} subnav={subnav} setSubnav={setSubnav} moduleWithSubnavPath={moduleWithSubnavPath} currentModulePath={currentModulePath} />
       <div className={`overflow-auto pt-16 transition-all ${aside ? "pl-72" : "pl-16"}`}>
         <main className="p-2">
           <Outlet />
