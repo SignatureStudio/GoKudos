@@ -102,16 +102,16 @@ export const analyseTasksBy = {
     return result;
   },
   group: function (list) {
-    let status = {}
+    let status = {};
     list.status.map((s, i) => {
-      status[s.name] = 0
-    })
+      status[s.name] = 0;
+    });
 
     let result = [];
     list.groups.map((group, i) => {
       result.push({
         name: group.name,
-        ...status
+        ...status,
       });
       list.projects.map((project) => {
         project.groups.map((group) => {
@@ -126,16 +126,16 @@ export const analyseTasksBy = {
     return result;
   },
   member: function (list) {
-    let status = {}
+    let status = {};
     list.status.map((s, i) => {
-      status[s.name] = 0
-    })
+      status[s.name] = 0;
+    });
 
     let result = [];
     list.members.map((member, i) => {
       result.push({
         name: member.name,
-        ...status
+        ...status,
       });
       list.projects.map((project) => {
         project.groups.map((group) => {
@@ -154,29 +154,48 @@ export const analyseTasksBy = {
 };
 
 export const getAllTasks = (list) => {
-  let result = []
-  list.projects.map(project => {
-    project.groups.map(group => {
-      group.tasks.map(task => {
+  let result = [];
+  list.projects.map((project) => {
+    project.groups.map((group) => {
+      group.tasks.map((task) => {
         result.push({
           id: task.id,
           title: task.name,
           start: new Date(Date.parse(task.startDate)),
           end: new Date(Date.parse(task.endDate)),
           status: task.status,
-        })
-        if ('subtask')
-        task.subtasks.map(subtask => {
-          result.push({
-            id: subtask.id,
-            title: subtask.name,
-            start: subtask.startDate,
-            end: subtask.endDate,
-            status: subtask.status,
-          })
-        })
-      })
-    })
-  })
+        });
+        if ("subtask")
+          task.subtasks.map((subtask) => {
+            result.push({
+              id: subtask.id,
+              title: subtask.name,
+              start: subtask.startDate,
+              end: subtask.endDate,
+              status: subtask.status,
+            });
+          });
+      });
+    });
+  });
   return result;
-}
+};
+
+export const displayTimeFromSeconds = (secs) => {
+  let hours = Math.floor(secs / (60 * 60));
+
+  let divisor_for_minutes = secs % (60 * 60);
+  let minutes = Math.floor(divisor_for_minutes / 60);
+
+  let divisor_for_seconds = divisor_for_minutes % 60;
+  let seconds = Math.ceil(divisor_for_seconds);
+
+  return `${hours > 9 ? hours : "0" + hours}:${
+    minutes > 9 ? minutes : "0" + minutes
+  }:${seconds > 9 ? seconds : "0" + seconds}`;
+};
+export const getAllSelectedId = (arr) => {
+  let result = [];
+  arr.map((item) => result.push(item.id));
+  return result;
+};

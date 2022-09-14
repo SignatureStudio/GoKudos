@@ -25,6 +25,54 @@ export const TASK = {
       color: "red",
     },
   ],
+  REMINDER: [
+    {
+      id: faker.datatype.uuid(),
+      name: "On due date",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "1 day before",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "2 days before",
+    },
+  ],
+  RECURRENCE: [
+    {
+      id: faker.datatype.uuid(),
+      name: "Daily",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "Weekly",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "1st Week",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "2nd Week",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "3rd Week",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "4th Week",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "Monthly",
+    },
+    {
+      id: faker.datatype.uuid(),
+      name: "Yearly",
+    },
+  ],
   COLORS: [
     "status-gray",
     "status-orange",

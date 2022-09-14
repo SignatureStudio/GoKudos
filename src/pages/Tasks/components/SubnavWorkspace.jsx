@@ -1,7 +1,8 @@
 // import { IconLeft, IconRight } from '@arco-design/web-react/icon';
-import { Avatar, Button, Dropdown, Menu } from "@arco-design/web-react";
+import { Avatar, Button, Dropdown, Menu, Input } from "@arco-design/web-react";
 import { IconDown, IconPlus } from "@arco-design/web-react/icon";
 import { faker } from "@faker-js/faker";
+import { useState } from "react";
 
 const workspaces = {
   selected: {
@@ -24,6 +25,7 @@ const workspaces = {
 };
 
 const SubnavWorkspace = (props) => {
+  const [addWorkspace, setAddWorkspace] = useState(false);
   const droplistWorkspace = (
     <Menu className="w-72">
       {workspaces.list.map((workspace) => {
@@ -42,7 +44,16 @@ const SubnavWorkspace = (props) => {
       })}
       <hr className="my-2" />
       <Menu.Item>
-        <IconPlus /> <span className="menu-text">Add workspace</span>
+        {addWorkspace ? 'true' : 'false'}
+        {addWorkspace ? (
+          <div>
+            <Input />
+          </div>
+        ) : (
+          <div onClick={() => setAddWorkspace(true)}>
+            <IconPlus /> <span className="menu-text">Add workspace</span>
+          </div>
+        )}
       </Menu.Item>
     </Menu>
   );
