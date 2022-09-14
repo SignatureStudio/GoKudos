@@ -208,3 +208,13 @@
 .gk-chart .recharts-layer [color="gray"] {
   @apply fill-gray-100 stroke-gray-300
 }
+
+.gk-table .arco-collapse {
+  @apply mt-4
+}
+.gk-table .arco-collapse-item-header {
+  @apply bg-gray-50 border-0 py-0
+}
+.gk-table .arco-collapse-item-content-box {
+  @apply px-0
+}
