@@ -213,8 +213,45 @@
   @apply mt-4
 }
 .gk-table .arco-collapse-item-header {
-  @apply bg-gray-50 border-0 py-0
+  @apply bg-gray-50 border-0 py-0 inline-block
 }
 .gk-table .arco-collapse-item-content-box {
   @apply px-0
+}
+
+.gk-bg.red {
+  @apply bg-red-600;
+}
+.gk-bg.blue {
+  @apply bg-blue-600;
+}
+.gk-bg.orangered {
+  @apply bg-orangered-600;
+}
+.gk-bg.orange {
+  @apply bg-orange-600;
+}
+.gk-bg.gold {
+  @apply bg-gold-600;
+}
+.gk-bg.lime {
+  @apply bg-lime-600;
+}
+.gk-bg.green {
+  @apply bg-green-600;
+}
+.gk-bg.cyan {
+  @apply bg-cyan-600;
+}
+.gk-bg.purple {
+  @apply bg-purple-600;
+}
+.gk-bg.pinkpurple {
+  @apply bg-pinkpurple-600;
+}
+.gk-bg.magenta {
+  @apply bg-magenta-600;
+}
+.gk-bg.gray {
+  @apply bg-gray-600;
 }

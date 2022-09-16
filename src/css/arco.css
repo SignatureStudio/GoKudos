@@ -1,8 +1,11 @@
 .nav .arco-menu-inner {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  @apply px-1;
 }
 .arco-table-size-small .arco-table-td,
 .arco-table-size-small .arco-table-th-item {
-  padding: 0.5rem;
+  @apply p-2;
+}
+
+.arco-modal-header .arco-modal-title {
+  @apply text-left font-heading;
 }
