@@ -3,7 +3,7 @@ import { Avatar, Button, Dropdown, Menu, Input } from "@arco-design/web-react";
 import { IconDown, IconPlus } from "@arco-design/web-react/icon";
 import { faker } from "@faker-js/faker";
 import { useState } from "react";
-import AddWorkspace from "./AddWorkspace";
+import WorkspaceAdd from "./WorkspaceAdd";
 
 const workspaces = {
   selected: {
@@ -72,7 +72,7 @@ const SubnavWorkspace = (props) => {
           </div>
         </Dropdown>
       </div>
-      <AddWorkspace visible={modalWorkspace} setVisible={setModalWorkspace} />
+      <WorkspaceAdd visible={modalWorkspace} setVisible={setModalWorkspace} />
     </>
   );
 };

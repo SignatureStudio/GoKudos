@@ -255,3 +255,31 @@
 .gk-bg.gray {
   @apply bg-gray-600;
 }
+
+.gk-extension {
+  @apply bg-gray-500
+}
+.gk-extension.ai, .gk-extension.svg {
+  @apply bg-orangered-500
+}
+.gk-extension.doc, .gk-extension.docx, .gk-extension.pages {
+  @apply bg-blue-500
+}
+.gk-extension.xls, .gk-extension.xlsx, .gk-extension.csv, .gk-extension.numbers {
+  @apply bg-green-500
+}
+.gk-extension.ppt, .gk-extension.pptx, .gk-extension.pdf, .gk-extension.key {
+  @apply bg-red-500
+}
+.gk-extension.jpg, .gk-extension.jpeg, .gk-extension.gif, .gk-extension.png, .gk-extension.webp, .gk-extension.tiff {
+  @apply bg-lime-500
+}
+.gk-extension.mov, .gk-extension.avi, .gk-extension.mp4, .gk-extension.mpg, .gk-extension.mpeg, .gk-extension.m4a, .gk-extension.ogg, .gk-extension.webm, .gk-extension.wmv, .gk-extension.mkv {
+  @apply bg-pink-500
+}
+.gk-extension.mp3, .gk-extension.wav, .gk-extension.wma, .gk-extension.aac {
+  @apply bg-purple-500
+}
+.gk-extension.zip, .gk-extension.rar {
+  @apply bg-yellow-500
+}

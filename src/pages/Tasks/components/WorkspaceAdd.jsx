@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { debounce } from "lodash";
 import { TASK } from "@/constants";
 
-const AddWorkspace = (props) => {
+const WorkspaceAdd = (props) => {
   const [avatarText, setAvatarText] = useState("A");
   const [avatarBg, setAvatarBg] = useState("gray");
   const bgcolor = [];
@@ -17,7 +17,7 @@ const AddWorkspace = (props) => {
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
       focusLock={true}
-      className="max-w-full"
+      className="w-full max-w-lg"
     >
       <div className="flex">
         <div>
@@ -69,4 +69,4 @@ const AddWorkspace = (props) => {
   );
 };
 
-export default AddWorkspace;
+export default WorkspaceAdd;

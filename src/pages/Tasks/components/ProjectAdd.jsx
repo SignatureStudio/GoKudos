@@ -12,10 +12,10 @@ import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { debounce } from "lodash";
 import { TASK } from "@/constants";
-import { IconInfoCircle, IconRight, IconUp } from "@arco-design/web-react/icon";
+import { IconInfoCircle, IconCaretRight, IconCaretUp } from "@arco-design/web-react/icon";
 import InputSelectMember from "./InputSelectMember";
 
-const AddProject = (props) => {
+const ProjectAdd = (props) => {
   const [avatarText, setAvatarText] = useState("A");
   const [avatarBg, setAvatarBg] = useState("gray");
   const [visibility, setVisibility] = useState("public");
@@ -31,7 +31,7 @@ const AddProject = (props) => {
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
       focusLock={true}
-      className="max-w-full"
+      className="w-full max-w-lg"
     >
       <div>
         <label>
@@ -178,7 +178,7 @@ const AddProject = (props) => {
             onClick={() => setShowAdvance(!showAdvance)}
           >
             <div className="text-xs mr-1">
-              {showAdvance ? <IconUp /> : <IconRight />}
+              {showAdvance ? <IconCaretUp /> : <IconCaretRight />}
             </div>
             <div>Advance</div>
           </div>
@@ -195,7 +195,7 @@ const AddProject = (props) => {
               <div className="py-3">
                 <div>External party</div>
                 <div>
-                  <InputSelectMember selected={[]} />
+                  <InputSelectMember data={[]} />
                 </div>
               </div>
             </div>
@@ -210,4 +210,4 @@ const AddProject = (props) => {
   );
 };
 
-export default AddProject;
+export default ProjectAdd;

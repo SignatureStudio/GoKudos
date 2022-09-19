@@ -1,21 +1,21 @@
 import { Modal } from "@arco-design/web-react";
 
-const DeleteProject = (props) => {
+const TaskMove = (props) => {
   return (
     <Modal
-      title="Delete Project"
+      title="Move Task"
       visible={props.visible}
-      okText="Delete Project"
+      okText="Move Task"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       okButtonProps={{ status: "danger" }}
       autoFocus={false}
       focusLock={true}
-      className="max-w-full"
+      className="w-full max-w-sm"
     >
-      <p>Do you want to delete this project?</p>
+      <p>Do you want to move this task?</p>
     </Modal>
   );
 };
 
-export default DeleteProject;
+export default TaskMove;

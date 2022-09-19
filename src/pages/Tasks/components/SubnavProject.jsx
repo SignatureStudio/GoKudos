@@ -8,17 +8,17 @@ import {
 } from "@arco-design/web-react/icon";
 import { Link } from "react-router-dom";
 import { projectsData } from "@/pages/Tasks/utils/sample_data";
-import AddProject from "./AddProject";
-import DeleteProject from "./DeleteProject";
-import AddWorkspace from "./AddWorkspace";
-import DeleteWorkspace from "./DeleteWorkspace";
+import ProjectAdd from "./ProjectAdd";
+import ProjectDelete from "./ProjectDelete";
+import WorkspaceAdd from "./WorkspaceAdd";
+import WorkspaceDelete from "./WorkspaceDelete";
 import { useState } from "react";
 
 const SubnavProject = () => {
   const [modalWorkspace, setModalWorkspace] = useState(false);
-  const [modalDeleteWorkspace, setModalDeleteWorkspace] = useState(false);
+  const [modalWorkspaceDelete, setModalWorkspaceDelete] = useState(false);
   const [modalProject, setModalProject] = useState(false);
-  const [modalDeleteProject, setModalDeleteProject] = useState(false);
+  const [modalProjectDelete, setModalProjectDelete] = useState(false);
 
   const menuWorkspace = (
     <Menu>
@@ -26,7 +26,7 @@ const SubnavProject = () => {
         Edit workspace
       </Menu.Item>
       <hr />
-      <Menu.Item key="2" onClick={() => setModalDeleteWorkspace(true)}>
+      <Menu.Item key="2" onClick={() => setModalWorkspaceDelete(true)}>
         Delete workspace
       </Menu.Item>
     </Menu>
@@ -38,7 +38,7 @@ const SubnavProject = () => {
         Edit project
       </Menu.Item>
       <hr />
-      <Menu.Item key="2" onClick={() => setModalDeleteProject(true)}>
+      <Menu.Item key="2" onClick={() => setModalProjectDelete(true)}>
         Delete project
       </Menu.Item>
     </Menu>
@@ -91,10 +91,10 @@ const SubnavProject = () => {
           </div>
         </Menu.Item>
       </Menu>
-      <AddWorkspace visible={modalWorkspace} setVisible={setModalWorkspace} />
-      <DeleteWorkspace visible={modalDeleteWorkspace} setVisible={setModalDeleteWorkspace} />
-      <AddProject visible={modalProject} setVisible={setModalProject} />
-      <DeleteProject visible={modalDeleteProject} setVisible={setModalDeleteProject} />
+      <WorkspaceAdd visible={modalWorkspace} setVisible={setModalWorkspace} />
+      <WorkspaceDelete visible={modalWorkspaceDelete} setVisible={setModalWorkspaceDelete} />
+      <ProjectAdd visible={modalProject} setVisible={setModalProject} />
+      <ProjectDelete visible={modalProjectDelete} setVisible={setModalProjectDelete} />
     </>
   );
 };

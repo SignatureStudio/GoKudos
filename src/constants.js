@@ -5,22 +5,22 @@ export const TASK = {
   SCALE: ["day", "month", "year"],
   STATUS: [
     {
-      id: faker.datatype.uuid(),
+      id: 1,
       name: "To do",
       color: "blue",
     },
     {
-      id: faker.datatype.uuid(),
+      id: 2,
       name: "Doing",
       color: "gold",
     },
     {
-      id: faker.datatype.uuid(),
+      id: 3,
       name: "Done",
       color: "green",
     },
     {
-      id: faker.datatype.uuid(),
+      id: 4,
       name: "On hold",
       color: "red",
     },

@@ -1,13 +1,12 @@
 import { Select, Avatar, Input } from "@arco-design/web-react";
-import { IconMore } from "@arco-design/web-react/icon";
+import { IconPlus } from "@arco-design/web-react/icon";
 import { members as MEMBERS } from "../utils/sample_data";
 import { useState } from "react";
-import { debounce, filter } from "lodash";
+import { debounce } from "lodash";
 
 const InputSelectMember = (props) => {
-  const [selected, setSelected] = useState(props.selected);
+  const [selected, setSelected] = useState(props.data);
   const [options, setOptions] = useState(MEMBERS);
-
   return (
     <Select
       defaultValue={selected}
@@ -18,7 +17,7 @@ const InputSelectMember = (props) => {
         setSelected(e);
       }}
       triggerElement={
-        <div className="w-40">
+        <div className="w-full">
           {selected.length ? (
             <Avatar.Group size={24}>
               {MEMBERS.map((member) => (
@@ -36,7 +35,9 @@ const InputSelectMember = (props) => {
               ))}
             </Avatar.Group>
           ) : (
-            <div className="cursor-pointer hover:bg-gray-200">-</div>
+            <div className="cursor-pointer hover:bg-gray-200 px-1">
+              <IconPlus className="text-gray-600 hover:text-gray-900" />
+            </div>
           )}
         </div>
       }
@@ -48,19 +49,17 @@ const InputSelectMember = (props) => {
             <Input.Search
               placeholder="Search"
               allowClear
-              onChange={
-                debounce((e) => {
-                  let res = []
-                  const regex = new RegExp(e, 'gi')
+              onChange={debounce((e) => {
+                let res = [];
+                const regex = new RegExp(e, "gi");
 
-                  MEMBERS.map(member => {
-                    if (member.name.match(regex)) {
-                      res.push(member)
-                    }
-                  })
-                  setOptions(res);
-                }, 1000)
-              }
+                MEMBERS.map((member) => {
+                  if (member.name.match(regex)) {
+                    res.push(member);
+                  }
+                });
+                setOptions(res);
+              }, 1000)}
             />
           </div>
         </>

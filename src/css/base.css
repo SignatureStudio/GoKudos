@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
 body {
   --primary-1: 255,214,220;
@@ -37,4 +37,17 @@ h2 {
 }
 .font-body {
   font-family: 'Source Sans Pro', sans-serif;  
+}
+
+::-webkit-scrollbar {
+  @apply w-4
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full border-4 border-solid border-transparent bg-clip-content
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600
 }
