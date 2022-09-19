@@ -28,18 +28,23 @@ import {
 } from "./_utils";
 import { TASK } from "@/constants";
 import { members as MEMBERS } from "./sample_data";
+import InputSelectStatus from "../components/InputSelectStatus"
+import InputTimeline from "../components/InputTimeline"
+import InputSelectMember from "../components/InputSelectMember"
+import InputTracking from "../components/InputTracking"
+import InputPriority from "../components/InputPriority"
+import InputText from "../components/InputText"
+import InputReminder from "../components/InputReminder"
+import InputRecurrence from "../components/InputRecurrence"
+import InputTags from "../components/InputTags"
+import InputProps from "../components/InputProps"
 
-const priorityColor = {
-  High: "red",
-  Medium: "gold",
-  Low: "lime",
-};
 export const utils = {
   columns: {
     name: {
       dataIndex: "name",
       title: "Name",
-      width: 200,
+      width: 300,
       render: (col, record, index) => {
         let children = "";
         if ("children" in record) {
@@ -91,145 +96,23 @@ export const utils = {
       title: "Status",
       width: 100,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <>
-            {edit === false ? (
-              <Tag
-                color={col.color}
-                bordered
-                className="w-full text-center cursor-pointer"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col.name}
-              </Tag>
-            ) : (
-              <Select
-                placeholder="Please select"
-                defaultValue={col.id}
-                ref={refInput}
-                onChange={(value) => {
-                  console.log(value);
-                  setEdit(false);
-                }}
-                onBlur={(value) => {
-                  setEdit(false);
-                }}
-              >
-                {TASK.STATUS.map((status) => (
-                  <Select.Option key={status.id} value={status.id}>
-                    {status.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            )}
-          </>
-        );
+        return (<InputSelectStatus data={col} />)
       },
     },
     duedate: {
       dataIndex: "duedate",
-      title: "Due Date",
+      title: "Timeline",
       width: 180,
       render: (col, record, index) => {
-        // const { RangePicker } = DatePicker;
-        // const [edit, setEdit] = useState(false);
-        // const refInput = useRef(null);
-
-        // useEffect(() => {
-        //   if (edit) {
-        //     console.log(refInput);
-        //     // refInput.current.focus();
-        //   }
-        // }, [edit]);
-        const start = dayjs(col.start);
-        const end = dayjs(col.end);
-        let startFormat = "MMM D, YYYY";
-        let endFormat = "MMM D, YYYY";
-
-        if (start.$y === end.$y) {
-          if (start.$M === end.$M) {
-            startFormat = "MMM D";
-            endFormat = "D";
-          } else {
-            startFormat = "MMM D";
-            endFormat = "MMM D";
-          }
-        }
-        return (
-          <DatePicker.RangePicker
-            triggerElement={
-              <div className="cursor-pointer">
-                {displayTimeline(col.start, col.end)}
-              </div>
-            }
-            defaultValue={[col.start, col.end]}
-            onChange={(value) => {
-              console.log(value);
-            }}
-          />
-        );
+        return (<InputTimeline data={col} />)
       },
     },
     members: {
       dataIndex: "members",
-      title: "Members",
+      title: "Assignee",
       width: 160,
       render: (col, record, index) => {
-        const refSelect = useRef(null);
-        const [selectedMembers, setSelectedMembers] = useState(
-          getAllSelectedId(col)
-        );
-
-        return (
-          <Select
-            defaultValue={selectedMembers}
-            showSearch
-            mode="multiple"
-            onChange={(e) => {
-              console.log(e);
-              setSelectedMembers(e);
-            }}
-            triggerElement={
-              <div className="w-40">
-                {selectedMembers.length ? (
-                  <Avatar.Group size={24}>
-                    {MEMBERS.map((member) => (
-                      <span key={member.id}>
-                        {selectedMembers.includes(member.id) && (
-                          <Avatar key={member.id}>
-                            {member.avatar === "" ? (
-                              member.name.charAt(0)
-                            ) : (
-                              <img src={member.avatar} alt={member.name} />
-                            )}
-                          </Avatar>
-                        )}
-                      </span>
-                    ))}
-                  </Avatar.Group>
-                ) : (
-                  <div className="cursor-pointer hover:bg-gray-200">-</div>
-                )}
-              </div>
-            }
-          >
-            {MEMBERS.map((member) => (
-              <Select.Option value={member.id} key={member.id}>
-                {member.name}
-              </Select.Option>
-            ))}
-          </Select>
-        );
+        return (<InputSelectMember data={getAllSelectedId(col)} />)
       },
     },
     watchers: {
@@ -237,51 +120,7 @@ export const utils = {
       title: "Watchers",
       width: 160,
       render: (col, record, index) => {
-        const refSelect = useRef(null);
-        const [selectedWatchers, setSelectedWatchers] = useState(
-          getAllSelectedId(col)
-        );
-
-        return (
-          <Select
-            defaultValue={selectedWatchers}
-            showSearch
-            mode="multiple"
-            onChange={(e) => {
-              console.log(e);
-              setSelectedWatchers(e);
-            }}
-            triggerElement={
-              <div className="w-40">
-                {selectedWatchers.length ? (
-                  <Avatar.Group size={24}>
-                    {MEMBERS.map((member) => (
-                      <>
-                        {selectedWatchers.includes(member.id) && (
-                          <Avatar key={member.id}>
-                            {member.avatar === "" ? (
-                              member.name.charAt(0)
-                            ) : (
-                              <img src={member.avatar} alt={member.name} />
-                            )}
-                          </Avatar>
-                        )}
-                      </>
-                    ))}
-                  </Avatar.Group>
-                ) : (
-                  <div className="cursor-pointer hover:bg-gray-200">-</div>
-                )}
-              </div>
-            }
-          >
-            {MEMBERS.map((member) => (
-              <Select.Option value={member.id} key={member.id}>
-                {member.name}
-              </Select.Option>
-            ))}
-          </Select>
-        );
+        return (<InputSelectMember data={getAllSelectedId(col)} />)
       },
     },
     contacts: {
@@ -289,111 +128,19 @@ export const utils = {
       title: "Contacts",
       width: 160,
       render: (col, record, index) => {
-        const refSelect = useRef(null);
-        const [selectedContacts, setSelectedContacts] = useState(
-          getAllSelectedId(col)
-        );
-
-        return (
-          <Select
-            defaultValue={selectedContacts}
-            showSearch
-            mode="multiple"
-            onChange={(e) => {
-              console.log(e);
-              setSelectedContacts(e);
-            }}
-            triggerElement={
-              <div className="w-40">
-                {selectedContacts.length ? (
-                  <Avatar.Group size={24}>
-                    {MEMBERS.map((member) => (
-                      <>
-                        {selectedContacts.includes(member.id) && (
-                          <Avatar key={member.id}>
-                            {member.avatar === "" ? (
-                              member.name.charAt(0)
-                            ) : (
-                              <img src={member.avatar} alt={member.name} />
-                            )}
-                          </Avatar>
-                        )}
-                      </>
-                    ))}
-                  </Avatar.Group>
-                ) : (
-                  <div className="cursor-pointer hover:bg-gray-200">-</div>
-                )}
-              </div>
-            }
-          >
-            {MEMBERS.map((member) => (
-              <Select.Option value={member.id} key={member.id}>
-                {member.name}
-              </Select.Option>
-            ))}
-          </Select>
-        );
+        return (<InputSelectMember data={getAllSelectedId(col)} />)
       },
     },
-    // members: {
-    //   dataIndex: "members",
-    //   title: "Members",
-    //   width: 100,
-    //   render: (col, record, index) => {
-    //     const refSelect = useRef(null);
-    //     const [members, setMembers] = useState(col || []);
-    //     // console.log(members);
-
-    //     const memberIds = getAllSelectedId(members);
-
-    //     let menuItem = [];
-    //     MEMBERS.map((member) => {
-    //       if (!memberIds.includes(member.id)) {
-    //         // const [active, setActive] = useState(false);
-    //         menuItem.push(
-    //           <Menu.Item
-    //             key="member.id"
-    //             onClick={() => {
-    //               setMembers([...members, member]);
-    //               // setActive(true);
-    //             }}
-    //             // className={active ? "hidden" : ""}
-    //           >
-    //             <Avatar size={24} className="mr-2">
-    //               <img src={member.avatar} alt={member.name} />
-    //             </Avatar>
-    //             {member.name}
-    //           </Menu.Item>
-    //         );
-    //       }
-    //     });
-    //     const memberlist = <Menu>{menuItem}</Menu>;
-
-    //     return (
-    //       <Dropdown droplist={memberlist} trigger="click">
-    //         <Avatar.Group size={24}>
-    //           {members.map((member) => (
-    //             <Avatar key={member.id}>
-    //               {member.avatar === "" ? (
-    //                 member.name.charAt(0)
-    //               ) : (
-    //                 <img src={member.avatar} alt={member.name} />
-    //               )}
-    //             </Avatar>
-    //           ))}
-    //         </Avatar.Group>
-    //       </Dropdown>
-    //     );
-    //   },
-    // },
     activity: {
       dataIndex: "activity",
       title: "Activity",
       width: 100,
       render: (col, record, index) => {
         return (
-          <div className="flex">
+          <div className="flex cursor-pointer" onClick={() => {
+            col.task(col.id)
+            col.edit(true)
+          }}>
             <div className="ml-1.5">
               <Badge count={record.comments.length} dot>
                 <IconMessage
@@ -421,35 +168,7 @@ export const utils = {
       title: "Tracking",
       width: 100,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const [timer, setTimer] = useState(col);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          let interval = null;
-          if (edit) {
-            interval = setInterval(() => {
-              setTimer((timer) => timer + 1);
-            }, 1000);
-          } else if (!edit && timer !== 0) {
-            clearInterval(interval);
-            console.log(timer);
-          }
-          return () => clearInterval(interval);
-        }, [edit, timer]);
-
-        return (
-          <Button
-            size="mini"
-            icon={edit ? <IconPause /> : <IconPlayArrow />}
-            type={edit ? "primary" : "secondary"}
-            status={edit ? "success" : ""}
-            className="w-full text-center"
-            onClick={() => setEdit(!edit)}
-          >
-            {timer > 0 ? displayTimeFromSeconds(timer) : "Start"}
-          </Button>
-        );
+        return (<InputTracking data={col} />)
       },
     },
     priority: {
@@ -457,34 +176,7 @@ export const utils = {
       title: "Priority",
       width: 100,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        const priorityList = (
-          <Menu
-            onClickMenuItem={(e) => {
-              console.log(e);
-            }}
-          >
-            <Menu.Item key="Low">
-              <Badge color={priorityColor["Low"]} text="Low" />
-            </Menu.Item>
-            <Menu.Item key="Medium">
-              <Badge color={priorityColor["Medium"]} text="Medium" />
-            </Menu.Item>
-            <Menu.Item key="High">
-              <Badge color={priorityColor["High"]} text="High" />
-            </Menu.Item>
-          </Menu>
-        );
-
-        return (
-          <Dropdown droplist={priorityList} trigger="click">
-            <div className="cursor-pointer">
-              {col ? <Badge color={priorityColor[col]} text={col} /> : "-"}
-            </div>
-          </Dropdown>
-        );
+        return (<InputPriority data={col} />)
       },
     },
     value: {
@@ -492,41 +184,7 @@ export const utils = {
       title: "Project value",
       width: 100,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <div>
-            {edit === false ? (
-              <div
-                className="truncate cursor-pointer"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col ? <div>RM{col}</div> : <div className="cursor-pointer hover:bg-gray-200">-</div>}
-              </div>
-            ) : (
-              <div>
-                <Input
-                  ref={refInput}
-                  allowClear
-                  placeholder="RM"
-                  defaultValue={col}
-                  onBlur={(e) => {
-                    console.log(e.target.value);
-                    setEdit(false);
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        );
+        return (<InputText data={col} prefix="RM " placeholder="RM" />)
       },
     },
     effort: {
@@ -534,41 +192,7 @@ export const utils = {
       title: "Planned effort",
       width: 100,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <div>
-            {edit === false ? (
-              <div
-                className="truncate cursor-pointer"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col ? <div>{col}hrs</div> : <div className="cursor-pointer hover:bg-gray-200">-</div>}
-              </div>
-            ) : (
-              <div>
-                <Input
-                  ref={refInput}
-                  allowClear
-                  placeholder="Hours"
-                  defaultValue={col}
-                  onBlur={(e) => {
-                    console.log(e.target.value);
-                    setEdit(false);
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        );
+        return (<InputText data={col} suffix=" hours" placeholder="Hours" />)
       },
     },
     reminder: {
@@ -576,47 +200,7 @@ export const utils = {
       title: "Reminder",
       width: 150,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <>
-            {edit === false ? (
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col ? <div>{col}</div> : <div className="cursor-pointer hover:bg-gray-200">-</div>}
-              </div>
-            ) : (
-              <Select
-                placeholder="Please select"
-                defaultValue={col ? col.id : undefined}
-                ref={refInput}
-                onChange={(value) => {
-                  console.log(value);
-                  setEdit(false);
-                }}
-                onBlur={(value) => {
-                  setEdit(false);
-                }}
-              >
-                {TASK.REMINDER.map((reminder) => (
-                  <Select.Option key={reminder.id} value={reminder.id}>
-                    {reminder.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            )}
-          </>
-        );
+        return (<InputReminder data={col} />)
       },
     },
     recurrence: {
@@ -624,47 +208,7 @@ export const utils = {
       title: "Recurrence",
       width: 150,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <>
-            {edit === false ? (
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col ? <div>{col}</div> : <div className="cursor-pointer hover:bg-gray-200">-</div>}
-              </div>
-            ) : (
-              <Select
-                placeholder="Please select"
-                defaultValue={col ? col.id : undefined}
-                ref={refInput}
-                onChange={(value) => {
-                  console.log(value);
-                  setEdit(false);
-                }}
-                onBlur={(value) => {
-                  setEdit(false);
-                }}
-              >
-                {TASK.RECURRENCE.map((recur) => (
-                  <Select.Option key={recur.id} value={recur.id}>
-                    {recur.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            )}
-          </>
-        );
+        return (<InputRecurrence data={col} />)
       },
     },
     tags: {
@@ -672,58 +216,7 @@ export const utils = {
       title: "Tags",
       width: 150,
       render: (col, record, index) => {
-        const [edit, setEdit] = useState(false);
-        const [trigger, setTrigger] = useState(
-          col.length ? (
-            col.join(", ")
-          ) : (
-            <div className="cursor-pointer hover:bg-gray-200">-</div>
-          )
-        );
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <TreeSelect
-            placeholder="Please select"
-            defaultValue={col ? col.id : undefined}
-            ref={refInput}
-            allowClear
-            onChange={(value) => {
-              console.log(value);
-              setEdit(false);
-              setTrigger(
-                value.length ? (
-                  <div className="break-normal">{value.join(", ")}</div>
-                ) : (
-                  <div className="cursor-pointer hover:bg-gray-200">-</div>
-                )
-              );
-            }}
-            onBlur={(value) => {
-              setEdit(false);
-            }}
-            treeCheckable
-            triggerElement={<div>{trigger}</div>}
-          >
-            <TreeSelect.Node key="Industries" title="Industries">
-              <TreeSelect.Node key="Manufacturing" title="Manufacturing" />
-              <TreeSelect.Node key="Furniture" title="Furniture" />
-            </TreeSelect.Node>
-            <TreeSelect.Node key="Location" title="Location">
-              <TreeSelect.Node key="East MY" title="East MY" />
-              <TreeSelect.Node key="West MY" title="West MY" />
-            </TreeSelect.Node>
-            <TreeSelect.Node key="Job Type" title="Job Type">
-              <TreeSelect.Node key="In-house" title="In-house" />
-              <TreeSelect.Node key="Outsource" title="Outsource" />
-            </TreeSelect.Node>
-          </TreeSelect>
-        );
+        return (<InputTags data={col} />)
       },
     },
     menu: {
@@ -734,15 +227,33 @@ export const utils = {
         return (
           <Dropdown trigger="click" droplist={
             <Menu>
-              <Menu.Item>View Detail</Menu.Item>
-              <Menu.Item>Add Subtask</Menu.Item>
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.edit(true)
+              }}>View Detail</Menu.Item>
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.duplicate(true)
+              }}>Duplicate</Menu.Item>
+              {/* <Menu.Item>Export</Menu.Item> */}
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.move(true)
+              }}>Move</Menu.Item>
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.archive(true)
+              }}>Archive</Menu.Item>
               <hr />
-              <Menu.Item>Duplicate</Menu.Item>
-              <Menu.Item>Export</Menu.Item>
-              <Menu.Item>Move</Menu.Item>
-              <Menu.Item>Archive</Menu.Item>
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.subtask(true)
+              }}>Add Subtask</Menu.Item>
               <hr />
-              <Menu.Item className="text-red-600 hover:text-red-600">Delete</Menu.Item>
+              <Menu.Item onClick={() => {
+                col.task(col.id)
+                col.delete(true)
+              }}>Delete</Menu.Item>
             </Menu>
           }>
             <Button type="text" size="small" icon={<IconMoreVertical className="text-gray-600" />} />
@@ -752,42 +263,14 @@ export const utils = {
     },
     addprops: {
       dataIndex: "addproperty",
-      title: (
-        <Select
-          defaultValue={["name", "status", "duedate", "members", "activity"]}
-          mode="multiple"
-          onChange={(e) => {
-            console.log(e);
-          }}
-          triggerElement={
-            <div className="w-40">
-              <Button icon={<IconPlus />} />
-            </div>
-          }
-        >
-          <Select.Option value="name">Name</Select.Option>
-          <Select.Option value="status">Status</Select.Option>
-          <Select.Option value="duedate">Due Date</Select.Option>
-          <Select.Option value="members">Members</Select.Option>
-          <Select.Option value="activity">Activity</Select.Option>
-          <Select.Option value="watchers">Watchers</Select.Option>
-          <Select.Option value="contacts">Contacts</Select.Option>
-          <Select.Option value="tracking">Tracking</Select.Option>
-          <Select.Option value="priority">Priority</Select.Option>
-          <Select.Option value="value">Project value</Select.Option>
-          <Select.Option value="effort">Planned effort</Select.Option>
-          <Select.Option value="reminder">Reminder</Select.Option>
-          <Select.Option value="recurrence">Recurrence</Select.Option>
-          <Select.Option value="tags">Tags</Select.Option>
-        </Select>
-      ),
+      title: (<InputProps />),
       width: 160,
       render: (col, record, index) => {
         return <div></div>;
       },
     },
   },
-  mapData: function (data) {
+  mapData: function (data, taskAction) {
     let projects = [];
 
     data.projects.map((project) => {
@@ -818,6 +301,8 @@ export const utils = {
               tags: subtask.tags,
               comments: subtask.comments,
               attachments: subtask.attachments,
+              menu: taskAction(subtask.id),
+              activity: taskAction(subtask.id),
             });
           });
           tasks.push({
@@ -841,6 +326,8 @@ export const utils = {
             tags: task.tags,
             comments: task.comments,
             attachments: task.attachments,
+            menu: taskAction(task.id),
+            activity: taskAction(task.id),
           });
         });
         groups.push({
