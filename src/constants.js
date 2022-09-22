@@ -8,20 +8,51 @@ export const TASK = {
       id: 1,
       name: "To do",
       color: "blue",
+      description: "Represent new task, default status for all tasks"
     },
     {
       id: 2,
       name: "Doing",
       color: "gold",
+      description: "Represent in progress task"
     },
     {
       id: 3,
       name: "Done",
       color: "green",
+      description: "Represent completed task"
     },
     {
       id: 4,
       name: "On hold",
+      color: "red",
+      description: "Represent problem, stuck, or rejected task"
+    },
+  ],
+  STATUS2: [
+    {
+      id: 1,
+      name: "New",
+      color: "blue",
+    },
+    {
+      id: 2,
+      name: "Pending",
+      color: "gold",
+    },
+    {
+      id: 3,
+      name: "In progress",
+      color: "orange",
+    },
+    {
+      id: 4,
+      name: "Completed",
+      color: "green",
+    },
+    {
+      id: 5,
+      name: "Rejected",
       color: "red",
     },
   ],
@@ -41,36 +72,196 @@ export const TASK = {
   ],
   RECURRENCE: [
     {
-      id: faker.datatype.uuid(),
-      name: "Daily",
+      value: faker.datatype.uuid(),
+      label: "Daily",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Everyday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Working day only",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "Weekly",
+      value: faker.datatype.uuid(),
+      label: "Weekly",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Monday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Tuesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Wednesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Thursday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Friday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Saturday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Sunday",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "1st Week",
+      value: faker.datatype.uuid(),
+      label: "1st Week",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Monday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Tuesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Wednesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Thursday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Friday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Saturday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Sunday",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "2nd Week",
+      value: faker.datatype.uuid(),
+      label: "2nd Week",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Monday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Tuesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Wednesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Thursday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Friday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Saturday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Sunday",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "3rd Week",
+      value: faker.datatype.uuid(),
+      label: "3rd Week",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Monday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Tuesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Wednesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Thursday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Friday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Saturday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Sunday",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "4th Week",
+      value: faker.datatype.uuid(),
+      label: "4th Week",
+      children: [
+        {
+          value: faker.datatype.uuid(),
+          label: "Monday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Tuesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Wednesday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Thursday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Friday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Saturday",
+        },
+        {
+          value: faker.datatype.uuid(),
+          label: "Sunday",
+        },
+      ]
     },
     {
-      id: faker.datatype.uuid(),
-      name: "Monthly",
+      value: faker.datatype.uuid(),
+      label: "Monthly",
     },
     {
-      id: faker.datatype.uuid(),
-      name: "Yearly",
+      value: faker.datatype.uuid(),
+      label: "Yearly",
     },
   ],
   COLORS: [

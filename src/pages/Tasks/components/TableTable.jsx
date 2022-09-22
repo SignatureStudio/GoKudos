@@ -1,5 +1,12 @@
 import { tasksData } from "../utils/sample_data";
-import { Table, Button, Collapse, Drawer } from "@arco-design/web-react";
+import {
+  Table,
+  Button,
+  Collapse,
+  Drawer,
+  Input,
+  Tag,
+} from "@arco-design/web-react";
 import {
   IconPlus,
   IconCopy,
@@ -7,17 +14,27 @@ import {
   IconToRight,
   IconArchive,
   IconDelete,
+  IconCheck,
+  IconClose,
+  IconSearch,
+  IconEdit,
 } from "@arco-design/web-react/icon";
 import { useState } from "react";
 import { utils } from "../utils/Table.utils";
 import { displayTasksBy } from "../utils/_utils";
 import TaskAdd from "./TaskAdd";
+import TaskEdit from "./TaskEdit";
 import TaskDelete from "./TaskDelete";
 import TaskDuplicate from "./TaskDuplicate";
 import TaskMove from "./TaskMove";
 import TaskArchive from "./TaskArchive";
+import InputText from "../components/InputText";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const TasksTableTable = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const columns = [
     utils.columns.name,
     utils.columns.menu,
@@ -37,40 +54,76 @@ const TasksTableTable = (props) => {
     utils.columns.addprops,
   ];
 
-
   const [drawerAction, setDrawerAction] = useState(false);
   const [selectedCount, setSelectedCount] = useState(0);
 
   const [taskId, setTaskId] = useState(null);
   const [modalTaskAdd, setModalTaskAdd] = useState(false);
+  const [modalTaskEdit, setModalTaskEdit] = useState(false);
   const [modalTaskDelete, setModalTaskDelete] = useState(false);
   const [modalTaskDuplicate, setModalTaskDuplicate] = useState(false);
   const [modalTaskMove, setModalTaskMove] = useState(false);
   const [modalTaskArchive, setModalTaskArchive] = useState(false);
 
-  const taskAction = (id) => {
-    return {
-      id: id,
-      task: setTaskId,
-      edit: setModalTaskAdd,
-      add: setModalTaskAdd,
-      subtask: setModalTaskAdd,
-      delete: setModalTaskDelete,
-      duplicate: setModalTaskDuplicate,
-      move: setModalTaskMove,
-      archive: setModalTaskArchive,
-    }
-  }
+  const taskAction = {
+    task: setTaskId,
+    edit: setModalTaskEdit,
+    add: setModalTaskAdd,
+    subtask: setModalTaskAdd,
+    delete: setModalTaskDelete,
+    duplicate: setModalTaskDuplicate,
+    move: setModalTaskMove,
+    archive: setModalTaskArchive,
+  };
 
-  const projects = utils.mapData(tasksData, taskAction);
+  const data = displayTasksBy[props.displayBy](tasksData, taskAction);
+
   return (
     <>
       <div className="p-3 bg-gray-50 gk-table">
-        {projects[0].groups.map((group) => (
+        {searchParams.get("q") && (
+          <div className="flex items-center bg-gray-100 border border-gray-300 rounded p-1">
+            <IconSearch className="m-1" />
+            <div className="flex-1">
+              <Tag
+                closable
+                onClose={() => {
+                  console.log("remove");
+                }}
+                className="m-1 bg-white"
+              >
+                Keyword
+              </Tag>
+              <Tag
+                closable
+                onClose={() => {
+                  console.log("remove");
+                }}
+                className="m-1 bg-white"
+              >
+                A member
+              </Tag>
+            </div>
+            <Button
+              size="mini"
+              onClick={() => {
+                navigate({
+                  pathname: "/tasks",
+                  search: "",
+                });
+              }}
+            >
+              Clear
+            </Button>
+          </div>
+        )}
+        {data.map((group) => (
           <div key={group.id}>
             <Collapse bordered={false} defaultActiveKey={group.id}>
               <Collapse.Item
-                header={<h2 className="py-0">{group.name}</h2>}
+                header={
+                  <h2 className="-mt-1.5"><InputText data={group.name} placeholder="Add a group name" /></h2>
+                }
                 name={group.id}
                 className="p-0 bg-gray-50"
               >
@@ -88,13 +141,9 @@ const TasksTableTable = (props) => {
                         ? selectedCount + 1
                         : selectedCount - 1;
                       setSelectedCount(count);
-                      // record ? count++ : count--
-
-                      // console.log(selectedCount);
                       count > 0
                         ? setDrawerAction(true)
                         : setDrawerAction(false);
-                      // console.log(record, selectedRows);
                     },
                   }}
                   columns={columns}
@@ -102,29 +151,62 @@ const TasksTableTable = (props) => {
                   pagination={false}
                   noDataElement={<div>NOTHING</div>}
                   className="border-gray-300 border rounded"
-                  // defaultExpandAllRows={true}
+                  summary={(currentData) => (
+                    <Table.Summary>
+                      <Table.Summary.Row>
+                        <Table.Summary.Cell colSpan={4}>
+                          <Input.Group className="flex">
+                            <Input
+                              placeholder="+ Add new task"
+                              className="ml-6 flex-1 peer"
+                            />
+                            <Button
+                              iconOnly
+                              icon={<IconCheck />}
+                              className="opacity-0 peer-focus:opacity-100"
+                            />
+                            <Button
+                              iconOnly
+                              icon={<IconClose />}
+                              className="opacity-0 peer-focus:opacity-100"
+                            />
+                          </Input.Group>
+                        </Table.Summary.Cell>
+                        <Table.Summary.Cell colSpan={20} />
+                      </Table.Summary.Row>
+                    </Table.Summary>
+                  )}
                 />
-                <Button
-                  size="mini"
-                  type="text"
-                  icon={<IconPlus />}
-                  className="mt-2"
-                  onClick={() => {
-                    setModalTaskAdd(true)
-                  }}
-                >
-                  Add Task
-                </Button>
               </Collapse.Item>
             </Collapse>
           </div>
         ))}
+        {props.displayBy === "group" && (
+          <Button
+            size="mini"
+            type="text"
+            icon={<IconPlus />}
+            className="mt-2"
+            onClick={() => {
+              setModalTaskEdit(true);
+            }}
+          >
+            Add Group
+          </Button>
+        )}
       </div>
       <TaskAdd visible={modalTaskAdd} setVisible={setModalTaskAdd} />
+      <TaskEdit visible={modalTaskEdit} setVisible={setModalTaskEdit} />
       <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
-      <TaskDuplicate visible={modalTaskDuplicate} setVisible={setModalTaskDuplicate} />
+      <TaskDuplicate
+        visible={modalTaskDuplicate}
+        setVisible={setModalTaskDuplicate}
+      />
       <TaskMove visible={modalTaskMove} setVisible={setModalTaskMove} />
-      <TaskArchive visible={modalTaskArchive} setVisible={setModalTaskArchive} />
+      <TaskArchive
+        visible={modalTaskArchive}
+        setVisible={setModalTaskArchive}
+      />
       <Drawer
         visible={drawerAction}
         placement="bottom"

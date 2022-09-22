@@ -13,3 +13,11 @@
 .arco-input-inner-wrapper.large input {
   @apply text-xl;
 }
+
+.arco-btn-outline:not(.arco-btn-disabled) {
+  @apply border-gray-400 text-gray-900
+}
+.arco-avatar-group > span:empty:first-child {
+  width: 6px;
+  display: inline-block;
+}

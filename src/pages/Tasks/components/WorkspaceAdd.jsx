@@ -1,4 +1,11 @@
-import { Modal, Avatar, Input, Radio } from "@arco-design/web-react";
+import {
+  Modal,
+  Avatar,
+  Input,
+  Radio,
+  Carousel,
+  Tag,
+} from "@arco-design/web-react";
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { debounce } from "lodash";
@@ -7,7 +14,6 @@ import { TASK } from "@/constants";
 const WorkspaceAdd = (props) => {
   const [avatarText, setAvatarText] = useState("A");
   const [avatarBg, setAvatarBg] = useState("gray");
-  const bgcolor = [];
   return (
     <Modal
       title="Add Workspace"
@@ -28,7 +34,7 @@ const WorkspaceAdd = (props) => {
         <div className="flex-1 pl-4">
           <div>
             <label>
-              Workspace name
+              <div>Workspace name</div>
               <Input
                 allowClear
                 placeholder="Add a workspace name"
@@ -40,7 +46,7 @@ const WorkspaceAdd = (props) => {
             </label>
           </div>
           <div>
-            Background color
+            <div>Background color</div>
             <Radio.Group
               defaultValue={avatarBg}
               onChange={(e) => {

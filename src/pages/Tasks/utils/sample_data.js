@@ -88,10 +88,10 @@ const singleTask = (
     status: status,
     startDate: timeframe.start
       .add(start, "day")
-      .format("YYYY-MM-DDT00:00:00.000Z"),
+      .format("YYYY-MM-DDT00:12:00.000Z"),
     endDate: timeframe.start
       .add(start + duration, "day")
-      .format("YYYY-MM-DDT00:00:00.000Z"),
+      .format("YYYY-MM-DDT00:23:00.000Z"),
     comments: comments,
     attachments: attachments,
     company: "A Company",
@@ -122,7 +122,7 @@ export const tasksData = {
   projects: [
     singleProject("A Project", [
       singleGroup("A Group", [
-        singleTask(0, 10, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
+        singleTask(0, 0, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
         singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
         singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
         singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, [
@@ -140,20 +140,20 @@ export const tasksData = {
         singleTask(30, 10, TASK.STATUS[3], "A Project", groups[1], 0, 2, []),
       ]),
     ]),
-    singleProject("B Project", [
-      singleGroup("A Group", [
-        singleTask(10, 10, TASK.STATUS[0], "B Project", groups[0], 0, 0, []),
-        singleTask(15, 15, TASK.STATUS[1], "B Project", groups[0], 2, 0, []),
-        singleTask(18, 8, TASK.STATUS[2], "B Project", groups[0], 0, 0, []),
-        singleTask(20, 10, TASK.STATUS[3], "B Project", groups[0], 0, 2, []),
-      ]),
-      singleGroup("B Group", [
-        singleTask(25, 10, TASK.STATUS[0], "B Project", groups[1], 0, 2, []),
-        singleTask(30, 15, TASK.STATUS[1], "B Project", groups[1], 2, 2, []),
-        singleTask(35, 8, TASK.STATUS[2], "B Project", groups[1], 2, 0, []),
-        singleTask(40, 10, TASK.STATUS[3], "B Project", groups[1], 2, 0, []),
-      ]),
-    ]),
+    // singleProject("B Project", [
+    //   singleGroup("A Group", [
+    //     singleTask(10, 10, TASK.STATUS[0], "B Project", groups[0], 0, 0, []),
+    //     singleTask(15, 15, TASK.STATUS[1], "B Project", groups[0], 2, 0, []),
+    //     singleTask(18, 8, TASK.STATUS[2], "B Project", groups[0], 0, 0, []),
+    //     singleTask(20, 10, TASK.STATUS[3], "B Project", groups[0], 0, 2, []),
+    //   ]),
+    //   singleGroup("B Group", [
+    //     singleTask(25, 10, TASK.STATUS[0], "B Project", groups[1], 0, 2, []),
+    //     singleTask(30, 15, TASK.STATUS[1], "B Project", groups[1], 2, 2, []),
+    //     singleTask(35, 8, TASK.STATUS[2], "B Project", groups[1], 2, 0, []),
+    //     singleTask(40, 10, TASK.STATUS[3], "B Project", groups[1], 2, 0, []),
+    //   ]),
+    // ]),
   ],
 };
 export const projectsData = [

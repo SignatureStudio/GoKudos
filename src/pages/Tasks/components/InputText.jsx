@@ -17,7 +17,8 @@ const InputText = (props) => {
       {edit === false ? (
         <div
           className="truncate cursor-pointer"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setEdit(true);
           }}
         >
@@ -44,6 +45,17 @@ const InputText = (props) => {
               console.log(e.target.value);
               setValue(e.target.value);
               setEdit(false);
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                e.stopPropagation();
+                console.log("save", e.target.value);
+                setValue(e.target.value);
+                setEdit(false);
+              }
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
             }}
           />
         </div>

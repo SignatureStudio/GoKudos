@@ -28,6 +28,7 @@ import {
 } from "./_utils";
 import { TASK } from "@/constants";
 import { members as MEMBERS } from "./sample_data";
+import InputTaskName from "../components/InputTaskName"
 import InputSelectStatus from "../components/InputSelectStatus"
 import InputTimeline from "../components/InputTimeline"
 import InputSelectMember from "../components/InputSelectMember"
@@ -46,49 +47,7 @@ export const utils = {
       title: "Name",
       width: 300,
       render: (col, record, index) => {
-        let children = "";
-        if ("children" in record) {
-          const len = record.children.length;
-          if (len > 0) {
-            children = <Badge count={len} />;
-          }
-        }
-        const [edit, setEdit] = useState(false);
-        const refInput = useRef(null);
-
-        useEffect(() => {
-          if (edit) {
-            refInput.current.focus();
-          }
-        }, [edit]);
-        return (
-          <div className="flex">
-            {edit === false ? (
-              <div
-                className="truncate"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                {col}
-              </div>
-            ) : (
-              <div>
-                <Input
-                  ref={refInput}
-                  allowClear
-                  placeholder="Add a task name"
-                  defaultValue={col}
-                  onBlur={(e) => {
-                    console.log(e.target.value);
-                    setEdit(false);
-                  }}
-                />
-              </div>
-            )}
-            {children}
-          </div>
-        );
+        return (<InputTaskName data={col} record={record} />)
       },
     },
     status: {
@@ -96,15 +55,16 @@ export const utils = {
       title: "Status",
       width: 100,
       render: (col, record, index) => {
+        // console.log(col);
         return (<InputSelectStatus data={col} />)
       },
     },
     duedate: {
       dataIndex: "duedate",
       title: "Timeline",
-      width: 180,
+      width: 160,
       render: (col, record, index) => {
-        return (<InputTimeline data={col} />)
+        return (<InputTimeline data={record} />)
       },
     },
     members: {
@@ -224,35 +184,36 @@ export const utils = {
       title: "",
       width: 30,
       render: (col, record, index) => {
+        // console.log(record);
         return (
           <Dropdown trigger="click" droplist={
             <Menu>
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.edit(true)
+                record.action.task(record.id)
+                record.action.edit(true)
               }}>View Detail</Menu.Item>
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.duplicate(true)
+                record.action.task(record.id)
+                record.action.duplicate(true)
               }}>Duplicate</Menu.Item>
               {/* <Menu.Item>Export</Menu.Item> */}
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.move(true)
+                record.action.task(record.id)
+                record.action.move(true)
               }}>Move</Menu.Item>
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.archive(true)
+                record.action.task(record.id)
+                record.action.archive(true)
               }}>Archive</Menu.Item>
               <hr />
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.subtask(true)
+                record.action.task(record.id)
+                record.action.subtask(true)
               }}>Add Subtask</Menu.Item>
               <hr />
               <Menu.Item onClick={() => {
-                col.task(col.id)
-                col.delete(true)
+                record.action.task(record.id)
+                record.action.delete(true)
               }}>Delete</Menu.Item>
             </Menu>
           }>

@@ -1,11 +1,16 @@
 import { Tag, Avatar } from "@arco-design/web-react";
 import dayjs from "dayjs";
+import { IconArrowRight, IconMore } from "@arco-design/web-react/icon";
+import { useState } from "react";
+import { faker } from "@faker-js/faker";
 
 export const displayTasksBy = {
-  group: function (list) {
+  group: function (list, action) {
+    // console.log(action);
     let result = [];
     list.groups.map((listgroup, i) => {
       result.push({
+        id: listgroup.id,
         name: listgroup.name,
         tasks: [],
       });
@@ -13,6 +18,10 @@ export const displayTasksBy = {
         project.groups.map((group) => {
           group.tasks.map((task) => {
             if (task.group.id === listgroup.id) {
+              task["key"] = task.id
+              if (action instanceof Object) {
+                task["action"] = action
+              }
               result[i].tasks.push(task);
             }
           });
@@ -21,10 +30,11 @@ export const displayTasksBy = {
     });
     return result;
   },
-  status: function (list) {
+  status: function (list, action) {
     let result = [];
     list.status.map((status, i) => {
       result.push({
+        id: status.id,
         name: status.name,
         tasks: [],
       });
@@ -32,6 +42,10 @@ export const displayTasksBy = {
         project.groups.map((group) => {
           group.tasks.map((task) => {
             if (task.status.name === status.name) {
+              task["key"] = task.id
+              if (action instanceof Object) {
+                task["action"] = action
+              }
               result[i].tasks.push(task);
             }
           });
@@ -40,10 +54,11 @@ export const displayTasksBy = {
     });
     return result;
   },
-  member: function (list) {
+  member: function (list, action) {
     let result = [];
     list.members.map((member, i) => {
       result.push({
+        id: member.id,
         name: member.name,
         tasks: [],
       });
@@ -53,6 +68,10 @@ export const displayTasksBy = {
             if (
               task["members"].filter((e) => e.name === member.name).length > 0
             ) {
+              task["key"] = task.id
+              if (action instanceof Object) {
+                task["action"] = action
+              }
               result[i].tasks.push(task);
             }
           });
@@ -62,22 +81,86 @@ export const displayTasksBy = {
     return result;
   },
 };
-export const displayTimeline = (startDate, endDate) => {
+export const displayTimeline = (startDate, endDate, status) => {
+  const doneId = 3;
+  const onHoldId = 4;
   const start = dayjs(startDate);
   const end = dayjs(endDate);
-  let startFormat = "MMM D, YYYY";
-  let endFormat = "MMM D, YYYY";
+  let startFormat = "MMM D 'YY";
+  let endFormat = "MMM D 'YY";
+  const startTimeFormat = start.format("m") === "0" ? "hA" : "h:mmA";
+  const endTimeFormat = end.format("m") === "0" ? "hA" : "h:mmA";
+  const today = dayjs("12/21/2022"); // assumption
 
-  if (start.$y === end.$y) {
-    if (start.$M === end.$M) {
-      startFormat = "MMM D";
-      endFormat = "D";
+  const duration = end.diff(start, "h") + 1;
+  const fromToday = today.diff(start, "h") + 1;
+  let progressWidth = 0;
+  let progressBg = "bg-gold-500";
+  let progressBorder = "border-transparent";
+  let textColor = "text-gray-900";
+  let bgColor = "bg-gray-50";
+
+  if (fromToday > 0) {
+    if (fromToday < duration) {
+      progressWidth = (fromToday / duration) * 160;
     } else {
-      startFormat = "MMM D";
-      endFormat = "MMM D";
+      progressWidth = 160;
     }
   }
-  return `${start.format(startFormat)} - ${end.format(endFormat)}`;
+  if (status.id === doneId) {
+    progressBg = "bg-green-500";
+    // progressBorder = "border-green-600";
+    textColor = "text-green-600";
+    progressWidth = 160;
+      // bgColor = "bg-green-50"
+    } else if (status.id === onHoldId) {
+    progressBg = "bg-gray-200";
+    progressWidth = 160;
+    textColor = "text-gray-400"
+  } else {
+    // overdue
+    if (today > end) {
+      progressBg = "bg-red-500";
+      // progressBorder = "border-red-600";
+      textColor = "text-red-600";
+      bgColor = "bg-red-50 font-bold"
+    }
+  }
+
+  if (start.$y === end.$y) {
+    // if (start.$M === end.$M) {
+    //   startFormat = "MMM D";
+    //   endFormat = "D";
+    //   if (start.$D === end.$D) {
+    //     endFormat = " ";
+    //   }
+    // } else {
+    startFormat = "MMM D";
+    endFormat = "MMM D";
+    // }
+  }
+  return (
+    <div className={`relative h-12 -m-2 w-40 ${bgColor}`}>
+      <div
+        className={`h-1 absolute bottom-0 left-0 border ${progressBg} ${progressBorder}`}
+        style={{ width: progressWidth }}
+      ></div>
+      <div
+        className={`flex items-center h-full w-full absolute top-0 left-0 ${textColor}`}
+      >
+        <div className="w-20 pl-2 py-2">
+          <div className="leading-none">{start.format(startFormat)}</div>
+          <div className="text-xs opacity-50">
+            {start.format(startTimeFormat)}
+          </div>
+        </div>
+        <div className="w-20 pl-2 py-2 border-l border-gray-200">
+          <div className="leading-none">{end.format(endFormat)}</div>
+          <div className="text-xs opacity-50">{end.format(endTimeFormat)}</div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export const analyseTasksBy = {
   status: function (list) {

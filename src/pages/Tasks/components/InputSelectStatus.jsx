@@ -12,7 +12,10 @@ const InputSelectStatus = (props) => {
     }
   }, [edit]);
 
-  const selectedValue = Object.keys(props.data).length  ? props.data : TASK.STATUS[0]
+  // console.log((props.data instanceof Object));
+
+  const selectedValue =
+    props.data instanceof Object ? props.data : TASK.STATUS[0];
 
   return (
     <>
@@ -30,7 +33,7 @@ const InputSelectStatus = (props) => {
       ) : (
         <Select
           placeholder="Please select"
-          defaultValue={selectedValue}
+          defaultValue={selectedValue.id}
           ref={refInput}
           onChange={(value) => {
             console.log(value);

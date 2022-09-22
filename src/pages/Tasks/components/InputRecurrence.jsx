@@ -1,4 +1,4 @@
-import { Select } from "@arco-design/web-react";
+import { Cascader } from "@arco-design/web-react";
 import { IconPlus } from "@arco-design/web-react/icon";
 import { useState, useRef, useEffect } from "react";
 import { TASK } from "@/constants";
@@ -30,24 +30,26 @@ const InputRecurrence = (props) => {
           )}
         </div>
       ) : (
-        <Select
+        <Cascader
           placeholder="Please select"
-          defaultValue={props.data ? props.data.id : undefined}
+          defaultValue={null}
           ref={refInput}
-          onChange={(value) => {
-            console.log(value);
+          onChange={(value, option) => {
+            console.log(value, option);
             setEdit(false);
           }}
           onBlur={(value) => {
             setEdit(false);
           }}
-        >
-          {TASK.RECURRENCE.map((recur) => (
-            <Select.Option key={recur.id} value={recur.id}>
-              {recur.name}
-            </Select.Option>
-          ))}
-        </Select>
+          options={TASK.RECURRENCE}
+          allowClear
+        />
+        //   {.map((recur) => (
+        //     <Select.Option key={recur.id} value={recur.id}>
+        //       {recur.name}
+        //     </Select.Option>
+        //   ))}
+        // </Cascader>
       )}
     </>
   );

@@ -2,25 +2,18 @@ import { DatePicker } from "@arco-design/web-react";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { displayTimeline } from "../utils/_utils";
-import { TASK } from "@/constants";
 
-const InputTimeline = (props) => {
-  const data = (props.data instanceof Object) ? props.data : {
-    startDate: new Date(),
-    endDate: new Date(),
-    status: TASK.STATUS[0]
-  }
-  // console.log(data);
-  const [start, setStart] = useState(dayjs(data.startDate));
-  const [end, setEnd] = useState(dayjs(data.endDate));
-  const [status, setStatus] = useState(data.status);
+const InputActivity = (props) => {
+  // console.log(props.data);
+  const [start, setStart] = useState(dayjs(props.data.startDate));
+  const [end, setEnd] = useState(dayjs(props.data.endDate));
   return (
     // <div>Timeline</div>
     <DatePicker.RangePicker
       showTime
       triggerElement={
         <div className="cursor-pointer">
-          {displayTimeline(start, end, status)}
+          {displayTimeline(start, end, props.data.status)}
         </div>
       }
       defaultValue={[start, end]}
@@ -33,4 +26,4 @@ const InputTimeline = (props) => {
   );
 };
 
-export default InputTimeline;
+export default InputActivity;
