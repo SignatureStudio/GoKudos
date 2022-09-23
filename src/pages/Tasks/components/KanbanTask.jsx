@@ -47,7 +47,7 @@ const KanbanTask = (props) => {
         </div>
       </div>
       <hr className="my-2" />
-      <div>{displayTimeline(task.startDate, task.endDate)}</div>
+      <div>{displayTimeline(task.startDate, task.endDate, task.status)}</div>
     </div>
   );
 };
