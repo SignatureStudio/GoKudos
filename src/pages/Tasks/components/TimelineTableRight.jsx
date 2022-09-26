@@ -1,4 +1,6 @@
 import dayjs from "dayjs";
+import interact from "interactjs";
+import { debounce } from "lodash";
 
 const TimelineTableLeft = (props) => {
   const config = {
@@ -18,6 +20,11 @@ const TimelineTableLeft = (props) => {
   let head = {
     row1: [],
     row2: [],
+  };
+
+  const current = {
+    width: config[props.timeScale].width,
+    scale: config[props.timeScale].scale,
   };
   switch (props.timeScale) {
     case "day":
@@ -92,9 +99,9 @@ const TimelineTableLeft = (props) => {
 
     default:
       for (let year = props.start.$y; year <= props.end.$y; year++) {
-        let daysInYear = 365
-        if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
-          daysInYear = 366
+        let daysInYear = 365;
+        if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400) {
+          daysInYear = 366;
         }
         head.row1.push(
           <div
@@ -135,9 +142,12 @@ const TimelineTableLeft = (props) => {
 
       const task_start = dayjs(task.startDate);
       const task_end = dayjs(task.endDate);
-      const timeline_start = props.timeScale === 'year' ? dayjs(new Date(props.start.$y, 0, 1)) : props.start;
-      const scale = config[props.timeScale].scale;
-      const width = config[props.timeScale].width;
+      const timeline_start =
+        props.timeScale === "year"
+          ? dayjs(new Date(props.start.$y, 0, 1))
+          : props.start;
+      const scale = current.scale;
+      const width = current.width;
 
       const bar = {
         top: `${bar_offset_top * 2}rem`,
@@ -151,12 +161,54 @@ const TimelineTableLeft = (props) => {
           className={`bar ${task.status.color}`}
           style={{ width: bar.width, top: bar.top, left: bar.left }}
           key={`${item.name}${task.id}`}
+          data-width={bar.width}
+          data-left={bar.left}
+          data-id={task.id}
         >
           <span>{task.name}</span>
         </div>
       );
     });
   });
+
+  const roundup = (val, nearest) => {
+    return val % nearest >= nearest / 2
+      ? parseInt(val / nearest) * nearest + nearest
+      : parseInt(val / nearest) * nearest;
+  };
+  var gridTarget = interact.snappers.grid({
+    x: current.width,
+    y: current.width,
+  });
+  let x = 0;
+  let y = 0;
+  interact(".bar").draggable({
+    lockAxis: "x",
+    edges: { top: true, left: true },
+    modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
+    // listeners: {
+    //   move(e) {
+    //     // console.log("bounce");
+    //     const taskId = e.target.getAttribute("data-id");
+    //     const left = parseInt(e.target.getAttribute("data-left"));
+    //     x += roundup(e.dx, current.width);
+    //     e.target.style.left = `${x}px`;
+    //     e.target.setAttribute("data-left", x);
+
+    //       console.log(
+    //         {
+    //           id: taskId,
+    //           value: (x - left) / current.width,
+    //           scale: current.scale,
+    //           x: x,
+    //           left: left,
+    //         },
+    //         200
+    //       );
+    //     });
+    //   },
+    // },
+  }).on('dragmove dragend', showEventInfo)
 
   return (
     <div className="overflow-auto">
