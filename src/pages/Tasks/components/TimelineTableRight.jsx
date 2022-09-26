@@ -1,8 +1,11 @@
+import { IconDragArrow } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import interact from "interactjs";
-import { debounce } from "lodash";
+import { useState } from "react";
+import TaskEdit from "./TaskEdit";
 
 const TimelineTableLeft = (props) => {
+  const [modalTaskEdit, setModalTaskEdit] = useState(false);
   const config = {
     day: {
       width: 60,
@@ -152,7 +155,7 @@ const TimelineTableLeft = (props) => {
       const bar = {
         top: `${bar_offset_top * 2}rem`,
         left: task_start.diff(timeline_start, scale) * width,
-        width: task_end.diff(task_start, scale) * width,
+        width: task_end.diff(task_start, scale) * width || width,
       };
       bar_offset_top++;
 
@@ -164,6 +167,7 @@ const TimelineTableLeft = (props) => {
           data-width={bar.width}
           data-left={bar.left}
           data-id={task.id}
+          
         >
           <span>{task.name}</span>
         </div>
@@ -172,9 +176,7 @@ const TimelineTableLeft = (props) => {
   });
 
   const roundup = (val, nearest) => {
-    return val % nearest >= nearest / 2
-      ? parseInt(val / nearest) * nearest + nearest
-      : parseInt(val / nearest) * nearest;
+    return Math.round(val / nearest) * nearest;
   };
   var gridTarget = interact.snappers.grid({
     x: current.width,
@@ -182,45 +184,85 @@ const TimelineTableLeft = (props) => {
   });
   let x = 0;
   let y = 0;
-  interact(".bar").draggable({
-    lockAxis: "x",
-    edges: { top: true, left: true },
-    modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
-    listeners: {
-      move(e) {
-        // console.log("bounce");
-        const taskId = e.target.getAttribute("data-id");
-        const left = parseInt(e.target.getAttribute("data-left"));
-        x += roundup(e.dx, current.width);
-        e.target.style.left = `${x}px`;
-        e.target.setAttribute("data-left", x);
-
-        // debounce(() => {
-        console.log({
-          id: taskId,
-          value: (x - left) / current.width,
-          scale: current.scale,
-          x: x,
-          left: left,
-          // }, 200);
-        });
+  interact(".bar")
+    .draggable({
+      autoScroll: true,
+      lockAxis: "x",
+      edges: { top: true, left: true },
+      modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
+      listeners: {
+        move(e) {
+          const left = parseInt(e.target.getAttribute("data-left")) || 0;
+          x += roundup(e.dx, current.width);
+          e.target.style.left = `${left + x}px`;
+        },
+        end(e) {
+          const taskId = e.target.getAttribute("data-id");
+          const left = parseInt(e.target.getAttribute("data-left")) || 0;
+          x += roundup(e.dx, current.width);
+          console.log({
+            id: taskId,
+            value: (x - left) / current.width,
+            scale: current.scale,
+            x: x,
+            left: left,
+          });
+          e.target.setAttribute("data-left", x);
+        },
       },
-    },
-  });
+    })
+    .resizable({
+      edges: { top: false, left: true, bottom: false, right: true },
+      modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
+      listeners: {
+        move(e) {
+          const left = parseInt(e.target.getAttribute("data-left")) || 0;
+
+          let { x } = e.target.dataset;
+          x = (parseFloat(x) || 0) + e.deltaRect.left;
+
+          Object.assign(e.target.style, {
+            width: `${roundup(e.rect.width, current.width)}px`,
+            left: `${left + roundup(x, current.width)}px`,
+          });
+
+          Object.assign(e.target.dataset, { x });
+        },
+        end(e) {
+          const dataId = e.target.getAttribute("data-id");
+          const dataWidth = parseInt(e.target.getAttribute("data-width"));
+          const dataLeft = parseInt(e.target.getAttribute("data-left"));
+          const styleWidth = parseInt(e.target.style.width.replace("px", ""));
+          const styleLeft = parseInt(e.target.style.left.replace("px", ""));
+
+          console.log({
+            id: dataId,
+            start: (styleLeft - dataLeft) / current.width,
+            duration: styleWidth / current.width,
+            unit: current.scale,
+          });
+        },
+      },
+    }).on('tap', function (e) {
+      setModalTaskEdit(true)
+    });;
 
   return (
-    <div className="overflow-auto">
-      <div className="min-w-fit">
-        <div className="divide-y divide-gray-300 border-y border-r border-gray-300">
-          <div className="row">{head.row1}</div>
-          <div className="row">{head.row2}</div>
-        </div>
-        <div className="border-y border-r border-gray-300 relative">
-          {body.bar}
-          {body.bg}
+    <>
+      <div className="overflow-auto">
+        <div className="min-w-fit">
+          <div className="divide-y divide-gray-300 border-y border-r border-gray-300">
+            <div className="row">{head.row1}</div>
+            <div className="row">{head.row2}</div>
+          </div>
+          <div className="border-y border-r border-gray-300 relative">
+            {body.bar}
+            {body.bg}
+          </div>
         </div>
       </div>
-    </div>
+      <TaskEdit visible={modalTaskEdit} setVisible={setModalTaskEdit} />
+    </>
   );
 };
 export default TimelineTableLeft;

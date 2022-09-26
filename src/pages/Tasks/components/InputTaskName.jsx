@@ -1,15 +1,16 @@
-import { Input } from "@arco-design/web-react";
+import { Input, Badge } from "@arco-design/web-react";
 import { IconPlus } from "@arco-design/web-react/icon";
 import { useState, useRef, useEffect } from "react";
 
 const InputTaskName = (props) => {
-  let children = "";
-  if ("children" in props.record) {
-    const len = props.record.children.length;
-    if (len > 0) {
-      children = <Badge count={len} />;
-    }
-  }
+  // console.log("children" in props.record);
+  // let children = "";
+  // if ("children" in props.record) {
+  //   const len = props.record.children.length;
+  //   if (len > 0) {
+  //     children = <Badge count={len} className="ml-2" />;
+  //   }
+  // }
   const [edit, setEdit] = useState(false);
   const refInput = useRef(null);
 
@@ -19,7 +20,7 @@ const InputTaskName = (props) => {
     }
   }, [edit]);
   return (
-    <div className="flex">
+    <div className="flex items-center">
       {edit === false ? (
         <div
           className="truncate"
@@ -43,7 +44,7 @@ const InputTaskName = (props) => {
           />
         </div>
       )}
-      {children}
+      {/* {children} */}
     </div>
   );
 };

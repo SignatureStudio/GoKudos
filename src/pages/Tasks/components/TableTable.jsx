@@ -31,7 +31,6 @@ import TaskArchive from "./TaskArchive";
 import InputText from "./InputText";
 import SearchFilter from "./SearchFilter";
 // import { useSearchParams, useNavigate } from "react-router-dom";
-
 const TasksTableTable = (props) => {
   // const [searchParams, setSearchParams] = useSearchParams();
   // const navigate = useNavigate();
@@ -78,6 +77,7 @@ const TasksTableTable = (props) => {
   };
 
   const data = displayTasksBy[props.displayBy](tasksData, taskAction);
+  console.log('data', data);
 
   return (
     <>

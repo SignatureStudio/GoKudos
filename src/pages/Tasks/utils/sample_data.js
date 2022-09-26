@@ -110,7 +110,7 @@ const singleTask = (
     checklist: [],
     tracking: 0,
     priority: "High",
-    subtasks: subtask,
+    children: subtask,
   };
 };
 
@@ -126,8 +126,8 @@ export const tasksData = {
         singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
         singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
         singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, [
-          // singleTask(12, 5, TASK.STATUS[2], "A Project", "A Group", 0, 0, []),
-          // singleTask(15, 5, TASK.STATUS[3], "A Project", "A Group", 0, 0, []),
+          singleTask(12, 5, TASK.STATUS[2], "A Project", "A Group", 0, 0, []),
+          singleTask(15, 5, TASK.STATUS[3], "A Project", "A Group", 0, 0, []),
         ]),
       ]),
       singleGroup("B Group", [
