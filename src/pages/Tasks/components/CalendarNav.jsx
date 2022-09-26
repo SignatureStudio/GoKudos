@@ -1,12 +1,11 @@
 import { Radio, Button, DatePicker, Select } from "@arco-design/web-react";
 import { IconLeft, IconRight } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
-import { displayTimeline } from "../utils/_utils";
+import { displayTimelineText } from "../utils/_utils";
 
 const TasksCalendarNav = (props) => {
-  const { MonthPicker, WeekPicker } = DatePicker;
   return (
-    <div className="flex items-center h-12 border-b border-gray-300 px-2">
+    <div className="flex items-center bg-gray-50 px-2 pt-4">
       <div className="flex-1 flex items-center">
         <div>
           {props.calendarScale === "month" && (
@@ -21,12 +20,12 @@ const TasksCalendarNav = (props) => {
               >
                 <IconLeft className="text-gray-400 ml-1" />
               </Button>
-              <MonthPicker
+              <DatePicker.MonthPicker
                 defaultPickerValue={props.defaultDate}
                 value={props.defaultDate}
                 triggerElement={
                   <Button size="small" type="link">
-                    <span className="text-gray-900 text-base">
+                    <span className="text-gray-900 text-base font-heading">
                       {props.defaultDate.format("MMMM YYYY")}
                     </span>
                   </Button>
@@ -60,12 +59,12 @@ const TasksCalendarNav = (props) => {
               >
                 <IconLeft className="text-gray-400 ml-1" />
               </Button>
-              <WeekPicker
+              <DatePicker.WeekPicker
                 defaultPickerValue={props.defaultDate}
                 value={props.defaultDate}
                 triggerElement={
                   <Button size="small" type="link">
-                    <span className="text-gray-900 text-base">
+                    <span className="text-gray-900 text-base font-heading">
                       Week {props.defaultDate.week()},{" "}
                       {props.defaultDate.format("YYYY")}
                     </span>
@@ -105,7 +104,7 @@ const TasksCalendarNav = (props) => {
                 value={props.defaultDate}
                 triggerElement={
                   <Button size="small" type="link">
-                    <span className="text-gray-900 text-base">
+                    <span className="text-gray-900 text-base font-heading">
                       {props.defaultDate.format("MMM D, YYYY")}
                     </span>
                   </Button>
@@ -128,8 +127,8 @@ const TasksCalendarNav = (props) => {
             </>
           )}
           {props.calendarScale === "agenda" && (
-            <span className="text-gray-900 text-base">
-              {displayTimeline(props.start, props.end)}
+            <span className="text-gray-900 text-base font-heading">
+              {displayTimelineText(props.start, props.end)}
             </span>
           )}
         </div>

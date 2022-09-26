@@ -48,7 +48,13 @@ const SubnavProject = () => {
         Duplicate project
       </Menu.Item>
       <hr />
-      <Menu.Item key="4" onClick={() => setModalProjectDelete(true)}>
+      <Menu.Item key="4">
+        <Link to="/tasks/archived" className="flex-1">
+          View archived tasks
+        </Link>
+      </Menu.Item>
+      <hr />
+      <Menu.Item key="5" onClick={() => setModalProjectDelete(true)}>
         Delete project
       </Menu.Item>
     </Menu>
@@ -102,11 +108,23 @@ const SubnavProject = () => {
         </Menu.Item>
       </Menu>
       <WorkspaceAdd visible={modalWorkspace} setVisible={setModalWorkspace} />
-      <WorkspaceDelete visible={modalWorkspaceDelete} setVisible={setModalWorkspaceDelete} />
+      <WorkspaceDelete
+        visible={modalWorkspaceDelete}
+        setVisible={setModalWorkspaceDelete}
+      />
       <ProjectAdd visible={modalProject} setVisible={setModalProject} />
-      <ProjectDelete visible={modalProjectDelete} setVisible={setModalProjectDelete} />
-      <ProjectMove visible={modalProjectMove} setVisible={setModalProjectMove} />
-      <ProjectDuplicate visible={modalProjectDuplicate} setVisible={setModalProjectDuplicate} />
+      <ProjectDelete
+        visible={modalProjectDelete}
+        setVisible={setModalProjectDelete}
+      />
+      <ProjectMove
+        visible={modalProjectMove}
+        setVisible={setModalProjectMove}
+      />
+      <ProjectDuplicate
+        visible={modalProjectDuplicate}
+        setVisible={setModalProjectDuplicate}
+      />
     </>
   );
 };

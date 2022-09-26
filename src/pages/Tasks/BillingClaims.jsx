@@ -1,5 +1,6 @@
 import { tasksData } from "./utils/sample_data";
 import TasksHeader from "./components/Header";
+import TasksTab from "./components/Tab";
 import TasksBillingNav from "./components/BillingNav";
 import { Table, Button, Tag, Avatar } from "@arco-design/web-react";
 import {
@@ -179,6 +180,7 @@ const TasksBillingClaims = (props) => {
   return (
     <>
       <TasksHeader name={tasksData.projects[0].name} />
+      <TasksTab />
       <TasksBillingNav />
       <div className="overflow-auto p-3 bg-gray-50">
         <Table

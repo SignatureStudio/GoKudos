@@ -3,8 +3,8 @@ import { Select, Radio, Button } from "@arco-design/web-react";
 
 const TasksTimelineNav = (props) => {
   return (
-    <div className="flex items-center h-12 border-b border-gray-300 px-2">
-      <div className="flex-1 flex items-center">
+    <div className="flex items-center bg-gray-50 px-2 pt-3">
+      {/* <div className="flex-1 flex items-center">
         <Select
           placeholder="Please select"
           bordered={false}
@@ -21,7 +21,7 @@ const TasksTimelineNav = (props) => {
           <Select.Option value="status">Status</Select.Option>
           <Select.Option value="member">Member</Select.Option>
         </Select>
-      </div>
+      </div> */}
       <Select
         placeholder="Please select"
         bordered={false}

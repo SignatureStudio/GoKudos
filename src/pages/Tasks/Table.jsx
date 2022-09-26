@@ -1,7 +1,8 @@
 import { tasksData } from "./utils/sample_data";
-import TasksTableNav from "./components/TableNav";
+import TaskNav from "./components/TaskNav";
 import TasksTableTable from "./components/TableTable";
 import TasksHeader from "./components/Header";
+import TasksTab from "./components/Tab";
 import { useState } from "react";
 
 const TasksTable = (props) => {
@@ -10,7 +11,8 @@ const TasksTable = (props) => {
   return (
     <>
       <TasksHeader name={tasksData.projects[0].name} />
-      <TasksTableNav displayBy={displayBy} setDisplayBy={setDisplayBy}  />
+      <TasksTab />
+      <TaskNav displayBy={displayBy} setDisplayBy={setDisplayBy}  />
       <TasksTableTable data={tasksData} displayBy={displayBy} />
     </>
   );

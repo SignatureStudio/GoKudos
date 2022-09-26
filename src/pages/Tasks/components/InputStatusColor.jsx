@@ -2,7 +2,7 @@ import { Badge, Trigger, Input } from "@arco-design/web-react";
 import { useState } from "react";
 
 const InputStatusColor = (props) => {
-  const [selected, setSelected] = useState(props.data.color);
+  const [selected, setSelected] = useState('color' in props.data ? props.data.color : 'gray');
   return (
     <div className="flex items-center">
       <div className="px-1">

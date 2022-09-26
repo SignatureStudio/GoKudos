@@ -1,5 +1,6 @@
 import { tasksData } from "./utils/sample_data";
 import TasksHeader from "./components/Header";
+import TasksTab from "./components/Tab";
 import TasksChartNav from "./components/ChartNav";
 import TasksChartStatus from "./components/ChartStatus";
 import TasksChartGroup from "./components/ChartGroup";
@@ -10,6 +11,7 @@ const TasksChart = (props) => {
   return (
     <>
       <TasksHeader name={tasksData.projects[0].name} />
+      <TasksTab />
       <TasksChartNav />
       <div className="overflow-auto p-3 bg-gray-50">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">

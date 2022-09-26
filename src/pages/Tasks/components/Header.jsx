@@ -4,6 +4,7 @@ import TasksTab from "./Tab";
 import ProjectAdd from "./ProjectAdd";
 import ProjectDelete from "./ProjectDelete";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const TasksHeader = (props) => {
   const [modalProject, setModalProject] = useState(false);
@@ -13,8 +14,20 @@ const TasksHeader = (props) => {
       <Menu.Item key="1" onClick={() => setModalProject(true)}>
         Edit project
       </Menu.Item>
+      <Menu.Item key="2" onClick={() => setModalProjectMove(true)}>
+        Move project
+      </Menu.Item>
+      <Menu.Item key="3" onClick={() => setModalProjectDuplicate(true)}>
+        Duplicate project
+      </Menu.Item>
       <hr />
-      <Menu.Item key="2" onClick={() => setModalProjectDelete(true)}>
+      <Menu.Item key="4">
+        <Link to="/tasks/archived" className="flex-1">
+          View archived tasks
+        </Link>
+      </Menu.Item>
+      <hr />
+      <Menu.Item key="5" onClick={() => setModalProjectDelete(true)}>
         Delete project
       </Menu.Item>
     </Menu>
@@ -36,8 +49,6 @@ const TasksHeader = (props) => {
         visible={modalProjectDelete}
         setVisible={setModalProjectDelete}
       />
-
-      <TasksTab />
     </>
   );
 };

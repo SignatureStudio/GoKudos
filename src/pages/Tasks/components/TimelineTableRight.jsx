@@ -186,29 +186,27 @@ const TimelineTableLeft = (props) => {
     lockAxis: "x",
     edges: { top: true, left: true },
     modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
-    // listeners: {
-    //   move(e) {
-    //     // console.log("bounce");
-    //     const taskId = e.target.getAttribute("data-id");
-    //     const left = parseInt(e.target.getAttribute("data-left"));
-    //     x += roundup(e.dx, current.width);
-    //     e.target.style.left = `${x}px`;
-    //     e.target.setAttribute("data-left", x);
+    listeners: {
+      move(e) {
+        // console.log("bounce");
+        const taskId = e.target.getAttribute("data-id");
+        const left = parseInt(e.target.getAttribute("data-left"));
+        x += roundup(e.dx, current.width);
+        e.target.style.left = `${x}px`;
+        e.target.setAttribute("data-left", x);
 
-    //       console.log(
-    //         {
-    //           id: taskId,
-    //           value: (x - left) / current.width,
-    //           scale: current.scale,
-    //           x: x,
-    //           left: left,
-    //         },
-    //         200
-    //       );
-    //     });
-    //   },
-    // },
-  }).on('dragmove dragend', showEventInfo)
+        // debounce(() => {
+        console.log({
+          id: taskId,
+          value: (x - left) / current.width,
+          scale: current.scale,
+          x: x,
+          left: left,
+          // }, 200);
+        });
+      },
+    },
+  });
 
   return (
     <div className="overflow-auto">

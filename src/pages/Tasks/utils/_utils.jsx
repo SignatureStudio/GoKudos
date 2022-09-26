@@ -81,6 +81,28 @@ export const displayTasksBy = {
     return result;
   },
 };
+export const displayTimelineText = (startDate, endDate) => {
+  const start = dayjs(startDate);
+  const end = dayjs(endDate);
+  let startFormat = "MMM D, YYYY";
+  let endFormat = "MMM D, YYYY";
+  if (start.$y === end.$y) {
+    if (start.$M === end.$M) {
+      startFormat = "MMM D";
+      endFormat = "D";
+      if (start.$D === end.$D) {
+        endFormat = " ";
+      }
+    } else {
+    startFormat = "MMM D";
+    endFormat = "MMM D";
+    }
+  }
+  return (
+    <div>{start.format(startFormat)} &ndash; {end.format(endFormat)}</div> 
+  )
+}
+
 export const displayTimeline = (startDate, endDate, status) => {
   const doneId = 3;
   const onHoldId = 4;
@@ -102,20 +124,20 @@ export const displayTimeline = (startDate, endDate, status) => {
 
   if (fromToday > 0) {
     if (fromToday < duration) {
-      progressWidth = (fromToday / duration) * 160;
+      progressWidth = `${(fromToday / duration) * 100}%`;
     } else {
-      progressWidth = 160;
+      progressWidth = `100%`;
     }
   }
   if (status.id === doneId) {
     progressBg = "bg-green-500";
     // progressBorder = "border-green-600";
     textColor = "text-green-600";
-    progressWidth = 160;
+    progressWidth = `100%`;
       // bgColor = "bg-green-50"
     } else if (status.id === onHoldId) {
     progressBg = "bg-gray-200";
-    progressWidth = 160;
+    progressWidth = `100%`;
     textColor = "text-gray-400"
   } else {
     // overdue
@@ -140,7 +162,7 @@ export const displayTimeline = (startDate, endDate, status) => {
     // }
   }
   return (
-    <div className={`relative h-12 -m-2 w-40 ${bgColor}`}>
+    <div className={`relative h-12 -m-2 w-full ${bgColor}`}>
       <div
         className={`h-1 absolute bottom-0 left-0 border ${progressBg} ${progressBorder}`}
         style={{ width: progressWidth }}
@@ -148,13 +170,13 @@ export const displayTimeline = (startDate, endDate, status) => {
       <div
         className={`flex items-center h-full w-full absolute top-0 left-0 ${textColor}`}
       >
-        <div className="w-20 pl-2 py-2">
+        <div className="w-1/2 pl-2 py-2">
           <div className="leading-none">{start.format(startFormat)}</div>
           <div className="text-xs opacity-50">
             {start.format(startTimeFormat)}
           </div>
         </div>
-        <div className="w-20 pl-2 py-2 border-l border-gray-200">
+        <div className="w-1/2 pl-2 py-2 border-l border-gray-200">
           <div className="leading-none">{end.format(endFormat)}</div>
           <div className="text-xs opacity-50">{end.format(endTimeFormat)}</div>
         </div>

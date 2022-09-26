@@ -1,4 +1,4 @@
-import { Modal } from "@arco-design/web-react";
+import { Modal, Select } from "@arco-design/web-react";
 
 const TaskMove = (props) => {
   return (
@@ -13,7 +13,26 @@ const TaskMove = (props) => {
       focusLock={true}
       className="w-full max-w-sm"
     >
-      <p>Do you want to move this task?</p>
+      <div className="flex items-center mb-4">
+        <div className="w-32">Workspace</div>
+        <Select showSearch defaultValue="1">
+          <Select.Option value="1">Current workspace</Select.Option>
+          <Select.Option value="2">C workspace</Select.Option>
+        </Select>
+      </div>
+      <div className="flex items-center mb-4">
+        <div className="w-32">Project</div>
+        <Select showSearch defaultValue="1">
+          <Select.Option value="1">Current Project</Select.Option>
+          <Select.Option value="2">C Project</Select.Option>
+        </Select>
+      </div>
+      <div className="flex items-center mb-4">
+        <div className="w-32">Group</div>
+        <Select showSearch defaultValue="1">
+          <Select.Option value="1">B Group</Select.Option>
+        </Select>
+      </div>
     </Modal>
   );
 };

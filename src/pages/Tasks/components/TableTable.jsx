@@ -28,12 +28,13 @@ import TaskDelete from "./TaskDelete";
 import TaskDuplicate from "./TaskDuplicate";
 import TaskMove from "./TaskMove";
 import TaskArchive from "./TaskArchive";
-import InputText from "../components/InputText";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import InputText from "./InputText";
+import SearchFilter from "./SearchFilter";
+// import { useSearchParams, useNavigate } from "react-router-dom";
 
 const TasksTableTable = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const navigate = useNavigate();
 
   const columns = [
     utils.columns.name,
@@ -81,42 +82,7 @@ const TasksTableTable = (props) => {
   return (
     <>
       <div className="p-3 bg-gray-50 gk-table">
-        {searchParams.get("q") && (
-          <div className="flex items-center bg-gray-100 border border-gray-300 rounded p-1">
-            <IconSearch className="m-1" />
-            <div className="flex-1">
-              <Tag
-                closable
-                onClose={() => {
-                  console.log("remove");
-                }}
-                className="m-1 bg-white"
-              >
-                Keyword
-              </Tag>
-              <Tag
-                closable
-                onClose={() => {
-                  console.log("remove");
-                }}
-                className="m-1 bg-white"
-              >
-                A member
-              </Tag>
-            </div>
-            <Button
-              size="mini"
-              onClick={() => {
-                navigate({
-                  pathname: "/tasks",
-                  search: "",
-                });
-              }}
-            >
-              Clear
-            </Button>
-          </div>
-        )}
+        <SearchFilter />
         {data.map((group) => (
           <div key={group.id}>
             <Collapse bordered={false} defaultActiveKey={group.id}>
