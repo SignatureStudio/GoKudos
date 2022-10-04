@@ -19,6 +19,8 @@ import TasksBilling from "@/pages/Tasks/Billing";
 import TasksBillingClaims from "@/pages/Tasks/BillingClaims";
 import TasksBillingTimeCost from "@/pages/Tasks/BillingTimeCost";
 import TasksArchived from "@/pages/Tasks/Archived";
+import TasksArchivedProjects from "@/pages/Tasks/ArchivedProjects";
+import TasksWorkspace from "@/pages/Tasks/Workspace";
 import Contacts from "@/pages/Contacts/page";
 import Attendance from "@/pages/Attendance/page";
 import Reports from "@/pages/Reports/page";
@@ -39,6 +41,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="billing/claims" element={<TasksBillingClaims />} />
             <Route path="billing/timecost" element={<TasksBillingTimeCost />} />
             <Route path="archived" element={<TasksArchived />} />
+            <Route path="archivedprojects" element={<TasksArchivedProjects />} />
+            <Route path="workspace" element={<TasksWorkspace />} />
           </Route>
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/attendance" element={<Attendance />} />

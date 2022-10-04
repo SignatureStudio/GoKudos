@@ -30,6 +30,7 @@ import { TASK } from "@/constants";
 import { members as MEMBERS } from "./sample_data";
 import InputTaskName from "../components/InputTaskName"
 import InputSelectStatus from "../components/InputSelectStatus"
+import InputAllStatus from "../components/InputAllStatus"
 import InputTimeline from "../components/InputTimeline"
 import InputSelectMember from "../components/InputSelectMember"
 import InputTracking from "../components/InputTracking"
@@ -57,6 +58,15 @@ export const utils = {
       render: (col, record, index) => {
         // console.log(col);
         return (<InputSelectStatus data={col} />)
+      },
+    },
+    allstatus: {
+      dataIndex: "status",
+      title: "Status",
+      width: 100,
+      render: (col, record, index) => {
+        // console.log(col);
+        return (<InputAllStatus data={col} />)
       },
     },
     duedate: {

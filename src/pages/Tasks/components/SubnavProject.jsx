@@ -30,6 +30,12 @@ const SubnavProject = () => {
         Edit workspace
       </Menu.Item>
       <hr />
+      <Menu.Item key="2">
+        <Link to="/tasks/archivedprojects" className="flex-1">
+          View archived projects
+        </Link>
+      </Menu.Item>
+      <hr />
       <Menu.Item key="4" onClick={() => setModalWorkspaceDelete(true)}>
         Delete workspace
       </Menu.Item>

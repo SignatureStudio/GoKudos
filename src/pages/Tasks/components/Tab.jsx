@@ -12,9 +12,11 @@ const TasksTab = (props) => {
       <Link to="/tasks/">
         <Menu.Item key="table">Table</Menu.Item>
       </Link>
-      <Link to="/tasks/kanban">
-        <Menu.Item key="kanban">Kanban</Menu.Item>
-      </Link>
+      { !props.workspace && (
+        <Link to="/tasks/kanban">
+          <Menu.Item key="kanban">Kanban</Menu.Item>
+        </Link>
+      )}
       <Link to="/tasks/calendar">
         <Menu.Item key="calendar">Calendar</Menu.Item>
       </Link>

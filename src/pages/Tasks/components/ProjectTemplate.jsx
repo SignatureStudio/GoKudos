@@ -9,7 +9,11 @@ import {
   Trigger,
 } from "@arco-design/web-react";
 import { useState } from "react";
-import { IconInfoCircle, IconPlus } from "@arco-design/web-react/icon";
+import {
+  IconInfoCircle,
+  IconPlus,
+  IconNotification,
+} from "@arco-design/web-react/icon";
 import { TASK } from "@/constants";
 import { faker } from "@faker-js/faker";
 import InputStatusColor from "./InputStatusColor";
@@ -208,7 +212,22 @@ const ProjectTemplate = (props) => {
               </div>
               <div>
                 {customStatus.map((status) => (
-                  <InputStatusColor data={status} />
+                  <div className="flex items-center">
+                    <InputStatusColor data={status} className="flex-1" />
+                    <Checkbox value={true}>
+                      {({ checked }) => {
+                        return (
+                          <IconNotification
+                            className={checked ? "text-gray-900" : "text-gray-400"}
+                          />
+                        );
+                      }}
+                    </Checkbox>
+                    <Popover
+                      trigger="click"
+                      content={<span>People who work on the task</span>}
+                    ></Popover>
+                  </div>
                 ))}
                 <Button
                   type="text"
@@ -283,6 +302,16 @@ const ProjectTemplate = (props) => {
                   }}
                 </Radio>
               ))}
+              <div
+                className="border-2 border-dashed border-gray-300 text-center pt-10 rounded hover:border-gray-900"
+                onClick={() => {
+                  setAction(true);
+                  setDetail(true);
+                }}
+              >
+                <IconPlus className="text-3xl text-gray-400 mb-2" />
+                <div>Add template</div>
+              </div>
             </Radio.Group>
           </div>
           <div className="p-3 text-center border-t border-gray-200 bg-gray-50">
@@ -303,7 +332,6 @@ const ProjectTemplate = (props) => {
           </div>
         </>
       )}
-
     </div>
     // </Modal>
   );

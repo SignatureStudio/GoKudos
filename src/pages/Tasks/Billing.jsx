@@ -2,19 +2,28 @@ import { tasksData } from "./utils/sample_data";
 import TasksHeader from "./components/Header";
 import TasksTab from "./components/Tab";
 import TasksBillingNav from "./components/BillingNav";
-import { Table, Button, Input } from "@arco-design/web-react";
+import InvoiceAdd from "./components/InvoiceAdd";
+import InvoiceItems from "./components/InvoiceItems";
+import { Table, Button, Input, Select } from "@arco-design/web-react";
 import {
   IconEdit,
   IconDelete,
   IconPlus,
   IconDownload,
-  IconSend
+  IconSend,
 } from "@arco-design/web-react/icon";
+import { useState } from "react";
+
 function numberWithCommas(num) {
-  return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const TasksBilling = (props) => {
+  const [modalInvoice, setModalInvoice] = useState(false);
+  const [modalInvoiceItems, setModalInvoiceItems] = useState(false);
   const columns = [
     {
       dataIndex: "index",
@@ -60,7 +69,7 @@ const TasksBilling = (props) => {
       width: 100,
       align: "right",
       bodyCellStyle: {
-        backgroundColor: 'rgb(var(--gray-0))',
+        backgroundColor: "rgb(var(--gray-0))",
       },
       render: (col, record, index) => {
         return <div>{numberWithCommas(col)}</div>;
@@ -72,7 +81,7 @@ const TasksBilling = (props) => {
       width: 100,
       align: "right",
       bodyCellStyle: {
-        backgroundColor: 'rgb(var(--gray-0))',
+        backgroundColor: "rgb(var(--gray-0))",
       },
       render: (col, record, index) => {
         return (
@@ -87,7 +96,7 @@ const TasksBilling = (props) => {
       title: "",
       width: 80,
       bodyCellStyle: {
-        backgroundColor: 'rgb(var(--gray-0))',
+        backgroundColor: "rgb(var(--gray-0))",
       },
       render: (col, record, index) => {
         return (
@@ -134,6 +143,17 @@ const TasksBilling = (props) => {
       <TasksTab />
       <TasksBillingNav />
       <div className="overflow-auto p-3 bg-gray-50">
+        <div className="mb-2 flex items-center">
+          <Select defaultValue="1" className="w-40 mr-1">
+            <Select.Option value="1">A Invoice</Select.Option>
+            <Select.Option value="2">Milestone</Select.Option>
+          </Select>
+          <Button
+            icon={<IconPlus />}
+            iconOnly
+            onClick={() => setModalInvoice(true)}
+          />
+        </div>
         <Table
           size="small"
           scroll={{ x: true }}
@@ -161,19 +181,30 @@ const TasksBilling = (props) => {
           )}
         />
         <div className="flex items-center justify-between py-2">
-          <Button size="mini" type="text" icon={<IconPlus />} className="mt-2">
+          <Button
+            size="mini"
+            type="text"
+            icon={<IconPlus />}
+            className="mt-2"
+            onClick={() => setModalInvoiceItems(true)}
+          >
             Add Item
           </Button>
           <Button.Group>
             <Button type="primary" icon={<IconDownload />} className="mt-2">
-              Download
+              Generate
             </Button>
-            <Button type="primary" icon={<IconSend />} className="mt-2">
+            {/* <Button type="primary" icon={<IconSend />} className="mt-2">
               Send
-            </Button>
+            </Button> */}
           </Button.Group>
         </div>
       </div>
+      <InvoiceAdd visible={modalInvoice} setVisible={setModalInvoice} />
+      <InvoiceItems
+        visible={modalInvoiceItems}
+        setVisible={setModalInvoiceItems}
+      />
     </>
   );
 };

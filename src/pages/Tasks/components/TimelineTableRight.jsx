@@ -245,7 +245,7 @@ const TimelineTableLeft = (props) => {
       },
     }).on('tap', function (e) {
       setModalTaskEdit(true)
-    });;
+    })
 
   return (
     <>

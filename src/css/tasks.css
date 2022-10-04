@@ -29,62 +29,74 @@
 }
 .gk-calendar .rbc-event.red,
 .gk-calendar .rbc-day-slot .rbc-background-event.red,
-.gk-timeline .bar.red {
+.gk-timeline .bar.red,
+.gk-status.red {
   @apply bg-red-50 border-red-500 text-red-500;
 }
 .gk-calendar .rbc-event.blue,
 .gk-calendar .rbc-day-slot .rbc-background-event.blue,
-.gk-timeline .bar.blue {
+.gk-timeline .bar.blue,
+.gk-status.blue {
   @apply bg-blue-50 border-blue-500 text-blue-500;
 }
 .gk-calendar .rbc-event.orangered,
 .gk-calendar .rbc-day-slot .rbc-background-event.orangered,
-.gk-timeline .bar.orangered {
+.gk-timeline .bar.orangered,
+.gk-status.orangered {
   @apply bg-orangered-50 border-orangered-500 text-orangered-500;
 }
 .gk-calendar .rbc-event.orange,
 .gk-calendar .rbc-day-slot .rbc-background-event.orange,
-.gk-timeline .bar.orange {
+.gk-timeline .bar.orange,
+.gk-status.orange {
   @apply bg-orange-50 border-orange-500 text-orange-500;
 }
 .gk-calendar .rbc-event.gold,
 .gk-calendar .rbc-day-slot .rbc-background-event.gold,
-.gk-timeline .bar.gold {
+.gk-timeline .bar.gold,
+.gk-status.gold {
   @apply bg-gold-50 border-gold-500 text-gold-500;
 }
 .gk-calendar .rbc-event.lime,
 .gk-calendar .rbc-day-slot .rbc-background-event.lime,
-.gk-timeline .bar.lime {
+.gk-timeline .bar.lime,
+.gk-status.lime {
   @apply bg-lime-50 border-lime-500 text-lime-500;
 }
 .gk-calendar .rbc-event.green,
 .gk-calendar .rbc-day-slot .rbc-background-event.green,
-.gk-timeline .bar.green {
+.gk-timeline .bar.green,
+.gk-status.green {
   @apply bg-green-50 border-green-500 text-green-500;
 }
 .gk-calendar .rbc-event.cyan,
 .gk-calendar .rbc-day-slot .rbc-background-event.cyan,
-.gk-timeline .bar.cyan {
+.gk-timeline .bar.cyan,
+.gk-status.cyan {
   @apply bg-cyan-50 border-cyan-500 text-cyan-500;
 }
 .gk-calendar .rbc-event.purple,
 .gk-calendar .rbc-day-slot .rbc-background-event.purple,
-.gk-timeline .bar.purple {
+.gk-timeline .bar.purple,
+.gk-status.purple {
   @apply bg-purple-50 border-purple-500 text-purple-500;
 }
 .gk-calendar .rbc-event.pinkpurple,
 .gk-calendar .rbc-day-slot .rbc-background-event.pinkpurple,
-.gk-timeline .bar.pinkpurple {
+.gk-timeline .bar.pinkpurple,
+.gk-status.pinkpurple {
   @apply bg-pinkpurple-50 border-pinkpurple-500 text-pinkpurple-500;
 }
 .gk-calendar .rbc-event.magenta,
 .gk-calendar .rbc-day-slot .rbc-background-event.magenta,
-.gk-timeline .bar.magenta {
+.gk-timeline .bar.magenta,
+.gk-status.magenta {
   @apply bg-magenta-50 border-magenta-500 text-magenta-500;
 }
 .gk-calendar .rbc-event.gray,
 .gk-calendar .rbc-day-slot .rbc-background-event.gray,
-.gk-timeline .bar.gray {
+.gk-timeline .bar.gray,
+.gk-status.gray {
   @apply bg-gray-50 border-gray-500 text-gray-500;
 }
 .gk-calendar .rbc-time-view .rbc-row {
@@ -173,50 +185,50 @@
   @apply p-4;
 }
 .gk-chart .recharts-layer [color="red"] {
-  @apply fill-red-100 stroke-red-300
+  @apply fill-red-100 stroke-red-300;
 }
 .gk-chart .recharts-layer [color="blue"] {
-  @apply fill-blue-100 stroke-blue-300
+  @apply fill-blue-100 stroke-blue-300;
 }
 .gk-chart .recharts-layer [color="orangered"] {
-  @apply fill-orangered-100 stroke-orangered-300
+  @apply fill-orangered-100 stroke-orangered-300;
 }
 .gk-chart .recharts-layer [color="orange"] {
-  @apply fill-orange-100 stroke-orange-300
+  @apply fill-orange-100 stroke-orange-300;
 }
 .gk-chart .recharts-layer [color="gold"] {
-  @apply fill-gold-100 stroke-gold-300
+  @apply fill-gold-100 stroke-gold-300;
 }
 .gk-chart .recharts-layer [color="lime"] {
-  @apply fill-lime-100 stroke-lime-300
+  @apply fill-lime-100 stroke-lime-300;
 }
 .gk-chart .recharts-layer [color="green"] {
-  @apply fill-green-100 stroke-green-300
+  @apply fill-green-100 stroke-green-300;
 }
 .gk-chart .recharts-layer [color="cyan"] {
-  @apply fill-cyan-100 stroke-cyan-300
+  @apply fill-cyan-100 stroke-cyan-300;
 }
 .gk-chart .recharts-layer [color="purple"] {
-  @apply fill-purple-100 stroke-purple-300
+  @apply fill-purple-100 stroke-purple-300;
 }
 .gk-chart .recharts-layer [color="pinkpurple"] {
-  @apply fill-pinkpurple-100 stroke-pinkpurple-300
+  @apply fill-pinkpurple-100 stroke-pinkpurple-300;
 }
 .gk-chart .recharts-layer [color="magenta"] {
-  @apply fill-magenta-100 stroke-magenta-300
+  @apply fill-magenta-100 stroke-magenta-300;
 }
 .gk-chart .recharts-layer [color="gray"] {
-  @apply fill-gray-100 stroke-gray-300
+  @apply fill-gray-100 stroke-gray-300;
 }
 
 .gk-table .arco-collapse {
-  @apply mt-4
+  @apply mt-4;
 }
 .gk-table .arco-collapse-item-header {
-  @apply bg-gray-50 border-0 py-0 inline-block
+  @apply bg-gray-50 border-0 py-0 inline-block;
 }
 .gk-table .arco-collapse-item-content-box {
-  @apply px-0
+  @apply px-0;
 }
 
 .gk-bg.red {
@@ -257,29 +269,56 @@
 }
 
 .gk-extension {
-  @apply bg-gray-500
+  @apply bg-gray-500;
 }
-.gk-extension.ai, .gk-extension.svg {
-  @apply bg-orangered-500
+.gk-extension.ai,
+.gk-extension.svg {
+  @apply bg-orangered-500;
 }
-.gk-extension.doc, .gk-extension.docx, .gk-extension.pages {
-  @apply bg-blue-500
+.gk-extension.doc,
+.gk-extension.docx,
+.gk-extension.pages {
+  @apply bg-blue-500;
 }
-.gk-extension.xls, .gk-extension.xlsx, .gk-extension.csv, .gk-extension.numbers {
-  @apply bg-green-500
+.gk-extension.xls,
+.gk-extension.xlsx,
+.gk-extension.csv,
+.gk-extension.numbers {
+  @apply bg-green-500;
 }
-.gk-extension.ppt, .gk-extension.pptx, .gk-extension.pdf, .gk-extension.key {
-  @apply bg-red-500
+.gk-extension.ppt,
+.gk-extension.pptx,
+.gk-extension.pdf,
+.gk-extension.key {
+  @apply bg-red-500;
 }
-.gk-extension.jpg, .gk-extension.jpeg, .gk-extension.gif, .gk-extension.png, .gk-extension.webp, .gk-extension.tiff {
-  @apply bg-lime-500
+.gk-extension.jpg,
+.gk-extension.jpeg,
+.gk-extension.gif,
+.gk-extension.png,
+.gk-extension.webp,
+.gk-extension.tiff {
+  @apply bg-lime-500;
 }
-.gk-extension.mov, .gk-extension.avi, .gk-extension.mp4, .gk-extension.mpg, .gk-extension.mpeg, .gk-extension.m4a, .gk-extension.ogg, .gk-extension.webm, .gk-extension.wmv, .gk-extension.mkv {
-  @apply bg-pink-500
+.gk-extension.mov,
+.gk-extension.avi,
+.gk-extension.mp4,
+.gk-extension.mpg,
+.gk-extension.mpeg,
+.gk-extension.m4a,
+.gk-extension.ogg,
+.gk-extension.webm,
+.gk-extension.wmv,
+.gk-extension.mkv {
+  @apply bg-pink-500;
 }
-.gk-extension.mp3, .gk-extension.wav, .gk-extension.wma, .gk-extension.aac {
-  @apply bg-purple-500
+.gk-extension.mp3,
+.gk-extension.wav,
+.gk-extension.wma,
+.gk-extension.aac {
+  @apply bg-purple-500;
 }
-.gk-extension.zip, .gk-extension.rar {
-  @apply bg-yellow-500
+.gk-extension.zip,
+.gk-extension.rar {
+  @apply bg-yellow-500;
 }

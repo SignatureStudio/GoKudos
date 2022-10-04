@@ -271,7 +271,7 @@ export const getAllTasks = (list) => {
           status: task.status,
         });
         if ("subtask")
-          task.subtasks.map((subtask) => {
+          task.children.map((subtask) => {
             result.push({
               id: subtask.id,
               title: subtask.name,
