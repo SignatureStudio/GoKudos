@@ -12,7 +12,14 @@ const InputText = (props) => {
       refInput.current.focus();
     }
   }, [edit]);
-  return (
+  function numberWithCommas(num) {
+    num = Number(num);
+    return num
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+    return (
     <div>
       {edit === false ? (
         <div
@@ -25,7 +32,7 @@ const InputText = (props) => {
           {value ? (
             <div>
               {props.prefix}
-              {value}
+              {props.number ? numberWithCommas(value) : value }
               {props.suffix}
             </div>
           ) : (

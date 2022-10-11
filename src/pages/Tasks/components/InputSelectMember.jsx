@@ -7,11 +7,12 @@ import { debounce } from "lodash";
 const InputSelectMember = (props) => {
   const [selected, setSelected] = useState(props.data);
   const [options, setOptions] = useState(MEMBERS);
+  const [multiple, setMultiple] = useState(props.multiple ?  props.multiple : 'multiple');
   return (
     <Select
       defaultValue={selected}
       showSearch
-      mode="multiple"
+      mode={multiple}
       onChange={(e) => {
         console.log(e);
         setSelected(e);

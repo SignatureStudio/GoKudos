@@ -2,7 +2,10 @@ import { Radio, Button } from "@arco-design/web-react";
 import { Link, useLocation } from 'react-router-dom';
 
 const TasksBillingNav = (props) => {
-  const currentPath = useLocation().pathname || "";
+  let currentPath = useLocation().pathname || "";
+  if (currentPath === "/tasks/billing/quote") {
+    currentPath = "/tasks/billing"
+  }
   return (
     <div className="flex items-center h-12 border-b border-gray-300 px-2">
       <Radio.Group

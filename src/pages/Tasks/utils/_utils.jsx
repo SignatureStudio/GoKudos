@@ -1,6 +1,6 @@
 import { Tag, Avatar } from "@arco-design/web-react";
 import dayjs from "dayjs";
-import { IconArrowRight, IconMore } from "@arco-design/web-react/icon";
+import { IconDownload, IconUpload } from "@arco-design/web-react/icon";
 import { useState } from "react";
 import { faker } from "@faker-js/faker";
 
@@ -18,9 +18,9 @@ export const displayTasksBy = {
         project.groups.map((group) => {
           group.tasks.map((task) => {
             if (task.group.id === listgroup.id) {
-              task["key"] = task.id
+              task["key"] = task.id;
               if (action instanceof Object) {
-                task["action"] = action
+                task["action"] = action;
               }
               result[i].tasks.push(task);
             }
@@ -42,9 +42,9 @@ export const displayTasksBy = {
         project.groups.map((group) => {
           group.tasks.map((task) => {
             if (task.status.name === status.name) {
-              task["key"] = task.id
+              task["key"] = task.id;
               if (action instanceof Object) {
-                task["action"] = action
+                task["action"] = action;
               }
               result[i].tasks.push(task);
             }
@@ -68,9 +68,9 @@ export const displayTasksBy = {
             if (
               task["members"].filter((e) => e.name === member.name).length > 0
             ) {
-              task["key"] = task.id
+              task["key"] = task.id;
               if (action instanceof Object) {
-                task["action"] = action
+                task["action"] = action;
               }
               result[i].tasks.push(task);
             }
@@ -94,15 +94,52 @@ export const displayTimelineText = (startDate, endDate) => {
         endFormat = " ";
       }
     } else {
-    startFormat = "MMM D";
-    endFormat = "MMM D";
+      startFormat = "MMM D";
+      endFormat = "MMM D";
     }
   }
   return (
-    <div>{start.format(startFormat)} &ndash; {end.format(endFormat)}</div> 
-  )
-}
-
+    <div>
+      {start.format(startFormat)} &ndash; {end.format(endFormat)}
+    </div>
+  );
+};
+export const displayTimeRange = (startDate, endDate) => {
+  const start = dayjs(startDate);
+  const end = dayjs(endDate);
+  let startFormat = "MMM D 'YY";
+  let endFormat = "MMM D 'YY";
+  const startTimeFormat = start.format("m") === "0" ? "hA" : "h:mmA";
+  const endTimeFormat = end.format("m") === "0" ? "hA" : "h:mmA";
+  if (start.$y === end.$y) {
+    startFormat = "MMM D";
+    endFormat = "MMM D";
+  }
+  return (
+    <div className={`relative h-12 -m-2 w-full`}>
+      <div className={`flex items-center h-full w-full absolute top-0 left-0`}>
+        <div className="w-1/2 pl-2 py-2">
+          <div>
+            <span className="font-bold text-gray-300 mr-2">IN</span>
+            {start.format(startFormat)}
+            <Tag bordered className="ml-2 font-bold">
+              {start.format(startTimeFormat)}
+            </Tag>
+          </div>
+        </div>
+        <div className="w-1/2 pl-2 py-2 border-l border-gray-200">
+          <div>
+            <span className="font-bold text-gray-300 mr-2">OUT</span>
+            {end.format(endFormat)}
+            <Tag bordered className="ml-2 font-bold">
+              {start.format(endTimeFormat)}
+            </Tag>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 export const displayTimeline = (startDate, endDate, status) => {
   const doneId = 3;
   const onHoldId = 4;
@@ -134,18 +171,18 @@ export const displayTimeline = (startDate, endDate, status) => {
     // progressBorder = "border-green-600";
     textColor = "text-green-600";
     progressWidth = `100%`;
-      // bgColor = "bg-green-50"
-    } else if (status.id === onHoldId) {
+    // bgColor = "bg-green-50"
+  } else if (status.id === onHoldId) {
     progressBg = "bg-gray-200";
     progressWidth = `100%`;
-    textColor = "text-gray-400"
+    textColor = "text-gray-400";
   } else {
     // overdue
     if (today > end) {
       progressBg = "bg-red-500";
       // progressBorder = "border-red-600";
       textColor = "text-red-600";
-      bgColor = "bg-red-50 font-bold"
+      bgColor = "bg-red-50 font-bold";
     }
   }
 

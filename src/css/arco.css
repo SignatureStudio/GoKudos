@@ -21,3 +21,9 @@
   width: 6px;
   display: inline-block;
 }
+.arco-modal-wrapper.full .arco-modal-content {
+  @apply p-0;
+}
+/* .arco-modal-wrapper.full .arco-modal {
+  max-height: 60vh;
+} */

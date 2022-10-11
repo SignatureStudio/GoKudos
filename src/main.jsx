@@ -16,6 +16,7 @@ import TasksCalendar from "@/pages/Tasks/Calendar";
 import TasksTimeline from "@/pages/Tasks/Timeline";
 import TasksChart from "@/pages/Tasks/Chart";
 import TasksBilling from "@/pages/Tasks/Billing";
+import TasksBillingQuote from "@/pages/Tasks/BillingQuote";
 import TasksBillingClaims from "@/pages/Tasks/BillingClaims";
 import TasksBillingTimeCost from "@/pages/Tasks/BillingTimeCost";
 import TasksArchived from "@/pages/Tasks/Archived";
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="timeline" element={<TasksTimeline />} />
             <Route path="chart" element={<TasksChart />} />
             <Route path="billing" element={<TasksBilling />} />
+            <Route path="billing/quote" element={<TasksBillingQuote />} />
             <Route path="billing/claims" element={<TasksBillingClaims />} />
             <Route path="billing/timecost" element={<TasksBillingTimeCost />} />
             <Route path="archived" element={<TasksArchived />} />

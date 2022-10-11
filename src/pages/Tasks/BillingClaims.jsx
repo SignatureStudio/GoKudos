@@ -12,11 +12,22 @@ import {
 } from "@arco-design/web-react/icon";
 import { faker } from "@faker-js/faker";
 import dayjs from "dayjs";
+import ClaimAdd from "./components/ClaimAdd";
+import ClaimDelete from "./components/ClaimDelete";
+import ClaimAttachment from "./components/ClaimAttachment";
+import InputApproval from "./components/InputApproval"
+import { useState } from "react";
 
 function numberWithCommas(num) {
-  return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 const TasksBillingClaims = (props) => {
+  const [modalClaimAdd, setModalClaimAdd] = useState(false);
+  const [modalClaimDelete, setModalClaimDelete] = useState(false);
+  const [modalClaimAttachment, setModalClaimAttachment] = useState(false);
   const columns = [
     {
       dataIndex: "index",
@@ -34,7 +45,7 @@ const TasksBillingClaims = (props) => {
     },
     {
       dataIndex: "item",
-      title: "Item",
+      title: "Task",
       width: 200,
     },
     {
@@ -42,11 +53,7 @@ const TasksBillingClaims = (props) => {
       title: "Description",
       width: 200,
       render: (col, record, index) => {
-        return (
-          <div className="truncate">
-            {col}
-          </div>
-        );
+        return <div className="truncate">{col}</div>;
       },
     },
     {
@@ -58,10 +65,7 @@ const TasksBillingClaims = (props) => {
         return (
           <div className="truncate">
             <Avatar size={24}>
-              <img
-                alt="avatar"
-                src={col.avatar}
-              />
+              <img alt="avatar" src={col.avatar} />
             </Avatar>
           </div>
         );
@@ -86,9 +90,12 @@ const TasksBillingClaims = (props) => {
       // },
       render: (col, record, index) => {
         return (
-          <div>
-            <IconAttachment className="mx-1 text-gray-300 hover:text-gray-900 cursor-pointer" />
-          </div>
+          <Button
+            icon={<IconAttachment />}
+            iconOnly
+            size="mini"
+            onClick={() => setModalClaimAttachment(true)}
+          />
         );
       },
     },
@@ -99,23 +106,24 @@ const TasksBillingClaims = (props) => {
       align: "center",
       render: (col, record, index) => {
         return (
-          <div>
-            {col === "new" && (
-              <Tag color="blue" bordered className="w-full">
-                New
-              </Tag>
-            )}
-            {col === "approved" && (
-              <Tag color="green" bordered className="w-full">
-                Approved
-              </Tag>
-            )}
-            {col === "rejected" && (
-              <Tag color="red" bordered className="w-full">
-                Rejected
-              </Tag>
-            )}
-          </div>
+          <InputApproval data={col} />
+          // <div>
+          //   {col === "new" && (
+          //     <Tag color="blue" bordered className="w-full">
+          //       New
+          //     </Tag>
+          //   )}
+          //   {col === "approved" && (
+          //     <Tag color="green" bordered className="w-full">
+          //       Approved
+          //     </Tag>
+          //   )}
+          //   {col === "rejected" && (
+          //     <Tag color="red" bordered className="w-full">
+          //       Rejected
+          //     </Tag>
+          //   )}
+          // </div>
         );
       },
     },
@@ -129,8 +137,14 @@ const TasksBillingClaims = (props) => {
       render: (col, record, index) => {
         return (
           <div>
-            <IconEdit className="mx-1 text-gray-300 hover:text-gray-900 cursor-pointer" />
-            <IconDelete className="mx-1 text-red-200 hover:text-red-500 cursor-pointer" />
+            <IconEdit
+              className="mx-1 text-gray-300 hover:text-gray-900 cursor-pointer"
+              onClick={() => setModalClaimAdd(true)}
+            />
+            <IconDelete
+              className="mx-1 text-red-200 hover:text-red-500 cursor-pointer"
+              onClick={() => setModalClaimDelete(true)}
+            />
           </div>
         );
       },
@@ -206,7 +220,13 @@ const TasksBillingClaims = (props) => {
           )}
         />
         <div className="flex items-center justify-between py-2">
-          <Button size="mini" type="text" icon={<IconPlus />} className="mt-2">
+          <Button
+            size="mini"
+            type="text"
+            icon={<IconPlus />}
+            className="mt-2"
+            onClick={() => setModalClaimAdd(true)}
+          >
             Add Claim
           </Button>
           <Button.Group>
@@ -216,6 +236,16 @@ const TasksBillingClaims = (props) => {
           </Button.Group>
         </div>
       </div>
+      <ClaimAdd visible={modalClaimAdd} setVisible={setModalClaimAdd} />
+      <ClaimDelete
+        visible={modalClaimDelete}
+        setVisible={setModalClaimDelete}
+      />
+      <ClaimAttachment
+        visible={modalClaimAttachment}
+        setVisible={setModalClaimAttachment}
+        file="/sample.pdf"
+      />
     </>
   );
 };

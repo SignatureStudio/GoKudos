@@ -2,19 +2,16 @@ import { tasksData } from "./utils/sample_data";
 import TasksHeader from "./components/Header";
 import TasksTab from "./components/Tab";
 import TasksBillingNav from "./components/BillingNav";
-import InvoiceAdd from "./components/InvoiceAdd";
-import InvoiceItems from "./components/InvoiceItems";
-import { Table, Button, Input, Select } from "@arco-design/web-react";
-import {
-  IconEdit,
-  IconDelete,
-  IconPlus,
-  IconDownload,
-  IconSend,
-} from "@arco-design/web-react/icon";
+import InputText from "./components/InputText";
+import InvoicePreview from "./components/InvoicePreview";
+import QuoteAdd from "./components/QuoteAdd";
+import { Table, Button } from "@arco-design/web-react";
+import { IconEdit, IconDelete, IconPlus } from "@arco-design/web-react/icon";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function numberWithCommas(num) {
+  num = Number(num);
   return num
     .toFixed(2)
     .toString()
@@ -23,7 +20,7 @@ function numberWithCommas(num) {
 
 const TasksBilling = (props) => {
   const [modalInvoice, setModalInvoice] = useState(false);
-  const [modalInvoiceItems, setModalInvoiceItems] = useState(false);
+  const [modalQuoteAdd, setModalQuoteAdd] = useState(false);
   const columns = [
     {
       dataIndex: "index",
@@ -35,106 +32,109 @@ const TasksBilling = (props) => {
       },
     },
     {
-      dataIndex: "item",
-      title: "Item",
-      width: 300,
+      dataIndex: "customer",
+      title: "Customer",
+      width: 200,
     },
     {
-      dataIndex: "quantity",
-      title: "Quantity",
+      dataIndex: "quote",
+      title: "Quote",
       width: 100,
-      align: "center",
-    },
-    {
-      dataIndex: "price",
-      title: "Price (RM)",
-      width: 100,
-      align: "right",
-      render: (col, record, index) => {
-        return <div>{numberWithCommas(col)}</div>;
-      },
-    },
-    {
-      dataIndex: "amount",
-      title: "Amount (RM)",
-      width: 100,
-      align: "right",
-      render: (col, record, index) => {
-        return <div>{numberWithCommas(col)}</div>;
-      },
-    },
-    {
-      dataIndex: "cost",
-      title: "Actual Cost (RM)",
-      width: 100,
-      align: "right",
-      bodyCellStyle: {
-        backgroundColor: "rgb(var(--gray-0))",
-      },
-      render: (col, record, index) => {
-        return <div>{numberWithCommas(col)}</div>;
-      },
-    },
-    {
-      dataIndex: "variance",
-      title: "Variance (RM)",
-      width: 100,
-      align: "right",
-      bodyCellStyle: {
-        backgroundColor: "rgb(var(--gray-0))",
-      },
-      render: (col, record, index) => {
-        return (
-          <div className={`${col < 0 ? "text-red-500" : "text-gray-900"}`}>
-            {numberWithCommas(col)}
-          </div>
-        );
-      },
-    },
-    {
-      dataIndex: "action",
-      title: "",
-      width: 80,
-      bodyCellStyle: {
-        backgroundColor: "rgb(var(--gray-0))",
-      },
       render: (col, record, index) => {
         return (
           <div>
-            <IconEdit className="mx-1 text-gray-300 hover:text-gray-900 cursor-pointer" />
-            <IconDelete className="mx-1 text-red-200 hover:text-red-500 cursor-pointer" />
+            {col ? (
+              <Button size="small">
+                <Link to="/tasks/billing/quote">{col}</Link>
+              </Button>
+            ) : (
+              "-"
+            )}
           </div>
         );
       },
     },
+    {
+      dataIndex: "invoice",
+      title: "Invoice",
+      width: 100,
+      render: (col, record, index) => {
+        return (
+          <div>
+            {col ? (
+              <Button size="small" onClick={() => setModalInvoice(true)}>
+                {col}
+              </Button>
+            ) : (
+              "-"
+            )}
+          </div>
+        );
+      },
+    },
+    {
+      dataIndex: "billed",
+      title: "Billed (RM)",
+      width: 100,
+      align: "right",
+      render: (col, record, index) => {
+        return <div>{numberWithCommas(col)}</div>;
+      },
+    },
+    {
+      dataIndex: "paid",
+      title: "Paid (RM)",
+      width: 100,
+      align: "right",
+      render: (col, record, index) => {
+        return (
+          <div>
+            <InputText data={col} number={true} placeholder="RM" />
+          </div>
+        );
+      },
+    },
+    // {
+    //   dataIndex: "action",
+    //   title: "",
+    //   width: 80,
+    //   bodyCellStyle: {
+    //     backgroundColor: "rgb(var(--gray-0))",
+    //   },
+    //   render: (col, record, index) => {
+    //     return (
+    //       <div>
+    //         <IconEdit className="mx-1 text-gray-300 hover:text-gray-900 cursor-pointer" />
+    //         <IconDelete className="mx-1 text-red-200 hover:text-red-500 cursor-pointer" />
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   const data = [
     {
       key: 1,
-      item: "Item A",
-      quantity: 1,
-      price: 1000,
-      amount: 1000,
-      cost: 500,
-      variance: 500,
+      customer: "A Company",
+      quote: "Q-000001",
+      invoice: "I-000001",
+      billed: 1000,
+      paid: 1000,
     },
     {
       key: 2,
-      item: "Item B",
-      quantity: 1,
-      price: 1500,
-      amount: 1500,
-      cost: 1750,
-      variance: -250,
+      customer: "A Company",
+      quote: "Q-000002",
+      invoice: null,
+      billed: 1500,
+      paid: 0,
     },
     {
       key: 3,
-      item: "Item C",
-      quantity: 2,
-      price: 500,
-      amount: 1000,
-      cost: 500,
-      variance: 500,
+      customer: "A Company",
+      quote: "Q-000003",
+      invoice: null,
+      billed: 500,
+      paid: 0,
     },
   ];
   return (
@@ -143,17 +143,6 @@ const TasksBilling = (props) => {
       <TasksTab />
       <TasksBillingNav />
       <div className="overflow-auto p-3 bg-gray-50">
-        <div className="mb-2 flex items-center">
-          <Select defaultValue="1" className="w-40 mr-1">
-            <Select.Option value="1">A Invoice</Select.Option>
-            <Select.Option value="2">Milestone</Select.Option>
-          </Select>
-          <Button
-            icon={<IconPlus />}
-            iconOnly
-            onClick={() => setModalInvoice(true)}
-          />
-        </div>
         <Table
           size="small"
           scroll={{ x: true }}
@@ -167,15 +156,11 @@ const TasksBilling = (props) => {
               <Table.Summary.Row>
                 <Table.Summary.Cell colSpan={4}></Table.Summary.Cell>
                 <Table.Summary.Cell className="text-right font-bold">
-                  {numberWithCommas(3500)}
+                  {numberWithCommas(3000)}
                 </Table.Summary.Cell>
                 <Table.Summary.Cell className="text-right font-bold">
-                  {numberWithCommas(2750)}
+                  {numberWithCommas(1000)}
                 </Table.Summary.Cell>
-                <Table.Summary.Cell className="text-right font-bold">
-                  {numberWithCommas(750)}
-                </Table.Summary.Cell>
-                <Table.Summary.Cell />
               </Table.Summary.Row>
             </Table.Summary>
           )}
@@ -186,25 +171,28 @@ const TasksBilling = (props) => {
             type="text"
             icon={<IconPlus />}
             className="mt-2"
-            onClick={() => setModalInvoiceItems(true)}
+            onClick={() => setModalQuoteAdd(true)}
           >
-            Add Item
+            Add Quote
           </Button>
-          <Button.Group>
-            <Button type="primary" icon={<IconDownload />} className="mt-2">
-              Generate
-            </Button>
-            {/* <Button type="primary" icon={<IconSend />} className="mt-2">
-              Send
-            </Button> */}
-          </Button.Group>
         </div>
       </div>
-      <InvoiceAdd visible={modalInvoice} setVisible={setModalInvoice} />
-      <InvoiceItems
-        visible={modalInvoiceItems}
-        setVisible={setModalInvoiceItems}
-      />
+      <div className="overflow-auto p-3 bg-gray-50 text-center">
+        <div className="bg-white rounded border border-gray-200 p-10">
+          <p className="mb-4">You don't have any quote yet</p>
+          <div>
+            <Button
+              icon={<IconPlus />}
+              type="primary"
+              onClick={() => setModalQuoteAdd(true)}
+            >
+              <span className="hidden md:inline">Add Quote</span>
+            </Button>
+          </div>
+        </div>
+      </div>
+      <InvoicePreview visible={modalInvoice} setVisible={setModalInvoice} />
+      <QuoteAdd visible={modalQuoteAdd} setVisible={setModalQuoteAdd} />
     </>
   );
 };

@@ -6,19 +6,12 @@ import {
   Carousel,
   Tag,
 } from "@arco-design/web-react";
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { debounce } from "lodash";
-import { TASK } from "@/constants";
-
 const InvoiceAdd = (props) => {
-  const [avatarText, setAvatarText] = useState("A");
-  const [avatarBg, setAvatarBg] = useState("gray");
   return (
     <Modal
-      title="Add Invoice"
+      title="Create Invoice"
       visible={props.visible}
-      okText="Add Invoice"
+      okText="Create Invoice"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
@@ -28,8 +21,7 @@ const InvoiceAdd = (props) => {
       <div className="flex-1 pl-4">
         <div>
           <label>
-            <div>Invoice name</div>
-            <Input allowClear placeholder="Add an invoice name" />
+            <div>Do you want to create a new invoice from this quote?</div>
           </label>
         </div>
       </div>
