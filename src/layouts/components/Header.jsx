@@ -12,7 +12,7 @@ const Header = (props) => {
   // props.setSubnav(true)
   return (
     <header
-      className={`flex items-center bg-white shadow-md w-full h-16 fixed top-0 left-0 z-40 transition-all ${
+      className={`flex items-center bg-white shadow-md w-full h-16 fixed top-0 left-0 z-30 transition-all ${
         props.aside ? "pl-72" : "pl-16"
       }`}
     >

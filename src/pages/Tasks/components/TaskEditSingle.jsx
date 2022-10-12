@@ -1,11 +1,4 @@
-import {
-  Modal,
-  Button,
-  Input,
-  Dropdown,
-  Menu,
-  Tabs,
-} from "@arco-design/web-react";
+import { Modal, Button, Input, Dropdown, Menu } from "@arco-design/web-react";
 import { useState } from "react";
 import {
   IconShareAlt,
@@ -30,149 +23,48 @@ import TaskDuplicate from "./TaskDuplicate";
 import TaskMove from "./TaskMove";
 import TaskArchive from "./TaskArchive";
 
-const TaskEdit = (props) => {
+const TaskEditSingle = (props) => {
   const [taskId, setTaskId] = useState(null);
   const [modalTaskDelete, setModalTaskDelete] = useState(false);
   const [modalTaskDuplicate, setModalTaskDuplicate] = useState(false);
   const [modalTaskMove, setModalTaskMove] = useState(false);
   const [modalTaskArchive, setModalTaskArchive] = useState(false);
+  const menuTask = (
+    <Menu>
+      <Menu.Item key="1">Make a copy</Menu.Item>
+      <hr />
+      <Menu.Item key="2">Report abuse</Menu.Item>
+      <hr />
+      <Menu.Item key="3">Delete</Menu.Item>
+    </Menu>
+  );
+
   return (
-    <Modal
-      title={
-        <div className="flex items-center pr-4">
-          <div className="flex-1">Edit Task</div>
-          {/* <div>
-            <Button
-              size="mini"
-              type="text"
-              className="text-gray-400 text-sm pl-3 pr-0 pt-1"
-            >
-              <IconHistory className="text-gray-600 h-4 w-4" />
-            </Button>
-          </div> */}
-          <div>
-            <Button
-              size="mini"
-              type="text"
-              className="text-gray-400 text-sm pl-3 pr-0 pt-1"
-            >
-              <IconShareAlt className="text-gray-600 h-4 w-4" />
-            </Button>
-          </div>
-          <div>
-            <Dropdown
-              trigger="click"
-              droplist={
-                <Menu>
-                  <Menu.Item
-                    onClick={() => {
-                      setTaskId(1);
-                      setModalTaskDuplicate(true);
-                    }}
-                  >
-                    Duplicate
-                  </Menu.Item>
-                  {/* <Menu.Item>Export</Menu.Item> */}
-                  <Menu.Item
-                    onClick={() => {
-                      setTaskId(1);
-                      setModalTaskMove(true);
-                    }}
-                  >
-                    Move
-                  </Menu.Item>
-                  <Menu.Item
-                    onClick={() => {
-                      setTaskId(1);
-                      setModalTaskArchive(true);
-                    }}
-                  >
-                    Archive
-                  </Menu.Item>
-                  <hr />
-                  <Menu.Item
-                    onClick={() => {
-                      setTaskId(1);
-                      setModalTaskSubtask(true);
-                    }}
-                  >
-                    Add Subtask
-                  </Menu.Item>
-                  <hr />
-                  <Menu.Item
-                    onClick={() => {
-                      setTaskId(1);
-                      setModalTaskDelete(true);
-                    }}
-                  >
-                    Delete
-                  </Menu.Item>
-                </Menu>
-              }
-            >
-              <Button
-                type="text"
-                size="small"
-                icon={<IconMoreVertical className="text-gray-600" />}
-              />
-            </Dropdown>
-            {/* <Button
-              size="mini"
-              type="text"
-              className="text-gray-400 text-sm pl-3 pr-0 pt-1"
-            >
+    <section className="bg-white">
+      <div className="flex items-center h-14 py-3">
+        <h1 className="flex-1">Task Name</h1>
+        <div className="pr-2">
+          <Dropdown droplist={menuTask} trigger="click">
+            <Button type="text" className="px-2">
               <IconMoreVertical className="text-gray-600 h-4 w-4" />
-            </Button> */}
-          </div>
+            </Button>
+          </Dropdown>
         </div>
-      }
-      visible={props.visible}
-      okText="Add Task"
-      onOk={() => props.setVisible(false)}
-      onCancel={() => props.setVisible(false)}
-      autoFocus={false}
-      focusLock={true}
-      className="w-full max-w-5xl"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 -my-6 -mx-5">
-        <div className="col-span-2 overflow-auto border-b md:h-screen md:max-h-[60vh] md:border-r md:border-b-0 border-gray-200">
+      </div>
+      <hr />
+      <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="col-span-2 bg-white">
           <div className="p-1">
-            <div className="">
-              <label>
-                {/* <div>Task name</div> */}
-                <Input
-                  allowClear
-                  placeholder="Add a task name"
-                  className="bg-white large font-semibold"
-                />
-              </label>
-            </div>
-            <div className="">
-              <label>
-                {/* <div>Description</div> */}
-                <Input.TextArea
-                  allowClear
-                  autoSize
-                  placeholder="Add a description"
-                  className="bg-white text-gray-600"
-                />
-              </label>
+            <div className="p-4 text-gray-600">
+              Description goes here
             </div>
           </div>
-          <Tabs defaultActiveTab="1">
-            <Tabs.TabPane key="1" title="Details">
-              <TaskChecklist />
-              <TaskAttachment />
-              <TaskDiscussion />
-            </Tabs.TabPane>
-            <Tabs.TabPane key="2" title="Subtasks">
-            </Tabs.TabPane>
-            <Tabs.TabPane key="3" title="Activities">
-            </Tabs.TabPane>
-          </Tabs>
+          <TaskChecklist />
+          <TaskAttachment />
+          <TaskDiscussion />
         </div>
-        <div className="col-span-1 overflow-auto md:h-screen md:max-h-[60vh] p-2 bg-gray-100">
-          <div className="border border-gray-200 rounded divide-y divide-gray-200 bg-white">
+        <div className="col-span-1 border-l border-gray-200 ">
+          <div className="divide-y divide-gray-200 bg-white">
             <div className="px-2 py-3 flex">
               <div className="flex-1">Status</div>
               <div className="w-40">
@@ -247,9 +139,9 @@ const TaskEdit = (props) => {
             </div>
           </div>
           <hr />
-          <div className="p-1.5 flex">
+          {/* <div className="p-1.5 flex">
             <InputProps text="Property" />
-          </div>
+          </div> */}
         </div>
       </div>
       <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
@@ -262,8 +154,8 @@ const TaskEdit = (props) => {
         visible={modalTaskArchive}
         setVisible={setModalTaskArchive}
       />
-    </Modal>
+    </section>
   );
 };
 
-export default TaskEdit;
+export default TaskEditSingle;

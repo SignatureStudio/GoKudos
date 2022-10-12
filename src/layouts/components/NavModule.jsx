@@ -1,6 +1,6 @@
 // import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import { Menu } from "@arco-design/web-react";
-import { IconClockCircle, IconHome, IconNav, IconSort, IconUser } from "@arco-design/web-react/icon";
+import { IconClockCircle, IconHome, IconNav, IconSort, IconSubscribed, IconUser } from "@arco-design/web-react/icon";
 import { Link } from "react-router-dom";
 
 const NavModule = (props) => {
@@ -14,6 +14,11 @@ const NavModule = (props) => {
       <Link to="/tasks">
         <Menu.Item key="tasks" className="text-base">
           <IconNav className="w-4 h-4 mx-1" /> Tasks
+        </Menu.Item>
+      </Link>
+      <Link to="/shared">
+        <Menu.Item key="shared" className="text-base">
+          <IconSubscribed className="w-4 h-4 mx-1" /> Shared with me
         </Menu.Item>
       </Link>
       <Link to="/contacts">

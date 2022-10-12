@@ -6,7 +6,9 @@ import Header from "./components/Header";
 import NavCompany from "./components/NavCompany";
 import NavModule from "./components/NavModule";
 import NavAdd from "./components/NavAdd";
+import OnboardBar from "./components/OnboardBar";
 import TaskSubnav from "@/pages/Tasks/components/Subnav";
+import SharedSubnav from "@/pages/Shared/components/Subnav";
 
 const AppLayout = () => {
   const [aside, setAside] = useState(window.innerWidth < 768 ? false : true);
@@ -21,7 +23,7 @@ const AppLayout = () => {
   );
 
   const currentModulePath = useLocation().pathname.split("/")[1] || "home";
-  const moduleWithSubnavPath = ["tasks"];
+  const moduleWithSubnavPath = ["tasks", "shared"];
   const [subnav, setSubnav] = useState(
     moduleWithSubnavPath.includes(currentModulePath) ? true : false
   );
@@ -31,6 +33,9 @@ const AppLayout = () => {
     case "tasks":
       moduleSubnav = <TaskSubnav />;
       break;
+    case "shared":
+      moduleSubnav = <SharedSubnav />;
+      break;
 
     default:
       break;
@@ -38,16 +43,21 @@ const AppLayout = () => {
 
   useEffect(() => {
     if (!moduleWithSubnavPath.includes(currentModulePath)) {
-      aside ? setSubnav(false) : setSubnav(true)
+      aside ? setSubnav(false) : setSubnav(true);
     } else {
-      setSubnav(true)
+      setSubnav(true);
     }
   }, [currentModulePath]);
 
   return (
     <div className="bg-gray-200 min-h-screen">
+      {
+        currentModulePath === 'shared' && (
+          <OnboardBar />
+        )
+      }
       <aside
-        className={`bg-white min-h-screen transition-all fixed top-0 left-0 z-50 overflow-hidden ${
+        className={`bg-white min-h-screen transition-all fixed top-0 left-0 z-40 overflow-hidden ${
           aside ? "w-72" : "w-16"
         }`}
       >
@@ -62,8 +72,19 @@ const AppLayout = () => {
           {aside && moduleSubnav}
         </div>
       </aside>
-      <Header aside={aside} setAside={setAside} subnav={subnav} setSubnav={setSubnav} moduleWithSubnavPath={moduleWithSubnavPath} currentModulePath={currentModulePath} />
-      <div className={`overflow-auto pt-16 transition-all ${aside ? "pl-72" : "pl-16"}`}>
+      <Header
+        aside={aside}
+        setAside={setAside}
+        subnav={subnav}
+        setSubnav={setSubnav}
+        moduleWithSubnavPath={moduleWithSubnavPath}
+        currentModulePath={currentModulePath}
+      />
+      <div
+        className={`overflow-auto pt-16 transition-all ${
+          aside ? "pl-72" : "pl-16"
+        }`}
+      >
         <main className="p-2">
           <Outlet />
         </main>
