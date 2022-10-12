@@ -6,6 +6,9 @@ import {
   Checkbox,
   Popover,
   Badge,
+  Menu,
+  Dropdown,
+  Switch,
   Trigger,
 } from "@arco-design/web-react";
 import { useState } from "react";
@@ -13,6 +16,7 @@ import {
   IconInfoCircle,
   IconPlus,
   IconNotification,
+  IconMoreVertical,
 } from "@arco-design/web-react/icon";
 import { TASK } from "@/constants";
 import { faker } from "@faker-js/faker";
@@ -45,23 +49,35 @@ const ProjectTemplate = (props) => {
       color: "cyan",
     },
   ]);
+  const menuStatusDefault = (
+    <Menu>
+      <Menu.Item key="1">
+        <div className="flex items-center w-32">
+          <div className="flex-1">Notification</div>
+          <div>
+            <Checkbox checked />
+            {/* <Switch size="small" defaultChecked /> */}
+          </div>
+        </div>
+      </Menu.Item>
+    </Menu>
+  );
+  const menuStatusCustom = (
+    <Menu>
+      <Menu.Item key="1">
+        <div className="flex items-center w-32">
+          <div className="flex-1">Notification</div>
+          <div>
+            <Checkbox />
+            {/* <Switch size="small" defaultChecked className="bg-black" /> */}
+          </div>
+        </div>
+      </Menu.Item>
+      <hr />
+      <Menu.Item key="3">Delete</Menu.Item>
+    </Menu>
+  );
   return (
-    // <Modal
-    //   title="Project Templates"
-    //   visible={props.visible}
-    //   okText="Choose this template"
-    //   onOk={() => props.setVisible(false)}
-    //   onCancel={() => props.setVisible(false)}
-    //   okButtonProps={{
-    //     disabled: action,
-    //   }}
-    //   cancelButtonProps={{
-    //     disabled: action,
-    //   }}
-    //   autoFocus={false}
-    //   focusLock={true}
-    //   className="w-full max-w-xl"
-    // >
     <div className="mt-2 bg-gray-100 rounded">
       {detail ? (
         <div className="p-3">
@@ -199,7 +215,12 @@ const ProjectTemplate = (props) => {
                         className="px-2"
                       />
                     </div>
-                    <div>
+                    <div className="flex items-center">
+                      <Dropdown droplist={menuStatusDefault} trigger="click">
+                        <div className="px-1">
+                          <IconMoreVertical className="text-gray-400" />
+                        </div>
+                      </Dropdown>
                       <Popover
                         trigger="click"
                         content={<span>{status.description}</span>}
@@ -214,11 +235,18 @@ const ProjectTemplate = (props) => {
                 {customStatus.map((status) => (
                   <div className="flex items-center">
                     <InputStatusColor data={status} className="flex-1" />
-                    <Checkbox value={true}>
+                    <Dropdown droplist={menuStatusCustom} trigger="click">
+                        <div className="px-1">
+                          <IconMoreVertical className="text-gray-400" />
+                        </div>
+                      </Dropdown>
+                    {/* <Checkbox value={true}>
                       {({ checked }) => {
                         return (
                           <IconNotification
-                            className={checked ? "text-gray-900" : "text-gray-400"}
+                            className={
+                              checked ? "text-gray-900" : "text-gray-400"
+                            }
                           />
                         );
                       }}
@@ -226,7 +254,7 @@ const ProjectTemplate = (props) => {
                     <Popover
                       trigger="click"
                       content={<span>People who work on the task</span>}
-                    ></Popover>
+                    ></Popover> */}
                   </div>
                 ))}
                 <Button
@@ -250,21 +278,24 @@ const ProjectTemplate = (props) => {
               </div>
             </div>
           </div>
-          <div className="p-3 text-center border-t border-gray-200 bg-gray-50">
-            <Button
-              size="small"
-              className="mr-2"
-              onClick={() => setDetail(false)}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="primary"
-              size="small"
-              onClick={() => setDetail(false)}
-            >
-              Confirm
-            </Button>
+          <div className="p-2 flex border-t border-gray-200 bg-gray-50">
+            <div className="flex-1">
+              <Button
+                type="primary"
+                size="small"
+                onClick={() => setDetail(false)}
+              >
+                Confirm
+              </Button>
+              <Button size="small" onClick={() => setDetail(false)}>
+                Cancel
+              </Button>
+            </div>
+            <div>
+              <Button size="small" type="text" onClick={() => setDetail(false)}>
+                Delete
+              </Button>
+            </div>
           </div>
         </div>
       ) : (
@@ -333,7 +364,6 @@ const ProjectTemplate = (props) => {
         </>
       )}
     </div>
-    // </Modal>
   );
 };
 
