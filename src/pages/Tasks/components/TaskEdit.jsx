@@ -15,6 +15,8 @@ import {
 import TaskChecklist from "./TaskChecklist";
 import TaskAttachment from "./TaskAttachment";
 import TaskDiscussion from "./TaskDiscussion";
+import TaskActivities from "./TaskActivities";
+import TaskSignature from "./TaskSignature";
 import InputSelectStatus from "./InputSelectStatus";
 import InputTimeline from "./InputTimeline";
 import InputSelectMember from "./InputSelectMember";
@@ -29,6 +31,8 @@ import TaskDelete from "./TaskDelete";
 import TaskDuplicate from "./TaskDuplicate";
 import TaskMove from "./TaskMove";
 import TaskArchive from "./TaskArchive";
+import { subtasksData } from "../utils/sample_data";
+import TableSubtask from "./TableSubtask";
 
 const TaskEdit = (props) => {
   const [taskId, setTaskId] = useState(null);
@@ -36,6 +40,7 @@ const TaskEdit = (props) => {
   const [modalTaskDuplicate, setModalTaskDuplicate] = useState(false);
   const [modalTaskMove, setModalTaskMove] = useState(false);
   const [modalTaskArchive, setModalTaskArchive] = useState(false);
+
   return (
     <Modal
       title={
@@ -166,8 +171,13 @@ const TaskEdit = (props) => {
               <TaskDiscussion />
             </Tabs.TabPane>
             <Tabs.TabPane key="2" title="Subtasks">
+              <TableSubtask data={subtasksData} />
             </Tabs.TabPane>
             <Tabs.TabPane key="3" title="Activities">
+              <TaskActivities />
+            </Tabs.TabPane>
+            <Tabs.TabPane key="4" title="Signature">
+              <TaskSignature />
             </Tabs.TabPane>
           </Tabs>
         </div>

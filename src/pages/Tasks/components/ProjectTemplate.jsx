@@ -36,6 +36,18 @@ const ProjectTemplate = (props) => {
       property: [1, 2, 3, 4, 5, 6],
       status: [1, 2, 3, 4, 5, 6, 7, 8],
     },
+    {
+      id: 3,
+      name: "Custom template 2",
+      property: [1, 2, 3, 4, 5, 6],
+      status: [1, 2, 3, 4, 5, 6, 7, 8],
+    },
+    {
+      id: 4,
+      name: "Custom template 2",
+      property: [1, 2, 3, 4, 5, 6],
+      status: [1, 2, 3, 4, 5, 6, 7, 8],
+    },
   ];
   const [detail, setDetail] = useState(false);
   const [data, setData] = useState(templates[0]);
@@ -303,14 +315,14 @@ const ProjectTemplate = (props) => {
           <div className="px-3 py-4">
             <Radio.Group
               defaultValue={1}
-              className="grid grid-cols-2 md:grid-cols-3"
+              className="grid grid-cols-2 md:grid-cols-3 gap-4"
             >
               {templates.map((template) => (
                 <Radio key={template.id} value={template.id}>
                   {({ checked }) => {
                     return (
                       <div
-                        className={`rounded border p-2 h-40 bg-white ${
+                        className={`rounded border p-2 h-40 -mr-5 -ml-1 bg-white ${
                           checked ? "border-red-600" : "border-gray-300"
                         }`}
                       >
@@ -334,7 +346,7 @@ const ProjectTemplate = (props) => {
                 </Radio>
               ))}
               <div
-                className="border-2 border-dashed border-gray-300 text-center pt-10 rounded hover:border-gray-900"
+                className="border-2 border-dashed border-gray-300 text-center py-10 rounded hover:border-gray-900"
                 onClick={() => {
                   setAction(true);
                   setDetail(true);

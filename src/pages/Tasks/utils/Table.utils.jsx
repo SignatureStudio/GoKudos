@@ -232,6 +232,49 @@ export const utils = {
         );
       },
     },
+    submenu: {
+      dataIndex: "menu",
+      title: "",
+      width: 30,
+      render: (col, record, index) => {
+        // console.log(record);
+        return (
+          <Dropdown trigger="click" droplist={
+            <Menu>
+              <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.edit(true)
+              }}>View Detail</Menu.Item>
+              <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.duplicate(true)
+              }}>Duplicate</Menu.Item>
+              {/* <Menu.Item>Export</Menu.Item> */}
+              <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.move(true)
+              }}>Move</Menu.Item>
+              <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.archive(true)
+              }}>Archive</Menu.Item>
+              <hr />
+              {/* <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.subtask(true)
+              }}>Add Subtask</Menu.Item> */}
+              <hr />
+              <Menu.Item onClick={() => {
+                record.action.task(record.id)
+                record.action.delete(true)
+              }}>Delete</Menu.Item>
+            </Menu>
+          }>
+            <Button type="text" size="small" icon={<IconMoreVertical className="text-gray-600" />} />
+          </Dropdown>
+        );
+      },
+    },
     addprops: {
       dataIndex: "addproperty",
       title: (<InputProps />),

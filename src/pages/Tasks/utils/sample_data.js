@@ -160,3 +160,10 @@ export const projectsData = [
   singleProject("A Project", []),
   singleProject("B Project", []),
 ];
+
+export const subtasksData = [
+  singleTask(0, 0, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
+  singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
+  singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
+  singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, []),
+];
