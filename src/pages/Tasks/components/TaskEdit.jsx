@@ -256,9 +256,30 @@ const TaskEdit = (props) => {
               </div>
             </div>
           </div>
-          <hr />
           <div className="p-1.5 flex">
             <InputProps text="Property" />
+          </div>
+          <hr />
+          <h4 className="p-2">Actual</h4>
+          <div className="border border-gray-200 rounded divide-y divide-gray-200 bg-white">
+            <div className="px-2 py-3 flex">
+              <div className="flex-1">Timeline</div>
+              <div className="w-40 pl-2">
+                <InputTimeline data={null} />
+              </div>
+            </div>
+            <div className="px-2 py-3 flex">
+              <div className="flex-1">Project value</div>
+              <div className="w-40">
+                <InputText data={null} prefix="RM " placeholder="RM" />
+              </div>
+            </div>
+            <div className="px-2 py-3 flex">
+              <div className="flex-1">Effort</div>
+              <div className="w-40">
+                <InputText data={null} suffix=" hours" placeholder="Hours" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

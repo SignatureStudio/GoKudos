@@ -7,6 +7,8 @@ const TasksTimelineTable = (props) => {
   const colHeight = 2;
   const data = displayTasksBy[props.displayBy](props.data);
 
+  console.log('data', data);
+
   return (
     <div className="flex gk-timeline">
       <TimelineTableLeft displayBy={props.displayBy} data={data} colHeight={colHeight} />

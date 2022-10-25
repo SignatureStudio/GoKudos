@@ -11,6 +11,8 @@ const TasksTimeline = (props) => {
   const [timeScale, setTimeScale] = useState('month')
   const [data, setData] = useState(tasksData)
 
+  console.log('tasksData', tasksData);
+
   return (
     <>
       <TasksHeader name={tasksData.projects[0].name} />

@@ -136,30 +136,51 @@ const TimelineTableLeft = (props) => {
     bg: [],
     bar: [],
   };
-  let bar_offset_top = 0;
-  props.data.forEach((item) => {
-    item.tasks.map((task, i) => {
-      body.bg.push(
-        <div className="row even:bg-gray-100" key={`${item.name}${i}`}></div>
-      );
 
-      const task_start = dayjs(task.startDate);
-      const task_end = dayjs(task.endDate);
-      const timeline_start =
-        props.timeScale === "year"
-          ? dayjs(new Date(props.start.$y, 0, 1))
-          : props.start;
-      const scale = current.scale;
-      const width = current.width;
+  const bgHtml = (item, index) => {
+    return (
+      <div className="row even:bg-gray-100" key={`${item.name}${index}`}></div>
+    );
+  };
+  const barHtml = (task, current, props, item, parent = null) => {
+    const task_start = dayjs(task.startDate);
+    const task_end = dayjs(task.endDate);
+    const actual_start = dayjs(task.actualStartDate);
+    const actual_end = dayjs(task.actualEndDate);
+    const timeline_start =
+      props.timeScale === "year"
+        ? dayjs(new Date(props.start.$y, 0, 1))
+        : props.start;
+    const scale = current.scale;
+    const width = current.width;
 
-      const bar = {
-        top: `${bar_offset_top * 2}rem`,
-        left: task_start.diff(timeline_start, scale) * width,
-        width: task_end.diff(task_start, scale) * width || width,
-      };
-      bar_offset_top++;
+    let bar = {
+      top: `${bar_offset_top * 2}rem`,
+      left: task_start.diff(timeline_start, scale) * width,
+      width: task_end.diff(task_start, scale) * width || width,
+      actualTop: `${bar_offset_top * 2 + 1.5}rem`,
+      actualLeft: actual_start.diff(timeline_start, scale) * width,
+      actualWidth: actual_end.diff(actual_start, scale) * width || width,
+    };
 
-      body.bar.push(
+    if (parent) {
+      const parent_start = dayjs(parent.startDate);
+      const parent_end = dayjs(parent.endDate);
+      bar["parent_left"] = parent_start.diff(timeline_start, scale) * width;
+      bar["parent_width"] =
+        parent_end.diff(parent_start, scale) * width || width;
+    }
+
+    return (
+      <>
+        {parent && (
+          <div
+            className={`bar-parent`}
+            style={{ width: bar.parent_width, top: bar.top, left: bar.parent_left }}
+            key={`${item.name}${task.id}`}
+          >
+          </div>
+        )}
         <div
           className={`bar ${task.status.color}`}
           style={{ width: bar.width, top: bar.top, left: bar.left }}
@@ -167,11 +188,84 @@ const TimelineTableLeft = (props) => {
           data-width={bar.width}
           data-left={bar.left}
           data-id={task.id}
-          
         >
           <span>{task.name}</span>
         </div>
+        <div
+          className={`bar-actual ${task.status.color}`}
+          style={{
+            width: bar.actualWidth,
+            top: bar.actualTop,
+            left: bar.actualLeft,
+          }}
+          key={`${item.name}${task.id}`}
+          data-id={task.id}
+        ></div>
+      </>
+    );
+  };
+
+  let bar_offset_top = 0;
+  props.data.forEach((item) => {
+    item.tasks.map((task, i) => {
+      body.bg.push(
+        bgHtml(item, i)
+        // <div className="row even:bg-gray-100" key={`${item.name}${i}`}></div>
       );
+
+      // const task_start = dayjs(task.startDate);
+      // const task_end = dayjs(task.endDate);
+      // const actual_start = dayjs(task.actualStartDate);
+      // const actual_end = dayjs(task.actualEndDate);
+      // const timeline_start =
+      //   props.timeScale === "year"
+      //     ? dayjs(new Date(props.start.$y, 0, 1))
+      //     : props.start;
+      // const scale = current.scale;
+      // const width = current.width;
+
+      // const bar = {
+      //   top: `${bar_offset_top * 2}rem`,
+      //   left: task_start.diff(timeline_start, scale) * width,
+      //   width: task_end.diff(task_start, scale) * width || width,
+      //   actualTop: `${bar_offset_top * 2 + 1.5}rem`,
+      //   actualLeft: actual_start.diff(timeline_start, scale) * width,
+      //   actualWidth: actual_end.diff(actual_start, scale) * width || width,
+      // };
+
+      body.bar.push(
+        barHtml(task, current, props, item)
+        // <>
+        //   <div
+        //     className={`bar ${task.status.color}`}
+        //     style={{ width: bar.width, top: bar.top, left: bar.left }}
+        //     key={`${item.name}${task.id}`}
+        //     data-width={bar.width}
+        //     data-left={bar.left}
+        //     data-id={task.id}
+        //   >
+        //     <span>{task.name}</span>
+        //   </div>
+        //   <div
+        //     className={`bar-actual ${task.status.color}`}
+        //     style={{
+        //       width: bar.actualWidth,
+        //       top: bar.actualTop,
+        //       left: bar.actualLeft,
+        //     }}
+        //     key={`${item.name}${task.id}`}
+        //     data-id={task.id}
+        //   ></div>
+        // </>
+      );
+      bar_offset_top++;
+
+      task.children.map((child) => {
+        console.log("child", child);
+        body.bg.push(bgHtml(child, i));
+        body.bar.push(barHtml(child, current, props, item, task));
+        bar_offset_top++;
+      });
     });
   });
 
@@ -243,9 +337,10 @@ const TimelineTableLeft = (props) => {
           });
         },
       },
-    }).on('tap', function (e) {
-      setModalTaskEdit(true)
     })
+    .on("tap", function (e) {
+      setModalTaskEdit(true);
+    });
 
   return (
     <>

@@ -30,72 +30,84 @@
 .gk-calendar .rbc-event.red,
 .gk-calendar .rbc-day-slot .rbc-background-event.red,
 .gk-timeline .bar.red,
+.gk-timeline .bar-actual.red,
 .gk-status.red {
   @apply bg-red-50 border-red-500 text-red-500;
 }
 .gk-calendar .rbc-event.blue,
 .gk-calendar .rbc-day-slot .rbc-background-event.blue,
 .gk-timeline .bar.blue,
+.gk-timeline .bar-actual.blue,
 .gk-status.blue {
   @apply bg-blue-50 border-blue-500 text-blue-500;
 }
 .gk-calendar .rbc-event.orangered,
 .gk-calendar .rbc-day-slot .rbc-background-event.orangered,
 .gk-timeline .bar.orangered,
+.gk-timeline .bar-actual.orangered,
 .gk-status.orangered {
   @apply bg-orangered-50 border-orangered-500 text-orangered-500;
 }
 .gk-calendar .rbc-event.orange,
 .gk-calendar .rbc-day-slot .rbc-background-event.orange,
 .gk-timeline .bar.orange,
+.gk-timeline .bar-actual.orange,
 .gk-status.orange {
   @apply bg-orange-50 border-orange-500 text-orange-500;
 }
 .gk-calendar .rbc-event.gold,
 .gk-calendar .rbc-day-slot .rbc-background-event.gold,
 .gk-timeline .bar.gold,
+.gk-timeline .bar-actual.gold,
 .gk-status.gold {
   @apply bg-gold-50 border-gold-500 text-gold-500;
 }
 .gk-calendar .rbc-event.lime,
 .gk-calendar .rbc-day-slot .rbc-background-event.lime,
 .gk-timeline .bar.lime,
+.gk-timeline .bar-actual.lime,
 .gk-status.lime {
   @apply bg-lime-50 border-lime-500 text-lime-500;
 }
 .gk-calendar .rbc-event.green,
 .gk-calendar .rbc-day-slot .rbc-background-event.green,
 .gk-timeline .bar.green,
+.gk-timeline .bar-actual.green,
 .gk-status.green {
   @apply bg-green-50 border-green-500 text-green-500;
 }
 .gk-calendar .rbc-event.cyan,
 .gk-calendar .rbc-day-slot .rbc-background-event.cyan,
 .gk-timeline .bar.cyan,
+.gk-timeline .bar-actual.cyan,
 .gk-status.cyan {
   @apply bg-cyan-50 border-cyan-500 text-cyan-500;
 }
 .gk-calendar .rbc-event.purple,
 .gk-calendar .rbc-day-slot .rbc-background-event.purple,
 .gk-timeline .bar.purple,
+.gk-timeline .bar-actual.purple,
 .gk-status.purple {
   @apply bg-purple-50 border-purple-500 text-purple-500;
 }
 .gk-calendar .rbc-event.pinkpurple,
 .gk-calendar .rbc-day-slot .rbc-background-event.pinkpurple,
 .gk-timeline .bar.pinkpurple,
+.gk-timeline .bar-actual.pinkpurple,
 .gk-status.pinkpurple {
   @apply bg-pinkpurple-50 border-pinkpurple-500 text-pinkpurple-500;
 }
 .gk-calendar .rbc-event.magenta,
 .gk-calendar .rbc-day-slot .rbc-background-event.magenta,
 .gk-timeline .bar.magenta,
+.gk-timeline .bar-actual.magenta,
 .gk-status.magenta {
   @apply bg-magenta-50 border-magenta-500 text-magenta-500;
 }
 .gk-calendar .rbc-event.gray,
 .gk-calendar .rbc-day-slot .rbc-background-event.gray,
 .gk-timeline .bar.gray,
+.gk-timeline .bar-actual.gray,
 .gk-status.gray {
   @apply bg-gray-50 border-gray-500 text-gray-500;
 }
@@ -161,6 +173,12 @@
 }
 .gk-timeline .bar {
   @apply h-6 mt-1 absolute border px-2;
+}
+.gk-timeline .bar-parent {
+  @apply h-8 absolute bg-gray-200;
+}
+.gk-timeline .bar-actual {
+  @apply h-0 absolute border-4;
 }
 .gk-timeline .bar span {
   @apply whitespace-nowrap;

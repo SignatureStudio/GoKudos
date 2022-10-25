@@ -92,6 +92,12 @@ const singleTask = (
     endDate: timeframe.start
       .add(start + duration, "day")
       .format("YYYY-MM-DDT00:23:00.000Z"),
+    actualStartDate: timeframe.start
+      .add(start, "day")
+      .format("YYYY-MM-DDT00:12:00.000Z"),
+    actualEndDate: timeframe.start
+      .add(start + duration - 1, "day")
+      .format("YYYY-MM-DDT00:23:00.000Z"),
     comments: comments,
     attachments: attachments,
     company: "A Company",

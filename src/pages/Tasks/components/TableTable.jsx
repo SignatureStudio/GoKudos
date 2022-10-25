@@ -111,6 +111,7 @@ const TasksTableTable = (props) => {
                         ? setDrawerAction(true)
                         : setDrawerAction(false);
                     },
+                    // checkStrictly: true
                   }}
                   columns={columns}
                   data={group.tasks}
