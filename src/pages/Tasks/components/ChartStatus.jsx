@@ -20,17 +20,21 @@ const TasksChartStatus = (props) => {
           </PieChart>
         </div>
         <div className="flex justify-center">
-          <div>
+          <div className="grid grid-cols-3 gap-2">
             {data.map((status) => (
-              <div>
+              <div className="pr-8">
                 <Badge
                   key={status.id}
                   color={status.color}
                   text={
-                    <div className="flex">
-                      <div className="w-28">{status.name}</div>
-                      <div>{status.value}</div>
+                    <div>
+                      {status.name}
+                      <span className="ml-2 inline-block">({status.value})</span>
                     </div>
+                    // <div className="flex">
+                    //   <div className="w-28">{status.name}</div>
+                    //   <div>{status.value}</div>
+                    // </div>
                   }
                 />
               </div>

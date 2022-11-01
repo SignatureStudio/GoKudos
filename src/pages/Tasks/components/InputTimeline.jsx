@@ -1,4 +1,4 @@
-import { DatePicker } from "@arco-design/web-react";
+import { Button, DatePicker } from "@arco-design/web-react";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { displayTimeline } from "../utils/_utils";
@@ -29,6 +29,13 @@ const InputTimeline = (props) => {
         setEnd(dayjs(value[1]))
         console.log(value);
       }}
+      extra={(<Button>Clear</Button>)}
+      // shortcuts={[
+      //   {
+      //     text: 'Clear',
+      //     value: () => dayjs().add(1, 'month'),
+      //   },
+      // ]}
     />
   );
 };

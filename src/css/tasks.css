@@ -175,7 +175,7 @@
   @apply h-6 mt-1 absolute border px-2;
 }
 .gk-timeline .bar-parent {
-  @apply h-8 absolute bg-gray-200;
+  @apply h-8 absolute border-l border-gray-300 bg-gradient-to-r from-gray-200 to-transparent w-10;
 }
 .gk-timeline .bar-actual {
   @apply h-0 absolute border-4;

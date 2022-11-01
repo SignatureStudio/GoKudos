@@ -1,5 +1,5 @@
 import { Modal, Cascader, Select, Input, DatePicker } from "@arco-design/web-react";
-const InvoiceAdd = (props) => {
+const QuotationAdd = (props) => {
   const CustomerOptions = [
     {
       value: "A Company",
@@ -40,9 +40,9 @@ const InvoiceAdd = (props) => {
   ];
   return (
     <Modal
-      title="Add Invoice"
+      title="Add Quotation"
       visible={props.visible}
-      okText="Add Invoice"
+      okText="Add Quotation"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
@@ -60,7 +60,7 @@ const InvoiceAdd = (props) => {
           />
         </div>
         <div className="mb-4">
-          <div className="mb-1">Invoice Date</div>
+          <div className="mb-1">Quotation Date</div>
           <DatePicker defaultValue={Date.now()} className="w-full" />
         </div>
         <div className="mb-4">
@@ -90,4 +90,4 @@ const InvoiceAdd = (props) => {
   );
 };
 
-export default InvoiceAdd;
+export default QuotationAdd;

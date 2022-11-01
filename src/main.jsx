@@ -16,6 +16,9 @@ import TasksCalendar from "@/pages/Tasks/Calendar";
 import TasksTimeline from "@/pages/Tasks/Timeline";
 import TasksChart from "@/pages/Tasks/Chart";
 import TasksBilling from "@/pages/Tasks/Billing";
+import TasksBillingInvoiceDetails from "@/pages/Tasks/BillingInvoiceDetails";
+import TasksBillingQuotation from "@/pages/Tasks/BillingQuotation";
+import TasksBillingQuotationDetails from "@/pages/Tasks/BillingQuotationDetails";
 import TasksBillingQuote from "@/pages/Tasks/BillingQuote";
 import TasksBillingClaims from "@/pages/Tasks/BillingClaims";
 import TasksBillingTimeCost from "@/pages/Tasks/BillingTimeCost";
@@ -40,7 +43,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="timeline" element={<TasksTimeline />} />
             <Route path="chart" element={<TasksChart />} />
             <Route path="billing" element={<TasksBilling />} />
-            <Route path="billing/quote" element={<TasksBillingQuote />} />
+            <Route path="billing/invoices" element={<TasksBilling />} />
+            <Route path="billing/invoices/details" element={<TasksBillingInvoiceDetails />} />
+            <Route path="billing/quotations" element={<TasksBillingQuotation />} />
+            <Route path="billing/quotations/details" element={<TasksBillingQuotationDetails />} />
             <Route path="billing/claims" element={<TasksBillingClaims />} />
             <Route path="billing/timecost" element={<TasksBillingTimeCost />} />
             <Route path="archived" element={<TasksArchived />} />

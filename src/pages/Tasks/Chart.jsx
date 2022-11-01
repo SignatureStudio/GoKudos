@@ -14,7 +14,7 @@ const TasksChart = (props) => {
       <TasksTab />
       <TasksChartNav />
       <div className="overflow-auto p-3 bg-gray-50">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <TasksChartStatus data={tasksData} />
           <TasksChartGroup data={tasksData} />
           <TasksChartMember data={tasksData} />

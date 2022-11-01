@@ -176,7 +176,9 @@ const TimelineTableLeft = (props) => {
         {parent && (
           <div
             className={`bar-parent`}
-            style={{ width: bar.parent_width, top: bar.top, left: bar.parent_left }}
+            style={{ 
+              //width: bar.parent_width, 
+              top: bar.top, left: bar.parent_left }}
             key={`${item.name}${task.id}`}
           >
           </div>

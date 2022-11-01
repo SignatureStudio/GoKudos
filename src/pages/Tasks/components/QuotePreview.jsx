@@ -58,12 +58,52 @@ const QuotePreview = (props) => {
       width: 300,
     },
     {
-      dataIndex: "price",
-      title: "Amount (RM)",
+      dataIndex: "planned",
+      title: "Planned (RM)",
       width: 100,
       align: "right",
       render: (col, record, index) => {
         return <div>{numberWithCommas(col)}</div>;
+        // return (
+        //   <div>
+        //     <InputText data={col} number={true} placeholder="RM" />
+        //   </div>
+        // );
+      },
+    },
+    {
+      dataIndex: "discount",
+      title: "Disc (%)",
+      width: 60,
+      align: "right",
+      fixed: "right",
+      render: (col, record, index) => {
+        return <div>{numberWithCommas(col)}</div>;
+      },
+    },
+    {
+      dataIndex: "tax",
+      title: "Tax (%)",
+      width: 60,
+      align: "right",
+      fixed: "right",
+      render: (col, record, index) => {
+        return <div>{numberWithCommas(col)}</div>;
+      },
+    },
+    {
+      dataIndex: "billed",
+      title: "Billed (RM)",
+      width: 100,
+      align: "right",
+      fixed: "right",
+      render: (col, record, index) => {
+        return <div>{numberWithCommas(col)}</div>;
+        // return (
+        //   <div>
+        //     <InputText data={col} number={true} placeholder="RM" />
+        //   </div>
+        // );
       },
     },
   ];
@@ -72,17 +112,32 @@ const QuotePreview = (props) => {
     {
       key: 1,
       item: "Item A",
-      price: 1000,
+      planned: 1000,
+      actual: 500,
+      variance: 500,
+      discount: 0,
+      tax: 0,
+      billed: 1000,
     },
     {
       key: 2,
       item: "Item B",
-      price: 1500,
+      planned: 1000,
+      actual: 1500,
+      variance: -500,
+      discount: 0,
+      tax: 0,
+      billed: 2000,
     },
     {
       key: 3,
       item: "Item C",
-      price: 500,
+      planned: 0,
+      actual: 0,
+      variance: 0,
+      discount: 0,
+      tax: 0,
+      billed: 0,
     },
   ];
 
@@ -113,7 +168,7 @@ const QuotePreview = (props) => {
             </div>
             <div className="flex mb-8">
               <div className="w-80">
-                <div className="text-sm font-bold text-gray-400">Bill To</div>
+                <div className="text-sm font-bold text-gray-300">Bill To</div>
                 <div className="font-bold">Company Name</div>
                 <div>Person Name</div>
                 <div>Address 1</div>
@@ -122,15 +177,17 @@ const QuotePreview = (props) => {
                 <div>Malaysia</div>
               </div>
               <div className="text-right flex-1">
-                <div className="text-sm font-bold text-gray-400">
+                <div className="text-sm font-bold text-gray-300">
                   Quotation Number
                 </div>
                 <div className="font-bold mb-2">Q-0000001</div>
-                <div className="text-sm font-bold text-gray-400">
+                <div className="text-sm font-bold text-gray-300">
                   Quotation Date
                 </div>
                 <div className="mb-2">1 October 2022</div>
-                <div className="text-sm font-bold text-gray-400">Expiry Date</div>
+                <div className="text-sm font-bold text-gray-300">
+                  Expiry Date
+                </div>
                 <div>31 October 2022</div>
               </div>
             </div>
@@ -145,37 +202,32 @@ const QuotePreview = (props) => {
               summary={(currentData) => (
                 <Table.Summary>
                   <Table.Summary.Row>
-                    <Table.Summary.Cell colSpan={2} className="text-right">
-                      Subtotal
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell className="text-right">
-                      {numberWithCommas(3000)}
-                    </Table.Summary.Cell>
-                  </Table.Summary.Row>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell colSpan={2} className="text-right">
-                      Tax (6%)
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell className="text-right">
-                      {numberWithCommas(180)}
-                    </Table.Summary.Cell>
-                  </Table.Summary.Row>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell
-                      colSpan={2}
-                      className="text-right font-bold"
-                    >
-                      Total
+                    <Table.Summary.Cell colSpan={5} className="text-right">
+                      Discount (RM)
                     </Table.Summary.Cell>
                     <Table.Summary.Cell className="text-right font-bold">
-                      {numberWithCommas(3180)}
+                      {numberWithCommas(0)}
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell colSpan={5} className="text-right">
+                      Tax (RM)
+                    </Table.Summary.Cell>
+                    <Table.Summary.Cell className="text-right font-bold">
+                      {numberWithCommas(0)}
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell colSpan={5}></Table.Summary.Cell>
+                    <Table.Summary.Cell className="text-right font-bold">
+                      {numberWithCommas(2000)}
                     </Table.Summary.Cell>
                   </Table.Summary.Row>
                 </Table.Summary>
               )}
             />
             <div className="my-8">
-              <div className="text-sm font-bold text-gray-400">Notes</div>
+              <div className="text-sm font-bold text-gray-300">Notes</div>
               <div>All payment made to GoKudos Sdn Bhd</div>
             </div>
             <div className="py-4 border-t border-gray-200">
@@ -202,25 +254,23 @@ const QuotePreview = (props) => {
         <div className="p-2">
           <div className="flex">
             <div className="flex-1">
-              <Button type="primary" onClick={() => setModalQuoteSend(true)}>Send</Button>
+              <Button type="primary" onClick={() => setModalQuoteSend(true)}>
+                Send
+              </Button>
               <Button onClick={download} className="ml-2">
                 Download
               </Button>
             </div>
             <div>
-              <Button type="text" onClick={() => setModalQuoteVoid(true)}>Void</Button>
+              <Button type="text" onClick={() => setModalQuoteVoid(true)}>
+                Void
+              </Button>
             </div>
           </div>
         </div>
       </Modal>
-      <QuoteSend
-        visible={modalQuoteSend}
-        setVisible={setModalQuoteSend}
-      />
-      <QuoteVoid
-        visible={modalQuoteVoid}
-        setVisible={setModalQuoteVoid}
-      />
+      <QuoteSend visible={modalQuoteSend} setVisible={setModalQuoteSend} />
+      <QuoteVoid visible={modalQuoteVoid} setVisible={setModalQuoteVoid} />
     </>
   );
 };

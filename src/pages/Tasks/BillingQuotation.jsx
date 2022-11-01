@@ -17,7 +17,7 @@ function numberWithCommas(num) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const TasksBilling = (props) => {
+const TasksBillingQuotation = (props) => {
   const [modalInvoice, setModalInvoice] = useState(false);
   const menuBilling = (type) => {
     return (
@@ -60,7 +60,7 @@ const TasksBilling = (props) => {
       title: "Reference",
       width: 100,
       render: (col, record, index) => {
-        return <div><Button type="text" className="p-0"><Link to="/tasks/billing/invoices/details">{col}</Link></Button></div>;
+        return <div><Button type="text" className="p-0"><Link to="/tasks/billing/quotations/details">{col}</Link></Button></div>;
       },
     },
     {
@@ -92,7 +92,7 @@ const TasksBilling = (props) => {
       key: 1,
       date: "Dec 12, 2022",
       customer: "A Company",
-      ref: "INV-10000001",
+      ref: "Q-10000001",
       billed: 1000,
       balance: 1000,
     },
@@ -100,7 +100,7 @@ const TasksBilling = (props) => {
       key: 2,
       date: "Dec 12, 2022",
       customer: "A Company",
-      ref: "INV-10000002",
+      ref: "Q-10000002",
       billed: 1000,
       balance: 500,
     },
@@ -108,7 +108,7 @@ const TasksBilling = (props) => {
       key: 3,
       date: "Dec 12, 2022",
       customer: "A Company",
-      ref: "INV-10000003",
+      ref: "Q-10000003",
       billed: 1000,
       balance: 0,
     },
@@ -116,7 +116,7 @@ const TasksBilling = (props) => {
       key: 4,
       date: "Dec 12, 2022",
       customer: "A Company",
-      ref: "INV-10000004",
+      ref: "Q-10000004",
       billed: 1000,
       balance: 0,
     },
@@ -179,4 +179,4 @@ const TasksBilling = (props) => {
     </>
   );
 };
-export default TasksBilling;
+export default TasksBillingQuotation;

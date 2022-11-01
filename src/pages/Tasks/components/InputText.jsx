@@ -47,6 +47,8 @@ const InputText = (props) => {
             ref={refInput}
             allowClear
             placeholder={props.placeholder}
+            prefix={props.prefix}
+            suffix={props.suffix}
             defaultValue={value}
             onBlur={(e) => {
               console.log(e.target.value);
