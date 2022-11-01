@@ -108,16 +108,16 @@ const InvoiceItemAdd = (props) => {
             <Input placeholder="Add a description" />
           )}
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="mb-4">
-            <div className="mb-1">Planned Amount</div>
-            <Input prefix="RM" placeholder="0.00" />
-          </div>
+        <div className="mb-4">
+          <div className="mb-1">Budget value</div>
+          <Input prefix="RM" placeholder="0.00" />
+        </div>
+        {/* <div className="grid grid-cols-2 gap-4">
           <div className="mb-4">
             <div className="mb-1">Bill Amount</div>
             <Input prefix="RM" placeholder="0.00" />
           </div>
-        </div>
+        </div> */}
         <div className="grid grid-cols-2 gap-4">
           <div className="mb-4">
             <div className="mb-1">Discount</div>
