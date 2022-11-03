@@ -5,7 +5,7 @@ import TasksBillingNav from "./components/BillingNav";
 import InvoiceEdit from "./components/InvoiceEdit";
 import InvoicePreview from "./components/InvoicePreview";
 import InvoicePayment from "./components/InvoicePayment";
-import InvoiceItemAdd from "./components/InvoiceItemAdd";
+import InvoiceItemEdit from "./components/InvoiceItemEdit";
 import QuoteItems from "./components/QuoteItems";
 import QuoteDeleteItem from "./components/QuoteDeleteItem";
 import InputText from "./components/InputText";
@@ -34,7 +34,7 @@ const TasksBillingInvoiceDetails = (props) => {
   const [modalInvoicePayment, setModalInvoicePayment] = useState(false);
   const [modalInvoiceEdit, setModalInvoiceEdit] = useState(false);
   const [modalInvoicePreview, setModalInvoicePreview] = useState(false);
-  const [modalInvoiceItemAdd, setModalInvoiceItemAdd] = useState(false);
+  const [modalInvoiceItemEdit, setModalInvoiceItemEdit] = useState(false);
   const columns = [
     {
       dataIndex: "index",
@@ -56,7 +56,7 @@ const TasksBillingInvoiceDetails = (props) => {
             <Button
               type="text"
               className="p-0"
-              onClick={() => setModalInvoiceItemAdd(true)}
+              onClick={() => setModalInvoiceItemEdit(true)}
             >
               {col}
             </Button>
@@ -225,7 +225,7 @@ const TasksBillingInvoiceDetails = (props) => {
               icon={<IconPlus />}
               size="small"
               type="primary"
-              onClick={() => setModalInvoiceItemAdd(true)}
+              onClick={() => setModalInvoiceItemEdit(true)}
             >
               <span className="hidden md:inline">Item</span>
             </Button>
@@ -291,30 +291,34 @@ const TasksBillingInvoiceDetails = (props) => {
               </Table.Summary>
             )}
           />
+          <div className="flex items-center justify-between pt-2">
+            <div>
+              <Button onClick={() => setModalInvoicePayment(true)}>
+                <span className="hidden md:inline">Receive Payment</span>
+              </Button>
+            </div>
+            <div>
+              <Button
+                icon={<IconEye />}
+                type="primary"
+                onClick={() => setModalInvoicePreview(true)}
+              >
+                <span className="hidden md:inline">Preview</span>
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center justify-between p-2">
-          <div>
-            <Button
-              onClick={() => setModalInvoicePayment(true)}
-            >
-              <span className="hidden md:inline">Receive Payment</span>
-            </Button>
-          </div>
-          <div>
-            <Button
-              icon={<IconEye />}
-              type="primary"
-              onClick={() => setModalInvoicePreview(true)}
-            >
-              <span className="hidden md:inline">Preview</span>
-            </Button>
-          </div>
+        <div className="py-2">
+          <Button type="text">Delete Invoice</Button>
         </div>
       </div>
-      <InvoicePayment visible={modalInvoicePayment} setVisible={setModalInvoicePayment} />
-      <InvoiceItemAdd
-        visible={modalInvoiceItemAdd}
-        setVisible={setModalInvoiceItemAdd}
+      <InvoicePayment
+        visible={modalInvoicePayment}
+        setVisible={setModalInvoicePayment}
+      />
+      <InvoiceItemEdit
+        visible={modalInvoiceItemEdit}
+        setVisible={setModalInvoiceItemEdit}
       />
       {/* <QuoteItems visible={modalQuoteItems} setVisible={setModalQuoteItems} />
       <QuoteDeleteItem
