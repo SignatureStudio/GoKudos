@@ -2,9 +2,9 @@ import { tasksData } from "./utils/sample_data";
 import TasksHeader from "./components/Header";
 import TasksTab from "./components/Tab";
 import TasksBillingNav from "./components/BillingNav";
-import QuoteEdit from "./components/QuoteEdit";
+import InvoiceEdit from "./components/InvoiceEdit";
 import InvoicePreview from "./components/InvoicePreview";
-import InvoiceAdd from "./components/InvoiceAdd";
+import InvoicePayment from "./components/InvoicePayment";
 import InvoiceItemAdd from "./components/InvoiceItemAdd";
 import QuoteItems from "./components/QuoteItems";
 import QuoteDeleteItem from "./components/QuoteDeleteItem";
@@ -31,11 +31,9 @@ function numberWithCommas(num) {
 }
 
 const TasksBillingInvoiceDetails = (props) => {
-  const [modalQuoteEdit, setModalQuoteEdit] = useState(false);
+  const [modalInvoicePayment, setModalInvoicePayment] = useState(false);
+  const [modalInvoiceEdit, setModalInvoiceEdit] = useState(false);
   const [modalInvoicePreview, setModalInvoicePreview] = useState(false);
-  const [modalQuoteItems, setModalQuoteItems] = useState(false);
-  const [modalQuoteDeleteItem, setModalQuoteDeleteItem] = useState(false);
-  const [modalInvoiceAdd, setModalInvoiceAdd] = useState(false);
   const [modalInvoiceItemAdd, setModalInvoiceItemAdd] = useState(false);
   const columns = [
     {
@@ -206,7 +204,7 @@ const TasksBillingInvoiceDetails = (props) => {
             <Button
               icon={<IconEdit />}
               iconOnly
-              onClick={() => setModalQuoteEdit(true)}
+              onClick={() => setModalInvoiceEdit(true)}
             />
           </div>
           <div>
@@ -275,7 +273,17 @@ const TasksBillingInvoiceDetails = (props) => {
                   </Table.Summary.Cell>
                 </Table.Summary.Row>
                 <Table.Summary.Row>
-                  <Table.Summary.Cell colSpan={5}></Table.Summary.Cell>
+                  <Table.Summary.Cell colSpan={5} className="text-right">
+                    Total (RM)
+                  </Table.Summary.Cell>
+                  <Table.Summary.Cell className="text-right font-bold">
+                    {numberWithCommas(2000)}
+                  </Table.Summary.Cell>
+                </Table.Summary.Row>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell colSpan={5} className="text-right">
+                    Balance Due (RM)
+                  </Table.Summary.Cell>
                   <Table.Summary.Cell className="text-right font-bold">
                     {numberWithCommas(2000)}
                   </Table.Summary.Cell>
@@ -286,10 +294,16 @@ const TasksBillingInvoiceDetails = (props) => {
         </div>
         <div className="flex items-center justify-between p-2">
           <div>
+            <Button
+              onClick={() => setModalInvoicePayment(true)}
+            >
+              <span className="hidden md:inline">Receive Payment</span>
+            </Button>
           </div>
           <div>
             <Button
               icon={<IconEye />}
+              type="primary"
               onClick={() => setModalInvoicePreview(true)}
             >
               <span className="hidden md:inline">Preview</span>
@@ -297,7 +311,7 @@ const TasksBillingInvoiceDetails = (props) => {
           </div>
         </div>
       </div>
-      {/* <InvoiceAdd visible={modalInvoiceAdd} setVisible={setModalInvoiceAdd} /> */}
+      <InvoicePayment visible={modalInvoicePayment} setVisible={setModalInvoicePayment} />
       <InvoiceItemAdd
         visible={modalInvoiceItemAdd}
         setVisible={setModalInvoiceItemAdd}
@@ -306,8 +320,11 @@ const TasksBillingInvoiceDetails = (props) => {
       <QuoteDeleteItem
         visible={modalQuoteDeleteItem}
         setVisible={setModalQuoteDeleteItem}
+      />*/}
+      <InvoiceEdit
+        visible={modalInvoiceEdit}
+        setVisible={setModalInvoiceEdit}
       />
-      <QuoteEdit visible={modalQuoteEdit} setVisible={setModalQuoteEdit} /> */}
       <InvoicePreview
         visible={modalInvoicePreview}
         setVisible={setModalInvoicePreview}
