@@ -10,8 +10,8 @@ import {
 const SalesOrderAdd = (props) => {
   const CustomerOptions = [
     {
-      value: "A Company",
-      label: "A Company",
+      value: "TCH Sdn Bhd",
+      label: "TCH Sdn Bhd",
       children: [
         {
           value: "A Customer",

@@ -114,7 +114,7 @@ const TasksBillingTimeCost = (props) => {
   const data = [
     {
       key: 1,
-      task: faker.company.catchPhrase(),
+      task: "Financial Statement",
       member: {
         id: faker.datatype.uuid(),
         name: "A Member",
@@ -127,7 +127,7 @@ const TasksBillingTimeCost = (props) => {
     },
     {
       key: 2,
-      task: faker.company.catchPhrase(),
+      task: "Completion Procedures",
       member: {
         id: faker.datatype.uuid(),
         name: "B Member",
@@ -140,7 +140,7 @@ const TasksBillingTimeCost = (props) => {
     },
     {
       key: 3,
-      task: faker.company.catchPhrase(),
+      task: "Audit Procedures/Execution",
       member: {
         id: faker.datatype.uuid(),
         name: "C Member",

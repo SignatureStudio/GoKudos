@@ -26,11 +26,11 @@ export const members = [
 const groups = [
   {
     id: faker.datatype.uuid(),
-    name: "A Group",
+    name: "Interim Audit",
   },
   {
     id: faker.datatype.uuid(),
-    name: "B Group",
+    name: "Final Audit",
   },
 ];
 const singleProject = (name, groups) => {
@@ -57,6 +57,7 @@ const singleGroup = (name, tasks) => {
 };
 
 const singleTask = (
+  name,
   start,
   duration,
   status,
@@ -84,7 +85,7 @@ const singleTask = (
   }
   return {
     id: faker.datatype.uuid(),
-    name: faker.company.catchPhrase(),
+    name: name,
     status: status,
     startDate: timeframe.start
       .add(start, "day")
@@ -100,8 +101,8 @@ const singleTask = (
       .format("YYYY-MM-DDT00:23:00.000Z"),
     comments: comments,
     attachments: attachments,
-    company: "A Company",
-    workspace: "A Workspace",
+    company: "TCH Sdn Bhd",
+    workspace: "Audit 2022",
     project: project,
     group: group,
     members: faker.helpers.arrayElements(members, 2),
@@ -126,34 +127,34 @@ export const tasksData = {
   members,
   groups,
   projects: [
-    singleProject("A Project", [
-      singleGroup("A Group", [
-        singleTask(0, 0, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
-        singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
-        singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
-        singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, [
-          singleTask(12, 5, TASK.STATUS[2], "A Project", "A Group", 0, 0, []),
-          singleTask(15, 5, TASK.STATUS[3], "A Project", "A Group", 0, 0, []),
+    singleProject("TCH Sdn Bhd", [
+      singleGroup("Interim Audit", [
+        singleTask("Financial Statement", 0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, []),
+        singleTask("Completion Procedures", 5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, []),
+        singleTask("Planning", 8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, []),
+        singleTask("Audit Procedures/Execution", 10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, [
+          singleTask("Audit Procedures", 10, 5, TASK.STATUS[2], "TCH Sdn Bhd", "Interim Audit", 0, 0, []),
+          singleTask("Execution", 12, 8, TASK.STATUS[3], "TCH Sdn Bhd", "Interim Audit", 0, 0, []),
         ]),
       ]),
-      singleGroup("B Group", [
-        singleTask(15, 10, TASK.STATUS[0], "A Project", groups[1], 0, 0, []),
-        singleTask(20, 15, TASK.STATUS[1], "A Project", groups[1], 1, 0, [
-          // singleTask(22, 5, TASK.STATUS[0], "A Project", groups[1], 0, 0, []),
-          // singleTask(25, 10, TASK.STATUS[1], "A Project", groups[1], 0, 0, []),
+      singleGroup("Final Audit", [
+        singleTask("Financial Statement", 15, 10, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, []),
+        singleTask("Completion Procedures", 20, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 1, 0, []),
+        singleTask("Planning", 25, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[1], 2, 3, []),
+        singleTask("Audit Procedures/Execution",30, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[1], 0, 2, [
+          singleTask("Audit Procedures",30, 5, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, []),
+          singleTask("Execution",32, 8, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 0, 0, []),
         ]),
-        singleTask(25, 8, TASK.STATUS[2], "A Project", groups[1], 2, 3, []),
-        singleTask(30, 10, TASK.STATUS[3], "A Project", groups[1], 0, 2, []),
       ]),
     ]),
     // singleProject("B Project", [
-    //   singleGroup("A Group", [
+    //   singleGroup("Interim Audit", [
     //     singleTask(10, 10, TASK.STATUS[0], "B Project", groups[0], 0, 0, []),
     //     singleTask(15, 15, TASK.STATUS[1], "B Project", groups[0], 2, 0, []),
     //     singleTask(18, 8, TASK.STATUS[2], "B Project", groups[0], 0, 0, []),
     //     singleTask(20, 10, TASK.STATUS[3], "B Project", groups[0], 0, 2, []),
     //   ]),
-    //   singleGroup("B Group", [
+    //   singleGroup("Final Audit", [
     //     singleTask(25, 10, TASK.STATUS[0], "B Project", groups[1], 0, 2, []),
     //     singleTask(30, 15, TASK.STATUS[1], "B Project", groups[1], 2, 2, []),
     //     singleTask(35, 8, TASK.STATUS[2], "B Project", groups[1], 2, 0, []),
@@ -163,13 +164,13 @@ export const tasksData = {
   ],
 };
 export const projectsData = [
-  singleProject("A Project", []),
-  singleProject("B Project", []),
+  singleProject("TCH Sdn Bhd", []),
+  singleProject("Nature Freight", []),
 ];
 
 export const subtasksData = [
-  singleTask(0, 0, TASK.STATUS[0], "A Project", groups[0], 2, 0, []),
-  singleTask(5, 15, TASK.STATUS[1], "A Project", groups[0], 0, 3, []),
-  singleTask(8, 8, TASK.STATUS[2], "A Project", groups[0], 0, 0, []),
-  singleTask(10, 10, TASK.STATUS[3], "A Project", groups[0], 2, 2, []),
+  singleTask(0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, []),
+  singleTask(5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, []),
+  singleTask(8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, []),
+  singleTask(10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, []),
 ];

@@ -2,8 +2,8 @@ import { Modal, Cascader, Select, Input } from "@arco-design/web-react";
 const InvoiceEdit = (props) => {
   const CustomerOptions = [
     {
-      value: "A Company",
-      label: "A Company",
+      value: "TCH Sdn Bhd",
+      label: "TCH Sdn Bhd",
       children: [
         {
           value: "A Customer",

@@ -91,7 +91,7 @@ const TasksBillingQuotation = (props) => {
     {
       key: 1,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "Q-10000001",
       billed: 1000,
       balance: 1000,
@@ -99,7 +99,7 @@ const TasksBillingQuotation = (props) => {
     {
       key: 2,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "Q-10000002",
       billed: 1000,
       balance: 500,
@@ -107,7 +107,7 @@ const TasksBillingQuotation = (props) => {
     {
       key: 3,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "Q-10000003",
       billed: 1000,
       balance: 0,
@@ -115,7 +115,7 @@ const TasksBillingQuotation = (props) => {
     {
       key: 4,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "Q-10000004",
       billed: 1000,
       balance: 0,

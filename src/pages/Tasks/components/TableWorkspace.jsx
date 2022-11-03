@@ -146,7 +146,7 @@ const TasksTableWorkspace = (props) => {
             },
           ],
           attachments: [],
-          company: "A Company",
+          company: "TCH Sdn Bhd",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -267,7 +267,7 @@ const TasksTableWorkspace = (props) => {
               time: "1970-01-01T10:52:18.941Z",
             },
           ],
-          company: "A Company",
+          company: "TCH Sdn Bhd",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -340,7 +340,7 @@ const TasksTableWorkspace = (props) => {
           endDate: "2022-12-26T00:23:00.000+08:00",
           comments: [],
           attachments: [],
-          company: "A Company",
+          company: "TCH Sdn Bhd",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -419,7 +419,7 @@ const TasksTableWorkspace = (props) => {
             },
           ],
           attachments: [],
-          company: "A Company",
+          company: "TCH Sdn Bhd",
           workspace: "A Workspace",
           project: "A Project",
           group: {

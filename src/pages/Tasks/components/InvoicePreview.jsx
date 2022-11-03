@@ -111,7 +111,7 @@ const InvoicePreview = (props) => {
   const data = [
     {
       key: 1,
-      item: "Item A",
+      item: "Financial Statement",
       planned: 1000,
       actual: 500,
       variance: 500,
@@ -121,7 +121,7 @@ const InvoicePreview = (props) => {
     },
     {
       key: 2,
-      item: "Item B",
+      item: "Completion Procedures",
       planned: 1000,
       actual: 1500,
       variance: -500,
@@ -131,7 +131,7 @@ const InvoicePreview = (props) => {
     },
     {
       key: 3,
-      item: "Item C",
+      item: "Audit Procedures/Execution",
       planned: 0,
       actual: 0,
       variance: 0,
@@ -168,10 +168,10 @@ const InvoicePreview = (props) => {
             <div className="flex mb-8">
               <div className="w-80">
                 <div className="text-sm font-bold text-gray-300">Bill To</div>
-                <div className="font-bold">Company Name</div>
-                <div>Person Name</div>
-                <div>Address 1</div>
-                <div>Address 2</div>
+                <div className="font-bold">TCH Sdn Bhd</div>
+                <div>Tee Chee Hong</div>
+                <div>55, Persiaran Batu Belah</div>
+                <div>Taman Sentosa</div>
                 <div>50000 Kuala Lumpur</div>
                 <div>Malaysia</div>
               </div>
@@ -179,7 +179,7 @@ const InvoicePreview = (props) => {
                 <div className="text-sm font-bold text-gray-300">
                   Invoice Number
                 </div>
-                <div className="font-bold mb-2">I-0000001</div>
+                <div className="font-bold mb-2">INV-10000001</div>
                 <div className="text-sm font-bold text-gray-300">
                   Invoice Date
                 </div>
@@ -229,11 +229,11 @@ const InvoicePreview = (props) => {
             </div>
             <div className="py-4 border-t border-gray-200">
               <div>
-                <span className="font-bold">Company Name</span> (2020202020202)
+                <span className="font-bold">TCH Sdn Bhd</span> (2020202020202)
               </div>
               <div className="grid grid-cols-2">
                 <div>
-                  <div>Address 1, Address 2, 50000 Kuala Lumpur, Malaysia.</div>
+                  <div>55, Persiaran Batu Belah, Address 2, 50000 Kuala Lumpur, Malaysia.</div>
                   <div>+6012 3456 789</div>
                 </div>
                 <div className="text-right">

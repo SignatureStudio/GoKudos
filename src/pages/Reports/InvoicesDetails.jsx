@@ -71,7 +71,7 @@ const Page = () => {
     {
       key: 1,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "INV-10000001",
       billed: 1000,
       balance: 1000,
@@ -79,7 +79,7 @@ const Page = () => {
     {
       key: 2,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "INV-10000002",
       billed: 1000,
       balance: 500,
@@ -87,7 +87,7 @@ const Page = () => {
     {
       key: 3,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "INV-10000003",
       billed: 1000,
       balance: 0,
@@ -95,7 +95,7 @@ const Page = () => {
     {
       key: 4,
       date: "Dec 12, 2022",
-      customer: "A Company",
+      customer: "TCH Sdn Bhd",
       ref: "INV-10000004",
       billed: 1000,
       balance: 0,

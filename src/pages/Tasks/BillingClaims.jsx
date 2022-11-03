@@ -154,40 +154,40 @@ const TasksBillingClaims = (props) => {
     {
       key: 1,
       date: "Dec 12, 2022",
-      item: "Item A",
-      description: faker.company.catchPhrase(),
+      item: "Financial Statement",
+      description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
         name: "A Member",
         avatar: "/dummy/face1.jpg",
       },
-      amount: 300,
+      amount: 25,
       status: "new",
     },
     {
       key: 2,
       date: "Dec 18, 2022",
-      item: "Item B",
-      description: faker.company.catchPhrase(),
+      item: "Completion Procedures",
+      description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
         name: "B Member",
         avatar: "/dummy/face2.jpg",
       },
-      amount: 300,
+      amount: 25,
       status: "approved",
     },
     {
       key: 3,
       date: "Dec 24, 2022",
-      item: "Item C",
-      description: faker.company.catchPhrase(),
+      item: "Audit Procedures/Execution",
+      description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
         name: "C Member",
         avatar: "/dummy/face3.jpg",
       },
-      amount: 300,
+      amount: 25,
       status: "rejected",
     },
   ];
@@ -210,7 +210,7 @@ const TasksBillingClaims = (props) => {
               <Table.Summary.Row>
                 <Table.Summary.Cell colSpan={5} />
                 <Table.Summary.Cell className="text-right font-bold">
-                  {numberWithCommas(900)}
+                  {numberWithCommas(75)}
                 </Table.Summary.Cell>
                 <Table.Summary.Cell />
                 <Table.Summary.Cell />

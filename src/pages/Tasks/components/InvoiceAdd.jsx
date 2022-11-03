@@ -2,8 +2,8 @@ import { Modal, Cascader, Select, Input, DatePicker } from "@arco-design/web-rea
 const InvoiceAdd = (props) => {
   const CustomerOptions = [
     {
-      value: "A Company",
-      label: "A Company",
+      value: "TCH Sdn Bhd",
+      label: "TCH Sdn Bhd",
       children: [
         {
           value: "A Customer",
