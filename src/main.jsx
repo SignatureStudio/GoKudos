@@ -27,8 +27,10 @@ import TasksArchivedProjects from "@/pages/Tasks/ArchivedProjects";
 import TasksWorkspace from "@/pages/Tasks/Workspace";
 import Contacts from "@/pages/Contacts/page";
 import Attendance from "@/pages/Attendance/page";
-import Reports from "@/pages/Reports/page";
+import Invoices from "@/pages/Reports/Invoices";
+import InvoicesDetails from "@/pages/Reports/InvoicesDetails";
 import Shared from "@/pages/Shared/page";
+import SettingsIntegrationsSql from "@/pages/Settings/Integrations/Sql";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ConfigProvider locale={enUS}>
@@ -55,8 +57,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </Route>
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/attendance" element={<Attendance />} />
-          <Route path="/reports" element={<Reports />} />
+          <Route path="/reports" element={<Invoices />} />
+          <Route path="/reports/details" element={<InvoicesDetails />} />
           <Route path="/shared" element={<Shared />} />
+          <Route path="/settings/integrations/sql" element={<SettingsIntegrationsSql />} />
         </Route>
       </Routes>
     </BrowserRouter>

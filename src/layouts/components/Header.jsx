@@ -6,6 +6,7 @@ import {
   IconSettings,
 } from "@arco-design/web-react/icon";
 import { Button, Avatar } from "@arco-design/web-react";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   // const moduleWithSubnavPath = ["tasks"];
@@ -17,12 +18,16 @@ const Header = (props) => {
       }`}
     >
       <div className="flex-1">
-        <Button type="text" className="px-2" onClick={() => {
-        props.setAside(!props.aside);
-        if (!props.moduleWithSubnavPath.includes(props.currentModulePath)) {
-          props.aside ? props.setSubnav(true) : props.setSubnav(false)
-        }
-      }}>
+        <Button
+          type="text"
+          className="px-2"
+          onClick={() => {
+            props.setAside(!props.aside);
+            if (!props.moduleWithSubnavPath.includes(props.currentModulePath)) {
+              props.aside ? props.setSubnav(true) : props.setSubnav(false);
+            }
+          }}
+        >
           <span className="text-gray-400">
             {props.aside ? <IconLeft /> : <IconRight />}
           </span>
@@ -35,7 +40,9 @@ const Header = (props) => {
         <IconNotification className="text-gray-600 h-4 w-4" />
       </Button>
       <Button type="text" shape="round" className="px-2">
-        <IconSettings className="text-gray-600 h-4 w-4" />
+        <Link to="/settings/integrations/sql">
+          <IconSettings className="text-gray-600 h-4 w-4" />
+        </Link>
       </Button>
       <Button type="text" shape="round" className="p-0 mx-4">
         <Avatar size={30} className="bg-brand-600">

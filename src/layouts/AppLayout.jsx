@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 import Header from "./components/Header";
 import NavCompany from "./components/NavCompany";
 import NavModule from "./components/NavModule";
+import NavSettings from "./components/NavSettings";
 import NavAdd from "./components/NavAdd";
 import OnboardBar from "./components/OnboardBar";
 import TaskSubnav from "@/pages/Tasks/components/Subnav";
@@ -51,11 +52,7 @@ const AppLayout = () => {
 
   return (
     <div className="bg-gray-200 min-h-screen">
-      {
-        currentModulePath === 'shared' && (
-          <OnboardBar />
-        )
-      }
+      {currentModulePath === "shared" && <OnboardBar />}
       <aside
         className={`bg-white min-h-screen transition-all fixed top-0 left-0 z-40 overflow-hidden ${
           aside ? "w-72" : "w-16"
@@ -65,7 +62,11 @@ const AppLayout = () => {
         <div className="flex">
           <div className={`${!subnav ? "w-72" : "w-16"}`}>
             <NavCompany aside={aside} subnav={subnav} />
-            <NavModule aside={aside} current={currentModulePath} />
+            {currentModulePath === "settings" ? (
+              <NavSettings aside={aside} current={currentModulePath} />
+            ) : (
+              <NavModule aside={aside} current={currentModulePath} />
+            )}
             <hr className="my-2 border-gray-300" />
             <NavAdd aside={aside} subnav={subnav} />
           </div>
