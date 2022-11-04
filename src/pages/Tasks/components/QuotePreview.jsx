@@ -205,7 +205,7 @@ const QuotePreview = (props) => {
                     <Table.Summary.Cell colSpan={5} className="text-right">
                       Discount (RM)
                     </Table.Summary.Cell>
-                    <Table.Summary.Cell className="text-right font-bold">
+                    <Table.Summary.Cell className="text-right">
                       {numberWithCommas(0)}
                     </Table.Summary.Cell>
                   </Table.Summary.Row>
@@ -213,12 +213,14 @@ const QuotePreview = (props) => {
                     <Table.Summary.Cell colSpan={5} className="text-right">
                       Tax (RM)
                     </Table.Summary.Cell>
-                    <Table.Summary.Cell className="text-right font-bold">
+                    <Table.Summary.Cell className="text-right">
                       {numberWithCommas(0)}
                     </Table.Summary.Cell>
                   </Table.Summary.Row>
                   <Table.Summary.Row>
-                    <Table.Summary.Cell colSpan={5}></Table.Summary.Cell>
+                    <Table.Summary.Cell colSpan={5} className="text-right">
+                      Total (RM)
+                    </Table.Summary.Cell>
                     <Table.Summary.Cell className="text-right font-bold">
                       {numberWithCommas(2000)}
                     </Table.Summary.Cell>
@@ -236,7 +238,10 @@ const QuotePreview = (props) => {
               </div>
               <div className="grid grid-cols-2">
                 <div>
-                  <div>55, Persiaran Batu Belah, Address 2, 50000 Kuala Lumpur, Malaysia.</div>
+                  <div>
+                    55, Persiaran Batu Belah, Address 2, 50000 Kuala Lumpur,
+                    Malaysia.
+                  </div>
                   <div>+6012 3456 789</div>
                 </div>
                 <div className="text-right">

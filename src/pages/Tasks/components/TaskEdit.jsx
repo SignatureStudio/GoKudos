@@ -228,13 +228,13 @@ const TaskEdit = (props) => {
             <div className="px-2 py-3 flex">
               <div className="flex-1">Budget value</div>
               <div className="w-40">
-                <InputText data={null} prefix="RM " placeholder="RM" />
+                <InputText data={500} prefix="RM " placeholder="RM" />
               </div>
             </div>
             <div className="px-2 py-3 flex">
               <div className="flex-1">Budget hours</div>
               <div className="w-40">
-                <InputText data={null} suffix=" hours" placeholder="Hours" />
+                <InputText data={3} suffix=" hours" placeholder="Hours" />
               </div>
             </div>
             <div className="px-2 py-3 flex">
