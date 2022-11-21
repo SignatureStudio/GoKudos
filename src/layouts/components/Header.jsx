@@ -5,7 +5,7 @@ import {
   IconNotification,
   IconSettings,
 } from "@arco-design/web-react/icon";
-import { Button, Avatar } from "@arco-design/web-react";
+import { Button, Avatar, Dropdown, Progress } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
@@ -33,6 +33,65 @@ const Header = (props) => {
           </span>
         </Button>
       </div>
+      <Dropdown
+        droplist={
+          <div className="bg-white shadow w-48 divide-y divide-gray-300">
+            <div className="p-3">
+              <div className="flex items-center justify-between">
+                <div>Teams</div>
+                <div className="text-xs text-gray-600">1 of 1 used</div>
+              </div>
+              <div>
+                <Progress percent={100} showText={false} status="error" />
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="flex items-center justify-between">
+                <div>Members</div>
+                <div className="text-xs text-gray-600">1 of 3 used</div>
+              </div>
+              <div>
+                <Progress percent={33.3333} showText={false} status="success" />
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="flex items-center justify-between">
+                <div>Storage</div>
+                <div className="text-xs text-gray-600">25 of 50GB used</div>
+              </div>
+              <div>
+                <Progress percent={50} showText={false} status="success" />
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="flex items-center justify-between">
+                <div>Invoices</div>
+                <div className="text-xs text-gray-600">4 of 5 used</div>
+              </div>
+              <div>
+                <Progress percent={80} showText={false} status="success" />
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="flex items-center justify-between">
+                <div>Reports</div>
+                <div className="text-xs text-gray-600">3 of 5 used</div>
+              </div>
+              <div>
+                <Progress percent={60} showText={false} status="success" />
+              </div>
+            </div>
+            <div className="p-3">
+              <Button type="primary" className="w-full">Upgrade your plan</Button>
+            </div>
+          </div>
+        }
+        trigger="click"
+      >
+        <Button type="primary" size="small">
+          FREE
+        </Button>
+      </Dropdown>
       <Button type="text" shape="round" className="px-2">
         <IconClockCircle className="text-gray-600 h-4 w-4" />
       </Button>

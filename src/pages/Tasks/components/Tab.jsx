@@ -1,8 +1,9 @@
-import { Menu } from "@arco-design/web-react";
+import { Badge, Menu } from "@arco-design/web-react";
+import { IconStarFill } from "@arco-design/web-react/icon";
 import { Link, useLocation } from "react-router-dom";
 
 const TasksTab = (props) => {
-  const current = useLocation().pathname.split('/')[2] || 'table';
+  const current = useLocation().pathname.split("/")[2] || "table";
   return (
     <Menu
       mode="horizontal"
@@ -12,9 +13,18 @@ const TasksTab = (props) => {
       <Link to="/tasks/">
         <Menu.Item key="table">Table</Menu.Item>
       </Link>
-      { !props.workspace && (
+      {!props.workspace && (
         <Link to="/tasks/kanban">
-          <Menu.Item key="kanban">Kanban</Menu.Item>
+          <Menu.Item key="kanban">
+            <Badge
+              count={
+                <IconStarFill style={{ fontSize: 12, color: "#D6001C" }} />
+              }
+              offset={[15, -1]}
+            >
+              Kanban
+            </Badge>
+          </Menu.Item>
         </Link>
       )}
       <Link to="/tasks/calendar">
@@ -31,6 +41,6 @@ const TasksTab = (props) => {
       </Link>
     </Menu>
   );
-}
+};
 
 export default TasksTab;

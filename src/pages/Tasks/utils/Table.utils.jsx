@@ -17,6 +17,7 @@ import {
   IconMessage,
   IconAttachment,
   IconMoreVertical,
+  IconStarFill,
 } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
@@ -28,18 +29,18 @@ import {
 } from "./_utils";
 import { TASK } from "@/constants";
 import { members as MEMBERS } from "./sample_data";
-import InputTaskName from "../components/InputTaskName"
-import InputSelectStatus from "../components/InputSelectStatus"
-import InputAllStatus from "../components/InputAllStatus"
-import InputTimeline from "../components/InputTimeline"
-import InputSelectMember from "../components/InputSelectMember"
-import InputTracking from "../components/InputTracking"
-import InputPriority from "../components/InputPriority"
-import InputText from "../components/InputText"
-import InputReminder from "../components/InputReminder"
-import InputRecurrence from "../components/InputRecurrence"
-import InputTags from "../components/InputTags"
-import InputProps from "../components/InputProps"
+import InputTaskName from "../components/InputTaskName";
+import InputSelectStatus from "../components/InputSelectStatus";
+import InputAllStatus from "../components/InputAllStatus";
+import InputTimeline from "../components/InputTimeline";
+import InputSelectMember from "../components/InputSelectMember";
+import InputTracking from "../components/InputTracking";
+import InputPriority from "../components/InputPriority";
+import InputText from "../components/InputText";
+import InputReminder from "../components/InputReminder";
+import InputRecurrence from "../components/InputRecurrence";
+import InputTags from "../components/InputTags";
+import InputProps from "../components/InputProps";
 
 export const utils = {
   columns: {
@@ -48,7 +49,7 @@ export const utils = {
       title: "Name",
       width: 300,
       render: (col, record, index) => {
-        return (<InputTaskName data={col} record={record} />)
+        return <InputTaskName data={col} record={record} />;
       },
     },
     status: {
@@ -57,7 +58,7 @@ export const utils = {
       width: 100,
       render: (col, record, index) => {
         // console.log(col);
-        return (<InputSelectStatus data={col} />)
+        return <InputSelectStatus data={col} />;
       },
     },
     allstatus: {
@@ -66,7 +67,7 @@ export const utils = {
       width: 100,
       render: (col, record, index) => {
         // console.log(col);
-        return (<InputAllStatus data={col} />)
+        return <InputAllStatus data={col} />;
       },
     },
     duedate: {
@@ -74,7 +75,7 @@ export const utils = {
       title: "Timeline",
       width: 160,
       render: (col, record, index) => {
-        return (<InputTimeline data={record} />)
+        return <InputTimeline data={record} />;
       },
     },
     members: {
@@ -82,7 +83,7 @@ export const utils = {
       title: "Assignee",
       width: 160,
       render: (col, record, index) => {
-        return (<InputSelectMember data={getAllSelectedId(col)} />)
+        return <InputSelectMember data={getAllSelectedId(col)} />;
       },
     },
     watchers: {
@@ -90,7 +91,7 @@ export const utils = {
       title: "Watchers",
       width: 160,
       render: (col, record, index) => {
-        return (<InputSelectMember data={getAllSelectedId(col)} />)
+        return <InputSelectMember data={getAllSelectedId(col)} />;
       },
     },
     contacts: {
@@ -98,7 +99,7 @@ export const utils = {
       title: "Contacts",
       width: 160,
       render: (col, record, index) => {
-        return (<InputSelectMember data={getAllSelectedId(col)} />)
+        return <InputSelectMember data={getAllSelectedId(col)} />;
       },
     },
     activity: {
@@ -107,10 +108,13 @@ export const utils = {
       width: 100,
       render: (col, record, index) => {
         return (
-          <div className="flex cursor-pointer" onClick={() => {
-            col.task(col.id)
-            col.edit(true)
-          }}>
+          <div
+            className="flex cursor-pointer"
+            onClick={() => {
+              col.task(col.id);
+              col.edit(true);
+            }}
+          >
             <div className="ml-1.5">
               <Badge count={record.comments.length} dot>
                 <IconMessage
@@ -138,7 +142,7 @@ export const utils = {
       title: "Tracking",
       width: 100,
       render: (col, record, index) => {
-        return (<InputTracking data={col} />)
+        return <InputTracking data={col} />;
       },
     },
     priority: {
@@ -146,7 +150,7 @@ export const utils = {
       title: "Priority",
       width: 100,
       render: (col, record, index) => {
-        return (<InputPriority data={col} />)
+        return <InputPriority data={col} />;
       },
     },
     value: {
@@ -154,7 +158,7 @@ export const utils = {
       title: "Project value",
       width: 100,
       render: (col, record, index) => {
-        return (<InputText data={col} prefix="RM " placeholder="RM" />)
+        return <InputText data={col} prefix="RM " placeholder="RM" />;
       },
     },
     effort: {
@@ -162,7 +166,7 @@ export const utils = {
       title: "Planned effort",
       width: 100,
       render: (col, record, index) => {
-        return (<InputText data={col} suffix=" hours" placeholder="Hours" />)
+        return <InputText data={col} suffix=" hours" placeholder="Hours" />;
       },
     },
     reminder: {
@@ -170,7 +174,7 @@ export const utils = {
       title: "Reminder",
       width: 150,
       render: (col, record, index) => {
-        return (<InputReminder data={col} />)
+        return <InputReminder data={col} />;
       },
     },
     recurrence: {
@@ -178,7 +182,7 @@ export const utils = {
       title: "Recurrence",
       width: 150,
       render: (col, record, index) => {
-        return (<InputRecurrence data={col} />)
+        return <InputRecurrence data={col} />;
       },
     },
     tags: {
@@ -186,7 +190,7 @@ export const utils = {
       title: "Tags",
       width: 150,
       render: (col, record, index) => {
-        return (<InputTags data={col} />)
+        return <InputTags data={col} />;
       },
     },
     menu: {
@@ -196,38 +200,79 @@ export const utils = {
       render: (col, record, index) => {
         // console.log(record);
         return (
-          <Dropdown trigger="click" droplist={
-            <Menu>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.edit(true)
-              }}>View Detail</Menu.Item>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.duplicate(true)
-              }}>Duplicate</Menu.Item>
-              {/* <Menu.Item>Export</Menu.Item> */}
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.move(true)
-              }}>Move</Menu.Item>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.archive(true)
-              }}>Archive</Menu.Item>
-              <hr />
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.subtask(true)
-              }}>Add Subtask</Menu.Item>
-              <hr />
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.delete(true)
-              }}>Delete</Menu.Item>
-            </Menu>
-          }>
-            <Button type="text" size="small" icon={<IconMoreVertical className="text-gray-600" />} />
+          <Dropdown
+            trigger="click"
+            droplist={
+              <Menu>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.edit(true);
+                  }}
+                >
+                  View Detail
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.duplicate(true);
+                  }}
+                >
+                  {" "}
+                  <Badge
+                    count={
+                      <IconStarFill
+                        style={{ fontSize: 12, color: "#D6001C" }}
+                      />
+                    }
+                    offset={[15, -1]}
+                  >
+                    Duplicate
+                  </Badge>
+                </Menu.Item>
+                {/* <Menu.Item>Export</Menu.Item> */}
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.move(true);
+                  }}
+                >
+                  Move
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.archive(true);
+                  }}
+                >
+                  Archive
+                </Menu.Item>
+                <hr />
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.subtask(true);
+                  }}
+                >
+                  Add Subtask
+                </Menu.Item>
+                <hr />
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.delete(true);
+                  }}
+                >
+                  Delete
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button
+              type="text"
+              size="small"
+              icon={<IconMoreVertical className="text-gray-600" />}
+            />
           </Dropdown>
         );
       },
@@ -239,45 +284,72 @@ export const utils = {
       render: (col, record, index) => {
         // console.log(record);
         return (
-          <Dropdown trigger="click" droplist={
-            <Menu>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.edit(true)
-              }}>View Detail</Menu.Item>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.duplicate(true)
-              }}>Duplicate</Menu.Item>
-              {/* <Menu.Item>Export</Menu.Item> */}
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.move(true)
-              }}>Move</Menu.Item>
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.archive(true)
-              }}>Archive</Menu.Item>
-              <hr />
-              {/* <Menu.Item onClick={() => {
+          <Dropdown
+            trigger="click"
+            droplist={
+              <Menu>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.edit(true);
+                  }}
+                >
+                  View Detail
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.duplicate(true);
+                  }}
+                >
+                  Duplicate
+                </Menu.Item>
+                {/* <Menu.Item>Export</Menu.Item> */}
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.move(true);
+                  }}
+                >
+                  Move
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.archive(true);
+                  }}
+                >
+                  Archive
+                </Menu.Item>
+                <hr />
+                {/* <Menu.Item onClick={() => {
                 record.action.task(record.id)
                 record.action.subtask(true)
               }}>Add Subtask</Menu.Item> */}
-              <hr />
-              <Menu.Item onClick={() => {
-                record.action.task(record.id)
-                record.action.delete(true)
-              }}>Delete</Menu.Item>
-            </Menu>
-          }>
-            <Button type="text" size="small" icon={<IconMoreVertical className="text-gray-600" />} />
+                <hr />
+                <Menu.Item
+                  onClick={() => {
+                    record.action.task(record.id);
+                    record.action.delete(true);
+                  }}
+                >
+                  Delete
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button
+              type="text"
+              size="small"
+              icon={<IconMoreVertical className="text-gray-600" />}
+            />
           </Dropdown>
         );
       },
     },
     addprops: {
       dataIndex: "addproperty",
-      title: (<InputProps />),
+      title: <InputProps />,
       width: 160,
       render: (col, record, index) => {
         return <div></div>;
