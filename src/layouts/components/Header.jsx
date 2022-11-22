@@ -36,6 +36,9 @@ const Header = (props) => {
       <Dropdown
         droplist={
           <div className="bg-white shadow w-48 divide-y divide-gray-300">
+            <div className="p-3 font-bold">
+              Starter Plan
+            </div>
             <div className="p-3">
               <div className="flex items-center justify-between">
                 <div>Teams</div>
@@ -88,9 +91,9 @@ const Header = (props) => {
         }
         trigger="click"
       >
-        <Button type="primary" size="small">
-          FREE
-        </Button>
+      <Button type="text" shape="round" className="px-2">
+        <Progress size='mini' type='circle' percent={60} />
+      </Button>
       </Dropdown>
       <Button type="text" shape="round" className="px-2">
         <IconClockCircle className="text-gray-600 h-4 w-4" />

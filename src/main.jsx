@@ -31,6 +31,7 @@ import Invoices from "@/pages/Reports/Invoices";
 import InvoicesDetails from "@/pages/Reports/InvoicesDetails";
 import Shared from "@/pages/Shared/page";
 import SettingsIntegrationsSql from "@/pages/Settings/Integrations/Sql";
+import SettingsCompanySubscription from "@/pages/Settings/Company/Subscription";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ConfigProvider locale={enUS}>
@@ -61,6 +62,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/reports/details" element={<InvoicesDetails />} />
           <Route path="/shared" element={<Shared />} />
           <Route path="/settings/integrations/sql" element={<SettingsIntegrationsSql />} />
+          <Route path="/settings/company/subscription" element={<SettingsCompanySubscription />} />
         </Route>
       </Routes>
     </BrowserRouter>

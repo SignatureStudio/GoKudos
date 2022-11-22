@@ -69,6 +69,15 @@ const SubnavProject = () => {
   return (
     <>
       <Menu selectedKeys="1" className="bg-gray-100">
+        {/* <Menu.Item
+          className="text-base"
+          style={{ padding: 0 }}
+          onClick={() => setModalProject(true)}
+        >
+          <div className="bg-gray-100 hover:bg-gray-200">
+            <IconPlus className="w-4 h-4 ml-2" /> Add Project
+          </div>
+        </Menu.Item> */}
         <Menu.Item className="text-base" style={{ padding: 0 }}>
           <div className="bg-gray-100 hover:bg-gray-200 pl-2 flex items-center">
             <Link to="/tasks/workspace" className="flex-1">
@@ -81,38 +90,43 @@ const SubnavProject = () => {
             </Dropdown>
           </div>
         </Menu.Item>
-        <hr className="my-2" />
-        {projectsData.map((project) => (
-          <Menu.Item
-            key={project.id}
-            className="text-base"
-            style={{ padding: 0 }}
-          >
-            <div className="flex items-center bg-gray-100 hover:bg-gray-200">
-              <Link to="/tasks" key={project.id} className="flex-1">
-                <div>
-                  <IconFolder className="w-4 h-4 ml-2" /> {project.name}
-                </div>
-              </Link>
-              <Dropdown droplist={menuProject} trigger="click">
-                <div className="-mr-4 px-1">
-                  <IconMoreVertical className="h-4 w-4" />
-                </div>
-              </Dropdown>
-            </div>
-          </Menu.Item>
-        ))}
-        <hr className="my-2" />
-        <Menu.Item
-          className="text-base"
-          style={{ padding: 0 }}
+      </Menu>
+      <div className="px-2">
+        <Button
+          long
+          type="outline"
+          size="small"
+          icon={<IconPlus className="w-3 h-3 ml-2" />}
           onClick={() => setModalProject(true)}
         >
-          <div className="bg-gray-100 hover:bg-gray-200">
-            <IconPlus className="w-4 h-4 ml-2" /> Add Project
-          </div>
-        </Menu.Item>
-      </Menu>
+          Add Project
+        </Button>
+      </div>
+      <hr className="my-2" />
+      <div className="flex-grow overflow-y-auto">
+        <Menu selectedKeys="1" className="bg-gray-100">
+          {projectsData.map((project) => (
+            <Menu.Item
+              key={project.id}
+              className="text-base"
+              style={{ padding: 0 }}
+            >
+              <div className="flex items-center bg-gray-100 hover:bg-gray-200">
+                <Link to="/tasks" key={project.id} className="flex-1">
+                  <div>
+                    <IconFolder className="w-4 h-4 ml-2" /> {project.name}
+                  </div>
+                </Link>
+                <Dropdown droplist={menuProject} trigger="click">
+                  <div className="-mr-4 px-1">
+                    <IconMoreVertical className="h-4 w-4" />
+                  </div>
+                </Dropdown>
+              </div>
+            </Menu.Item>
+          ))}
+        </Menu>
+      </div>
       <WorkspaceAdd visible={modalWorkspace} setVisible={setModalWorkspace} />
       <WorkspaceDelete
         visible={modalWorkspaceDelete}

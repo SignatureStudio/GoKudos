@@ -22,34 +22,60 @@ const workspaces = {
       name: "Audit 2021",
       avatar: "",
     },
+    {
+      id: 3,
+      name: "Audit 2020",
+      avatar: "",
+    },
+    {
+      id: 4,
+      name: "Audit 2019",
+      avatar: "",
+    },
+    {
+      id: 5,
+      name: "Audit 2018",
+      avatar: "",
+    },
+    {
+      id: 6,
+      name: "Audit 2017",
+      avatar: "",
+    },
   ],
 };
 
 const SubnavWorkspace = (props) => {
   const [modalWorkspace, setModalWorkspace] = useState(false);
   const droplistWorkspace = (
-    <Menu className="w-72">
-      {workspaces.list.map((workspace) => {
-        return (
-          <Menu.Item key={workspace.id} className="flex items-center h-12">
-            <Avatar shape="square" size={32}>
-              {workspace.avatar === "" ? (
-                workspace.name.charAt(0)
-              ) : (
-                <img src={workspace.avatar} alt={workspace.name} />
-              )}
-            </Avatar>
-            <div className="menu-text">{workspace.name}</div>
-          </Menu.Item>
-        );
-      })}
+    <div className="bg-white">
+      <div className="h-40 overflow-y-auto">
+        <Menu className="w-72">
+        {workspaces.list.map((workspace) => {
+            return (
+              <Menu.Item key={workspace.id} className="flex items-center h-12">
+                <Avatar shape="square" size={32}>
+                  {workspace.avatar === "" ? (
+                    workspace.name.charAt(0)
+                  ) : (
+                    <img src={workspace.avatar} alt={workspace.name} />
+                  )}
+                </Avatar>
+                <div className="menu-text">{workspace.name}</div>
+              </Menu.Item>
+            );
+          })}
+        </Menu>
+      </div>
       <hr className="my-2" />
-      <Menu.Item onClick={() => setModalWorkspace(true)}>
-        <div>
-          <IconPlus /> <span className="menu-text">Add workspace</span>
-        </div>
-      </Menu.Item>
-    </Menu>
+      <Menu className="w-72">
+        <Menu.Item onClick={() => setModalWorkspace(true)}>
+          <div>
+            <IconPlus /> <span className="menu-text">Add workspace</span>
+          </div>
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 
   return (

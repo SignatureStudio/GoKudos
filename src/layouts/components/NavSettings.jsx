@@ -29,11 +29,20 @@ const NavSettings = (props) => {
           <IconSubscribed className="w-4 h-4 mx-1" /> Payment
         </Menu.Item>
       </Link>
-      <Link to="/contacts">
-        <Menu.Item key="contacts" className="text-base">
-          <IconUser className="w-4 h-4 mx-1" /> Company
-        </Menu.Item>
-      </Link>
+      <Menu.SubMenu
+        title={
+          <>
+            <IconUser className="ml-1" /> Company
+          </>
+        }
+        className="text-base"
+      >
+        <Link to="/settings/company/subscription">
+          <Menu.Item key="subscription" className="text-base">
+            Subscription
+          </Menu.Item>
+        </Link>
+      </Menu.SubMenu>
       <Link to="/attendance">
         <Menu.Item key="attendance" className="text-base">
           <IconClockCircle className="w-4 h-4 mx-1" /> Time Attendance
