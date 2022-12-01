@@ -217,14 +217,15 @@ const TaskEdit = (props) => {
             </div>
             <div className="px-2 py-3 flex">
               <div className="flex-1">
-                <Badge
+                Tracking
+                {/* <Badge
                   count={
                     <IconStarFill style={{ fontSize: 12, color: "#D6001C" }} />
                   }
                   offset={[15, -1]}
                 >
                   Tracking
-                </Badge>
+                </Badge> */}
               </div>
               <div className="w-40">
                 <InputTracking data={{}} />

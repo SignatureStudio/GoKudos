@@ -16,14 +16,15 @@ const TasksTab = (props) => {
       {!props.workspace && (
         <Link to="/tasks/kanban">
           <Menu.Item key="kanban">
-            <Badge
+            Kanban
+            {/* <Badge
               count={
                 <IconStarFill style={{ fontSize: 12, color: "#D6001C" }} />
               }
               offset={[15, -1]}
             >
               Kanban
-            </Badge>
+            </Badge> */}
           </Menu.Item>
         </Link>
       )}

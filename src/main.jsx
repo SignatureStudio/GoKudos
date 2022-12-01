@@ -26,7 +26,10 @@ import TasksArchived from "@/pages/Tasks/Archived";
 import TasksArchivedProjects from "@/pages/Tasks/ArchivedProjects";
 import TasksWorkspace from "@/pages/Tasks/Workspace";
 import Contacts from "@/pages/Contacts/page";
-import Attendance from "@/pages/Attendance/page";
+import TimeLayout from "@/pages/Time/components/Layout";
+import Time from "@/pages/Time/Timesheet";
+import Attendance from "@/pages/Time/Attendance";
+import Project from "@/pages/Time/Project";
 import Invoices from "@/pages/Reports/Invoices";
 import InvoicesDetails from "@/pages/Reports/InvoicesDetails";
 import Shared from "@/pages/Shared/page";
@@ -47,22 +50,45 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="chart" element={<TasksChart />} />
             <Route path="billing" element={<TasksBilling />} />
             <Route path="billing/invoices" element={<TasksBilling />} />
-            <Route path="billing/invoices/details" element={<TasksBillingInvoiceDetails />} />
-            <Route path="billing/quotations" element={<TasksBillingQuotation />} />
-            <Route path="billing/quotations/details" element={<TasksBillingQuotationDetails />} />
+            <Route
+              path="billing/invoices/details"
+              element={<TasksBillingInvoiceDetails />}
+            />
+            <Route
+              path="billing/quotations"
+              element={<TasksBillingQuotation />}
+            />
+            <Route
+              path="billing/quotations/details"
+              element={<TasksBillingQuotationDetails />}
+            />
             <Route path="billing/claims" element={<TasksBillingClaims />} />
             <Route path="billing/timecost" element={<TasksBillingTimeCost />} />
             <Route path="archived" element={<TasksArchived />} />
-            <Route path="archivedprojects" element={<TasksArchivedProjects />} />
+            <Route
+              path="archivedprojects"
+              element={<TasksArchivedProjects />}
+            />
             <Route path="workspace" element={<TasksWorkspace />} />
           </Route>
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/time" element={<TimeLayout />}>
+            <Route index element={<Time />} />
+            <Route path="timesheet" element={<Time />} />
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="project" element={<Project />} />
+          </Route>
           <Route path="/reports" element={<Invoices />} />
           <Route path="/reports/details" element={<InvoicesDetails />} />
           <Route path="/shared" element={<Shared />} />
-          <Route path="/settings/integrations/sql" element={<SettingsIntegrationsSql />} />
-          <Route path="/settings/company/subscription" element={<SettingsCompanySubscription />} />
+          <Route
+            path="/settings/integrations/sql"
+            element={<SettingsIntegrationsSql />}
+          />
+          <Route
+            path="/settings/company/subscription"
+            element={<SettingsCompanySubscription />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

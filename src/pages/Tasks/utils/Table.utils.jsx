@@ -218,8 +218,7 @@ export const utils = {
                     record.action.duplicate(true);
                   }}
                 >
-                  {" "}
-                  <Badge
+                  {/* <Badge
                     count={
                       <IconStarFill
                         style={{ fontSize: 12, color: "#D6001C" }}
@@ -228,7 +227,8 @@ export const utils = {
                     offset={[15, -1]}
                   >
                     Duplicate
-                  </Badge>
+                  </Badge> */}
+                  Duplicate
                 </Menu.Item>
                 {/* <Menu.Item>Export</Menu.Item> */}
                 <Menu.Item

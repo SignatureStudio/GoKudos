@@ -65,7 +65,9 @@ const singleTask = (
   group,
   no_of_comment,
   no_of_attachments,
-  subtask
+  value,
+  actualvalue,
+  subtask,
 ) => {
   let comments = [];
   for (let i = 0; i < no_of_comment; i++) {
@@ -108,7 +110,8 @@ const singleTask = (
     members: faker.helpers.arrayElements(members, 2),
     watchers: [],
     contacts: [],
-    value: null,
+    value: value,
+    actualValue: value + actualvalue,
     description: "",
     effort: null,
     tags: [],
@@ -129,21 +132,21 @@ export const tasksData = {
   projects: [
     singleProject("TCH Sdn Bhd", [
       singleGroup("Interim Audit", [
-        singleTask("Financial Statement", 0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, []),
-        singleTask("Completion Procedures", 5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, []),
-        singleTask("Planning", 8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, []),
-        singleTask("Audit Procedures/Execution", 10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, [
-          singleTask("Audit Procedures", 10, 5, TASK.STATUS[2], "TCH Sdn Bhd", "Interim Audit", 0, 0, []),
-          singleTask("Execution", 12, 8, TASK.STATUS[3], "TCH Sdn Bhd", "Interim Audit", 0, 0, []),
+        singleTask("Financial Statement", 0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, 0, 100, []),
+        singleTask("Completion Procedures", 5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, 500, -100, []),
+        singleTask("Planning", 8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, 1000, 100, []),
+        singleTask("Audit Procedures/Execution", 10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, 0, 100, [
+          singleTask("Audit Procedures", 10, 5, TASK.STATUS[2], "TCH Sdn Bhd", "Interim Audit", 0, 0, 0, 100, []),
+          singleTask("Execution", 12, 8, TASK.STATUS[3], "TCH Sdn Bhd", "Interim Audit", 0, 0, 750, 100, []),
         ]),
       ]),
       singleGroup("Final Audit", [
-        singleTask("Financial Statement", 15, 10, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, []),
-        singleTask("Completion Procedures", 20, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 1, 0, []),
-        singleTask("Planning", 25, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[1], 2, 3, []),
-        singleTask("Audit Procedures/Execution",30, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[1], 0, 2, [
-          singleTask("Audit Procedures",30, 5, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, []),
-          singleTask("Execution",32, 8, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 0, 0, []),
+        singleTask("Financial Statement", 15, 10, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, 0, 100, []),
+        singleTask("Completion Procedures", 20, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 1, 0, 1500, -100, []),
+        singleTask("Planning", 25, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[1], 2, 3, 300, 100, []),
+        singleTask("Audit Procedures/Execution",30, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[1], 0, 2, 0, 100, [
+          singleTask("Audit Procedures",30, 5, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, 1000, 100, []),
+          singleTask("Execution",32, 8, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 0, 0, 100, 100, []),
         ]),
       ]),
     ]),

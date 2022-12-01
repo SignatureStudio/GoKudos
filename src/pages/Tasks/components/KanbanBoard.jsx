@@ -92,6 +92,20 @@ const KanbanBoard = (props) => {
                     </div>
                   )}
                 </Droppable>
+                <div>
+                  <div className="pt-2 px-2 text-gray-500">Value</div>
+                </div>
+                <div className="grid grid-cols-2 border border-gray-200 shadow rounded">
+                  <div className="p-2 bg-gray-50">
+                    <div className="text-sm">RM1,500</div>
+                    <div className="text-xs text-gray-500">Budget</div>
+                  </div>
+                  <div className={`p-2 border-l bg-green-50 text-green-600 border-green-500`}>
+                    <div className="text-sm">RM1,050</div>
+                    <div className="text-xs text-gray-500">Actual</div>
+                  </div>
+                </div>
+
                 <Button
                   size="mini"
                   type="text"

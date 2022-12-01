@@ -9,6 +9,7 @@ import NavSettings from "./components/NavSettings";
 import NavAdd from "./components/NavAdd";
 import OnboardBar from "./components/OnboardBar";
 import TaskSubnav from "@/pages/Tasks/components/Subnav";
+import TimeSubnav from "@/pages/Time/components/Subnav";
 import SharedSubnav from "@/pages/Shared/components/Subnav";
 
 const AppLayout = () => {
@@ -24,7 +25,7 @@ const AppLayout = () => {
   );
 
   const currentModulePath = useLocation().pathname.split("/")[1] || "home";
-  const moduleWithSubnavPath = ["tasks", "shared"];
+  const moduleWithSubnavPath = ["tasks", "shared", "time"];
   const [subnav, setSubnav] = useState(
     moduleWithSubnavPath.includes(currentModulePath) ? true : false
   );
@@ -33,6 +34,9 @@ const AppLayout = () => {
   switch (currentModulePath) {
     case "tasks":
       moduleSubnav = <TaskSubnav />;
+      break;
+    case "time":
+      moduleSubnav = <TimeSubnav />;
       break;
     case "shared":
       moduleSubnav = <SharedSubnav />;
