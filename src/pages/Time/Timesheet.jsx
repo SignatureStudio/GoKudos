@@ -16,19 +16,19 @@ const Page = () => {
   ];
   const tasks = [
     {
-      id: 1,
+      key: 1,
       name: "A Task",
     },
     {
-      id: 2,
+      key: 2,
       name: "B Task",
     },
     {
-      id: 3,
+      key: 3,
       name: "C Task",
     },
     {
-      id: 4,
+      key: 4,
       name: "D Task",
     },
   ];
@@ -37,9 +37,38 @@ const Page = () => {
       title: "Task",
       dataIndex: "name",
       fixed: "left",
-      width: 200,
+      width: 150,
+    },
+    {
+      title: "Total",
+      dataIndex: "total",
+      fixed: "left",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <InputNumber
+            readOnly
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
     },
   ];
+  let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
     let day = dayjs(d);
@@ -48,12 +77,32 @@ const Page = () => {
       dataIndex: i,
       width: 100,
       render: (col, record, index) => {
-        const [value, setValue] = useState(col || 0)
-        return <InputNumber min={0} max={24} step={0.5} precision={0} defaultValue={value} value={value} className={value > 0 ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500" : ""} onChange={(e) => {
-          setValue(e);
-        }} />;
+        const [value, setValue] = useState(col || 0);
+        return (
+          <InputNumber
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
       },
     });
+    summary.push(
+      <Table.Summary.Cell>
+        <InputNumber readOnly step={0.5} precision={0} value={0} />
+      </Table.Summary.Cell>
+    );
   }
 
   return (
@@ -71,6 +120,22 @@ const Page = () => {
               scroll={{
                 x: true,
               }}
+              summary={(currentData) => (
+                <Table.Summary>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell />
+                    {summary}
+                    <Table.Summary.Cell>
+                      <InputNumber
+                        readOnly
+                        step={0.5}
+                        precision={0}
+                        value={0}
+                      />
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                </Table.Summary>
+              )}
             />
           </div>
         ))}

@@ -6,78 +6,78 @@ const Page = () => {
   const [selected, setSelected] = useState(dayjs());
   const projects = [
     {
-      id: 'p1',
+      key: "p1",
       name: "A Group",
     },
     {
-      id: 'p2',
+      key: "p2",
       name: "B Group",
     },
   ];
   const tasks = [
     {
-      id: 1,
+      key: 1,
       name: "A Task",
       children: [
         {
-          id: '1-1',
-          name: 'Barry',
+          key: "1-1",
+          name: "Barry",
           avatar: "/dummy/face1.jpg",
         },
         {
-          id: '1-2',
-          name: 'Marcus',
+          key: "1-2",
+          name: "Marcus",
           avatar: "/dummy/face2.jpg",
-        }
-      ]
+        },
+      ],
     },
     {
-      id: 2,
+      key: 2,
       name: "B Task",
       children: [
         {
-          id: '1-1',
-          name: 'Barry',
+          key: "2-1",
+          name: "Barry",
           avatar: "/dummy/face1.jpg",
         },
         {
-          id: '1-2',
-          name: 'Marcus',
+          key: "2-2",
+          name: "Marcus",
           avatar: "/dummy/face2.jpg",
-        }
-      ]
+        },
+      ],
     },
     {
-      id: 3,
+      key: 3,
       name: "C Task",
       children: [
         {
-          id: '1-1',
-          name: 'Barry',
+          key: "3-1",
+          name: "Barry",
           avatar: "/dummy/face1.jpg",
         },
         {
-          id: '1-2',
-          name: 'Marcus',
+          key: "3-2",
+          name: "Marcus",
           avatar: "/dummy/face2.jpg",
-        }
-      ]
+        },
+      ],
     },
     {
-      id: 4,
+      key: 4,
       name: "D Task",
       children: [
         {
-          id: '1-1',
-          name: 'Barry',
+          key: "4-1",
+          name: "Barry",
           avatar: "/dummy/face1.jpg",
         },
         {
-          id: '1-2',
-          name: 'Marcus',
+          key: "4-2",
+          name: "Marcus",
           avatar: "/dummy/face2.jpg",
-        }
-      ]
+        },
+      ],
     },
   ];
   let columns = [
@@ -85,7 +85,7 @@ const Page = () => {
       title: "Task",
       dataIndex: "name",
       fixed: "left",
-      width: 200,
+      width: 150,
       render: (col, record, index) => {
         return (
           <div className="truncate">
@@ -99,12 +99,40 @@ const Page = () => {
               </Avatar>
             )}
             {col}
-
           </div>
-        )
-      }
+        );
+      },
+    },
+    {
+      title: "Total",
+      dataIndex: "total",
+      fixed: "left",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <InputNumber
+            readOnly
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
     },
   ];
+  let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
     let day = dayjs(d);
@@ -113,12 +141,32 @@ const Page = () => {
       dataIndex: i,
       width: 100,
       render: (col, record, index) => {
-        const [value, setValue] = useState(col || 0)
-        return <InputNumber min={0} max={24} step={0.5} precision={0} defaultValue={value} value={value} className={value > 0 ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500" : ""} onChange={(e) => {
-          setValue(e);
-        }} />;
+        const [value, setValue] = useState(col || 0);
+        return (
+          <InputNumber
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
       },
     });
+    summary.push(
+      <Table.Summary.Cell>
+        <InputNumber readOnly step={0.5} precision={0} value={0} />
+      </Table.Summary.Cell>
+    );
   }
 
   return (
@@ -136,6 +184,22 @@ const Page = () => {
               scroll={{
                 x: true,
               }}
+              summary={(currentData) => (
+                <Table.Summary>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell />
+                    {summary}
+                    <Table.Summary.Cell>
+                      <InputNumber
+                        readOnly
+                        step={0.5}
+                        precision={0}
+                        value={0}
+                      />
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                </Table.Summary>
+              )}
             />
           </div>
         ))}
