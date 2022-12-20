@@ -179,8 +179,6 @@ const Page = () => {
                 <Table.Summary>
                   <Table.Summary.Row>
                     <Table.Summary.Cell />
-                    <Table.Summary.Cell />
-                    {summary}
                     <Table.Summary.Cell>
                       <InputNumber
                         readOnly
@@ -189,6 +187,8 @@ const Page = () => {
                         value={0}
                       />
                     </Table.Summary.Cell>
+                    <Table.Summary.Cell />
+                    {summary}
                   </Table.Summary.Row>
                 </Table.Summary>
               )}
