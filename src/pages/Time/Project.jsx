@@ -1,9 +1,15 @@
-import { Avatar, InputNumber, Table } from "@arco-design/web-react";
+import { Avatar, Button, Checkbox, Input, InputNumber, Table } from "@arco-design/web-react";
+import { IconCheck, IconDelete } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import { useState } from "react";
 import ProjectNav from "./components/ProjectNav";
+import TaskDelete from "./components/TaskDelete";
 const Page = () => {
   const [selected, setSelected] = useState(dayjs());
+  const [view, setView] = useState("group");
+  const [billable, setBillable] = useState(true)
+  const [approve, setApprove] = useState(false)
+  const [modalTaskDelete, setModalTaskDelete] = useState(false)
   const projects = [
     {
       key: "p1",
@@ -12,6 +18,18 @@ const Page = () => {
     {
       key: "p2",
       name: "B Group",
+    },
+  ];
+  const members = [
+    {
+      key: "1-1",
+      name: "Barry",
+      avatar: "/dummy/face1.jpg",
+    },
+    {
+      key: "1-2",
+      name: "Marcus",
+      avatar: "/dummy/face2.jpg",
     },
   ];
   const tasks = [
@@ -80,6 +98,24 @@ const Page = () => {
       ],
     },
   ];
+  const membertasks = [
+    {
+      key: 1,
+      name: "A Task",
+    },
+    {
+      key: 2,
+      name: "B Task",
+    },
+    {
+      key: 3,
+      name: "C Task",
+    },
+    {
+      key: 4,
+      name: "D Task",
+    },
+  ];
   let columns = [
     {
       title: "Task",
@@ -104,9 +140,8 @@ const Page = () => {
       },
     },
     {
-      title: "Total",
+      title: "Total hours",
       dataIndex: "total",
-      fixed: "left",
       width: 100,
       render: (col, record, index) => {
         const [value, setValue] = useState(col || 0);
@@ -128,6 +163,100 @@ const Page = () => {
               setValue(e);
             }}
           />
+        );
+      },
+    },
+    {
+      title: "Rate (RM)",
+      dataIndex: "rate",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <Input
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
+    },
+    {
+      title: "Total (RM)",
+      dataIndex: "total",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <Input
+            readOnly
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      width: 130,
+      render: (col, record, index) => {
+        return (
+          <div>
+            <Button
+              size="small"
+              shape='circle'
+              className={billable ? "!bg-brand-500 !text-white" : ''}
+              title="Billable"
+              onClick={() => {
+                setBillable(!billable)
+              }}
+            >
+              $
+            </Button>
+            <Button
+              size="small"
+              shape='circle'
+              className={approve ? "!bg-green-500 !text-white ml-1" : ' ml-1'}
+              icon={<IconCheck />}
+              onClick={() => {
+                setApprove(!approve)
+              }}
+            />
+            <Button
+              type="text"
+              size="small"
+              shape='circle'
+              className=" ml-1"
+              icon={<IconDelete />}
+              onClick={() => {
+                setModalTaskAdd(true);
+              }}
+            />
+          </div>
         );
       },
     },
@@ -172,14 +301,68 @@ const Page = () => {
   return (
     <>
       <h1 className="py-4">TCH Sdn Bhd</h1>
-      <ProjectNav selected={selected} setSelected={setSelected} />
+      <ProjectNav selected={selected} setSelected={setSelected} view={view} setView={setView} />
       <div className="overflow-auto p-3 bg-gray-50">
-        {projects.map((project) => (
-          <div key={project.id}>
+        {view === "group" && projects.map((project) => (
+          <div key={project.key}>
             <h2 className="px-3">{project.name}</h2>
             <Table
               columns={columns}
               data={tasks}
+              pagination={false}
+              scroll={{
+                x: true,
+              }}
+              summary={(currentData) => (
+                <Table.Summary>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell />
+                    <Table.Summary.Cell>
+                      <InputNumber
+                        readOnly
+                        step={0.5}
+                        precision={0}
+                        value={0}
+                      />
+                    </Table.Summary.Cell>
+                    <Table.Summary.Cell>
+                      <Input
+                        readOnly
+                        step={0.5}
+                        precision={0}
+                        value={0}
+                      />
+                    </Table.Summary.Cell>
+                    <Table.Summary.Cell>
+                      <Input
+                        readOnly
+                        step={0.5}
+                        precision={0}
+                        value={0}
+                      />
+                    </Table.Summary.Cell>
+                    <Table.Summary.Cell />
+                    {summary}
+                  </Table.Summary.Row>
+                </Table.Summary>
+              )}
+            />
+          </div>
+        ))}
+        {view === "member" && members.map((member) => (
+          <div key={member.key}>
+            <h2 className="px-3">
+              <Avatar size={24} className="mr-2">
+                {member.avatar === "" ? (
+                  member.name.charAt(0)
+                ) : (
+                  <img src={member.avatar} alt={member.name} />
+                )}
+              </Avatar>
+              {member.name}</h2>
+            <Table
+              columns={columns}
+              data={membertasks}
               pagination={false}
               scroll={{
                 x: true,
@@ -204,6 +387,7 @@ const Page = () => {
           </div>
         ))}
       </div>
+      <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
     </>
   );
 };

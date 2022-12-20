@@ -1,9 +1,16 @@
-import { InputNumber, Table } from "@arco-design/web-react";
+import { Button, Dropdown, InputNumber, Menu, Table } from "@arco-design/web-react";
+import { IconDelete, IconPlus } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import { useState } from "react";
 import TimesheetNav from "./components/TimesheetNav";
+import TaskAdd from "./components/TaskAdd";
+import TaskDelete from "./components/TaskDelete";
+
 const Page = () => {
   const [selected, setSelected] = useState(dayjs());
+  const [modalTaskAdd, setModalTaskAdd] = useState(false)
+  const [modalTaskDelete, setModalTaskDelete] = useState(false)
+  const [billable, setBillable] = useState(true)
   const projects = [
     {
       id: 1,
@@ -67,6 +74,54 @@ const Page = () => {
         );
       },
     },
+    {
+      title: "",
+      dataIndex: "action",
+      fixed: "left",
+      width: 50,
+      render: (col, record, index) => {
+        return (
+          <Button
+          type="text"
+          size="small"
+          shape='circle'
+          icon={<IconDelete />}
+          iconOnly
+        />
+
+          // <Dropdown
+          //   trigger="click"
+          //   droplist={
+          //     <Menu>
+          //       <Menu.Item
+          //         onClick={() => {
+          //           setBillable(!billable)
+          //         }}
+          //       >
+          //         {billable ? "Set to non-billable" : "Set to billable"}
+          //       </Menu.Item>
+          //       <hr />
+          //       <Menu.Item
+          //         onClick={() => {
+          //           setModalTaskDelete(true)
+          //         }}
+          //       >
+          //         Delete
+          //       </Menu.Item>
+          //     </Menu>
+          //   }
+          // >
+          //   <Button
+          //     size="small"
+          //     shape='circle'
+          //     className={billable ? "!bg-brand-500 !text-white" : ''}
+          //   >
+          //     $
+          //   </Button>
+          // </Dropdown>
+        );
+      },
+    },
   ];
   let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
@@ -124,6 +179,7 @@ const Page = () => {
                 <Table.Summary>
                   <Table.Summary.Row>
                     <Table.Summary.Cell />
+                    <Table.Summary.Cell />
                     {summary}
                     <Table.Summary.Cell>
                       <InputNumber
@@ -137,9 +193,24 @@ const Page = () => {
                 </Table.Summary>
               )}
             />
+            <Button
+              size="mini"
+              type="text"
+              icon={<IconPlus />}
+              className="mt-2"
+              onClick={() => {
+                setModalTaskAdd(true);
+              }}
+            >
+              Add Task
+            </Button>
+
           </div>
         ))}
       </div>
+      <TaskAdd visible={modalTaskAdd} setVisible={setModalTaskAdd} />
+      <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
+
     </>
   );
 };

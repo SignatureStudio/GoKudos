@@ -47,7 +47,13 @@ const ProjectNav = (props) => {
           </Button>
         </div>
         <div>
-          {approve ? (
+          <Select value={props.view} onChange={(e) => {
+            props.setView(e)
+          }}>
+            <Select.Option value="group">Group</Select.Option>
+            <Select.Option value="member">Member</Select.Option>
+          </Select>
+          {/* {approve ? (
             <Button type="primary" size="small">
               Invoice
             </Button>
@@ -55,7 +61,7 @@ const ProjectNav = (props) => {
             <Button type="primary" size="small" onClick={() => setApprove(true)}>
               Approve
             </Button>
-          )}
+          )} */}
         </div>
       </div>
     </>
