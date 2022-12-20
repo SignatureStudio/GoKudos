@@ -39,6 +39,12 @@ const Page = () => {
       name: "D Task",
     },
   ];
+  const totaltasks = [
+    {
+      key: 1,
+      name: "Total",
+    }
+  ]
   let columns = [
     {
       title: "Task",
@@ -74,6 +80,9 @@ const Page = () => {
         );
       },
     },
+  ]
+  let totalcolumns = columns;
+  columns.push([
     {
       title: "",
       dataIndex: "action",
@@ -122,12 +131,12 @@ const Page = () => {
         );
       },
     },
-  ];
+  ]);
   let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
     let day = dayjs(d);
-    columns.push({
+    let sum = ({
       title: day.format("ddd D"),
       dataIndex: i,
       width: 100,
@@ -153,6 +162,8 @@ const Page = () => {
         );
       },
     });
+    columns.push(sum);
+    totalcolumns.push(sum);
     summary.push(
       <Table.Summary.Cell>
         <InputNumber readOnly step={0.5} precision={0} value={0} />
@@ -207,6 +218,17 @@ const Page = () => {
 
           </div>
         ))}
+      </div>
+      <div className="overflow-auto p-3 bg-white border-t-8 border-gray-200">
+        <h2 className="px-3 pt-0">Total</h2>
+        <Table
+          columns={totalcolumns}
+          data={totaltasks}
+          pagination={false}
+          scroll={{
+            x: true,
+          }}
+        />
       </div>
       <TaskAdd visible={modalTaskAdd} setVisible={setModalTaskAdd} />
       <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />

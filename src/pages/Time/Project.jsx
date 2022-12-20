@@ -1,4 +1,11 @@
-import { Avatar, Button, Checkbox, Input, InputNumber, Table } from "@arco-design/web-react";
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  Input,
+  InputNumber,
+  Table,
+} from "@arco-design/web-react";
 import { IconCheck, IconDelete } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import { useState } from "react";
@@ -7,9 +14,9 @@ import TaskDelete from "./components/TaskDelete";
 const Page = () => {
   const [selected, setSelected] = useState(dayjs());
   const [view, setView] = useState("group");
-  const [billable, setBillable] = useState(true)
-  const [approve, setApprove] = useState(false)
-  const [modalTaskDelete, setModalTaskDelete] = useState(false)
+  const [billable, setBillable] = useState(true);
+  const [approve, setApprove] = useState(false);
+  const [modalTaskDelete, setModalTaskDelete] = useState(false);
   const projects = [
     {
       key: "p1",
@@ -32,6 +39,13 @@ const Page = () => {
       avatar: "/dummy/face2.jpg",
     },
   ];
+  const totaltasks = [
+    {
+      key: 1,
+      name: "Total",
+    }
+  ]
+
   const tasks = [
     {
       key: 1,
@@ -219,6 +233,9 @@ const Page = () => {
         );
       },
     },
+  ];
+  let totalcolumns = columns;
+  columns.push([
     {
       title: "Action",
       dataIndex: "action",
@@ -228,28 +245,28 @@ const Page = () => {
           <div>
             <Button
               size="small"
-              shape='circle'
-              className={billable ? "!bg-brand-500 !text-white" : ''}
+              shape="circle"
+              className={billable ? "!bg-brand-500 !text-white" : ""}
               title="Billable"
               onClick={() => {
-                setBillable(!billable)
+                setBillable(!billable);
               }}
             >
               $
             </Button>
             <Button
               size="small"
-              shape='circle'
-              className={approve ? "!bg-green-500 !text-white ml-1" : ' ml-1'}
+              shape="circle"
+              className={approve ? "!bg-green-500 !text-white ml-1" : " ml-1"}
               icon={<IconCheck />}
               onClick={() => {
-                setApprove(!approve)
+                setApprove(!approve);
               }}
             />
             <Button
               type="text"
               size="small"
-              shape='circle'
+              shape="circle"
               className=" ml-1"
               icon={<IconDelete />}
               onClick={() => {
@@ -260,12 +277,12 @@ const Page = () => {
         );
       },
     },
-  ];
+  ]);
   let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
     let day = dayjs(d);
-    columns.push({
+    let sum = {
       title: day.format("ddd D"),
       dataIndex: i,
       width: 100,
@@ -290,7 +307,9 @@ const Page = () => {
           />
         );
       },
-    });
+    };
+    columns.push(sum);
+    totalcolumns.push(sum);
     summary.push(
       <Table.Summary.Cell>
         <InputNumber readOnly step={0.5} precision={0} value={0} />
@@ -301,91 +320,100 @@ const Page = () => {
   return (
     <>
       <h1 className="py-4">TCH Sdn Bhd</h1>
-      <ProjectNav selected={selected} setSelected={setSelected} view={view} setView={setView} />
+      <ProjectNav
+        selected={selected}
+        setSelected={setSelected}
+        view={view}
+        setView={setView}
+      />
       <div className="overflow-auto p-3 bg-gray-50">
-        {view === "group" && projects.map((project) => (
-          <div key={project.key}>
-            <h2 className="px-3">{project.name}</h2>
-            <Table
-              columns={columns}
-              data={tasks}
-              pagination={false}
-              scroll={{
-                x: true,
-              }}
-              summary={(currentData) => (
-                <Table.Summary>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell />
-                    <Table.Summary.Cell>
-                      <InputNumber
-                        readOnly
-                        step={0.5}
-                        precision={0}
-                        value={0}
-                      />
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell>
-                      <Input
-                        readOnly
-                        step={0.5}
-                        precision={0}
-                        value={0}
-                      />
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell>
-                      <Input
-                        readOnly
-                        step={0.5}
-                        precision={0}
-                        value={0}
-                      />
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell />
-                    {summary}
-                  </Table.Summary.Row>
-                </Table.Summary>
-              )}
-            />
-          </div>
-        ))}
-        {view === "member" && members.map((member) => (
-          <div key={member.key}>
-            <h2 className="px-3">
-              <Avatar size={24} className="mr-2">
-                {member.avatar === "" ? (
-                  member.name.charAt(0)
-                ) : (
-                  <img src={member.avatar} alt={member.name} />
+        {view === "group" &&
+          projects.map((project) => (
+            <div key={project.key}>
+              <h2 className="px-3">{project.name}</h2>
+              <Table
+                columns={columns}
+                data={tasks}
+                pagination={false}
+                scroll={{
+                  x: true,
+                }}
+                summary={(currentData) => (
+                  <Table.Summary>
+                    <Table.Summary.Row>
+                      <Table.Summary.Cell />
+                      <Table.Summary.Cell>
+                        <InputNumber
+                          readOnly
+                          step={0.5}
+                          precision={0}
+                          value={0}
+                        />
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell>
+                        <Input readOnly step={0.5} precision={0} value={0} />
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell>
+                        <Input readOnly step={0.5} precision={0} value={0} />
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell />
+                      {summary}
+                    </Table.Summary.Row>
+                  </Table.Summary>
                 )}
-              </Avatar>
-              {member.name}</h2>
-            <Table
-              columns={columns}
-              data={membertasks}
-              pagination={false}
-              scroll={{
-                x: true,
-              }}
-              summary={(currentData) => (
-                <Table.Summary>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell />
-                    {summary}
-                    <Table.Summary.Cell>
-                      <InputNumber
-                        readOnly
-                        step={0.5}
-                        precision={0}
-                        value={0}
-                      />
-                    </Table.Summary.Cell>
-                  </Table.Summary.Row>
-                </Table.Summary>
-              )}
-            />
-          </div>
-        ))}
+              />
+            </div>
+          ))}
+        {view === "member" &&
+          members.map((member) => (
+            <div key={member.key}>
+              <h2 className="px-3">
+                <Avatar size={24} className="mr-2">
+                  {member.avatar === "" ? (
+                    member.name.charAt(0)
+                  ) : (
+                    <img src={member.avatar} alt={member.name} />
+                  )}
+                </Avatar>
+                {member.name}
+              </h2>
+              <Table
+                columns={columns}
+                data={membertasks}
+                pagination={false}
+                scroll={{
+                  x: true,
+                }}
+                summary={(currentData) => (
+                  <Table.Summary>
+                    <Table.Summary.Row>
+                      <Table.Summary.Cell />
+                      {summary}
+                      <Table.Summary.Cell>
+                        <InputNumber
+                          readOnly
+                          step={0.5}
+                          precision={0}
+                          value={0}
+                        />
+                      </Table.Summary.Cell>
+                    </Table.Summary.Row>
+                  </Table.Summary>
+                )}
+              />
+            </div>
+          ))}
+      </div>
+      <div className="overflow-auto p-3 bg-white border-t-8 border-gray-200">
+        <h2 className="px-3 pt-0">Total</h2>
+        <Table
+          columns={totalcolumns}
+          data={totaltasks}
+          pagination={false}
+          scroll={{
+            x: true,
+          }}
+        />
       </div>
       <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
     </>
