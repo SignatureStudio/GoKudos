@@ -1,4 +1,10 @@
-import { Button, Dropdown, InputNumber, Menu, Table } from "@arco-design/web-react";
+import {
+  Button,
+  Dropdown,
+  InputNumber,
+  Menu,
+  Table,
+} from "@arco-design/web-react";
 import { IconDelete, IconPlus } from "@arco-design/web-react/icon";
 import dayjs from "dayjs";
 import { useState } from "react";
@@ -8,9 +14,9 @@ import TaskDelete from "./components/TaskDelete";
 
 const Page = () => {
   const [selected, setSelected] = useState(dayjs());
-  const [modalTaskAdd, setModalTaskAdd] = useState(false)
-  const [modalTaskDelete, setModalTaskDelete] = useState(false)
-  const [billable, setBillable] = useState(true)
+  const [modalTaskAdd, setModalTaskAdd] = useState(false);
+  const [modalTaskDelete, setModalTaskDelete] = useState(false);
+  const [billable, setBillable] = useState(true);
   const projects = [
     {
       id: 1,
@@ -47,9 +53,9 @@ const Page = () => {
     {
       key: 11,
       name: "Total",
-    }
-  ]
-  const customtasks = []
+    },
+  ];
+  const customtasks = [];
   let columns = [
     {
       title: "Task",
@@ -89,7 +95,7 @@ const Page = () => {
         );
       },
     },
-  ]
+  ];
   let totalcolumns = [
     {
       title: "Task",
@@ -125,60 +131,27 @@ const Page = () => {
       },
     },
   ];
-  columns.push([
-    {
-      title: "",
-      dataIndex: "action",
-      width: 50,
-      render: (col, record, index) => {
-        return (
-          <Button
+  columns.push({
+    title: "",
+    dataIndex: "action",
+    width: 50,
+    render: (col, record, index) => {
+      return (
+        <Button
           type="text"
           size="small"
-          shape='circle'
+          shape="circle"
           icon={<IconDelete />}
           iconOnly
         />
-
-          // <Dropdown
-          //   trigger="click"
-          //   droplist={
-          //     <Menu>
-          //       <Menu.Item
-          //         onClick={() => {
-          //           setBillable(!billable)
-          //         }}
-          //       >
-          //         {billable ? "Set to non-billable" : "Set to billable"}
-          //       </Menu.Item>
-          //       <hr />
-          //       <Menu.Item
-          //         onClick={() => {
-          //           setModalTaskDelete(true)
-          //         }}
-          //       >
-          //         Delete
-          //       </Menu.Item>
-          //     </Menu>
-          //   }
-          // >
-          //   <Button
-          //     size="small"
-          //     shape='circle'
-          //     className={billable ? "!bg-brand-500 !text-white" : ''}
-          //   >
-          //     $
-          //   </Button>
-          // </Dropdown>
-        );
-      },
+      );
     },
-  ]);
+  });
   let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
     let day = dayjs(d);
-    let sum = ({
+    let sum = {
       title: day.format("ddd D"),
       dataIndex: i,
       width: 100,
@@ -203,7 +176,7 @@ const Page = () => {
           />
         );
       },
-    });
+    };
     columns.push(sum);
     totalcolumns.push(sum);
     summary.push(
@@ -258,48 +231,42 @@ const Page = () => {
             >
               Add Task
             </Button>
-
           </div>
         ))}
-          <div>
-            <h2 className="px-3">Other activities</h2>
-            <Table
-              columns={totalcolumns}
-              data={customtasks}
-              pagination={false}
-              scroll={{
-                x: true,
-              }}
-              noDataElement={<div>No other activities yet</div>}
-              summary={(currentData) => (
-                <Table.Summary>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell />
-                    <Table.Summary.Cell>
-                      <InputNumber
-                        readOnly
-                        step={0.5}
-                        precision={0}
-                        value={0}
-                      />
-                    </Table.Summary.Cell>
-                    {summary}
-                  </Table.Summary.Row>
-                </Table.Summary>
-              )}
-            />
-            <Button
-              size="mini"
-              type="text"
-              icon={<IconPlus />}
-              className="mt-2"
-              onClick={() => {
-                setModalTaskAdd(true);
-              }}
-            >
-              Add Task
-            </Button>
-          </div>
+        <div>
+          <h2 className="px-3">Other activities</h2>
+          <Table
+            columns={totalcolumns}
+            data={customtasks}
+            pagination={false}
+            scroll={{
+              x: true,
+            }}
+            noDataElement={<div>No other activities yet</div>}
+            summary={(currentData) => (
+              <Table.Summary>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell />
+                  <Table.Summary.Cell>
+                    <InputNumber readOnly step={0.5} precision={0} value={0} />
+                  </Table.Summary.Cell>
+                  {summary}
+                </Table.Summary.Row>
+              </Table.Summary>
+            )}
+          />
+          <Button
+            size="mini"
+            type="text"
+            icon={<IconPlus />}
+            className="mt-2"
+            onClick={() => {
+              setModalTaskAdd(true);
+            }}
+          >
+            Add Task
+          </Button>
+        </div>
       </div>
       <div className="overflow-auto p-3 bg-white border-t-8 border-gray-200">
         <h2 className="px-3 pt-0">Total</h2>
@@ -314,7 +281,6 @@ const Page = () => {
       </div>
       <TaskAdd visible={modalTaskAdd} setVisible={setModalTaskAdd} />
       <TaskDelete visible={modalTaskDelete} setVisible={setModalTaskDelete} />
-
     </>
   );
 };
