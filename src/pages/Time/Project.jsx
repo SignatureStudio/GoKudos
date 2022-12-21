@@ -116,18 +116,22 @@ const Page = () => {
     {
       key: 1,
       name: "A Task",
+      group: "A Group",
     },
     {
       key: 2,
       name: "B Task",
+      group: "A Group",
     },
     {
       key: 3,
       name: "C Task",
+      group: "B Group",
     },
     {
       key: 4,
       name: "D Task",
+      group: "B Group",
     },
   ];
   let columns = [
@@ -135,7 +139,7 @@ const Page = () => {
       title: "Task",
       dataIndex: "name",
       fixed: "left",
-      width: 150,
+      width: 200,
       render: (col, record, index) => {
         return (
           <div className="truncate">
@@ -234,9 +238,117 @@ const Page = () => {
       },
     },
   ];
-  let totalcolumns = columns;
-  columns.push([
+  let membercolumns = [
     {
+      title: "Task",
+      dataIndex: "name",
+      fixed: "left",
+      width: 200,
+      render: (col, record, index) => {
+        return (
+          <div className="truncate">
+            {record.avatar && (
+              <Avatar size={24} className="mr-2">
+                {record.avatar === "" ? (
+                  record.name.charAt(0)
+                ) : (
+                  <img src={record.avatar} alt={record.name} />
+                )}
+              </Avatar>
+            )}
+            {col}
+          </div>
+        );
+      },
+    },
+    {
+      title: "Group",
+      dataIndex: "group",
+      width: 150,
+    },
+    {
+      title: "Total hours",
+      dataIndex: "total",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <InputNumber
+            readOnly
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
+    },
+    {
+      title: "Rate (RM)",
+      dataIndex: "rate",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <Input
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
+    },
+    {
+      title: "Total (RM)",
+      dataIndex: "total",
+      width: 100,
+      render: (col, record, index) => {
+        const [value, setValue] = useState(col || 0);
+        return (
+          <Input
+            readOnly
+            min={0}
+            max={24}
+            step={0.5}
+            precision={0}
+            defaultValue={value}
+            value={value}
+            className={
+              value > 0
+                ? "[&>span>.arco-input-inner-wrapper]:bg-green-100 border border-green-500"
+                : ""
+            }
+            onChange={(e) => {
+              setValue(e);
+            }}
+          />
+        );
+      },
+    },
+  ];
+  let totalcolumns = columns;
+  let action = {
       title: "Action",
       dataIndex: "action",
       width: 130,
@@ -276,8 +388,9 @@ const Page = () => {
           </div>
         );
       },
-    },
-  ]);
+    }
+  columns.push(action)
+  membercolumns.push(action)
   let summary = [];
   for (let i = 1; i <= selected.daysInMonth(); i++) {
     let d = new Date(selected.year(), selected.month(), i);
@@ -309,6 +422,7 @@ const Page = () => {
       },
     };
     columns.push(sum);
+    membercolumns.push(sum);
     totalcolumns.push(sum);
     summary.push(
       <Table.Summary.Cell>
@@ -378,7 +492,7 @@ const Page = () => {
                 {member.name}
               </h2>
               <Table
-                columns={columns}
+                columns={membercolumns}
                 data={membertasks}
                 pagination={false}
                 scroll={{
@@ -388,7 +502,7 @@ const Page = () => {
                   <Table.Summary>
                     <Table.Summary.Row>
                       <Table.Summary.Cell />
-                      {summary}
+                      <Table.Summary.Cell />
                       <Table.Summary.Cell>
                         <InputNumber
                           readOnly
@@ -397,6 +511,14 @@ const Page = () => {
                           value={0}
                         />
                       </Table.Summary.Cell>
+                      <Table.Summary.Cell>
+                        <Input readOnly step={0.5} precision={0} value={0} />
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell>
+                        <Input readOnly step={0.5} precision={0} value={0} />
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell />
+                      {summary}
                     </Table.Summary.Row>
                   </Table.Summary>
                 )}

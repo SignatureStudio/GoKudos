@@ -38,18 +38,22 @@ const Page = () => {
     {
       key: 1,
       name: "A Task",
+      group: "A Group",
     },
     {
       key: 2,
       name: "B Task",
+      group: "A Group",
     },
     {
       key: 3,
       name: "C Task",
+      group: "B Group",
     },
     {
       key: 4,
       name: "D Task",
+      group: "B Group",
     },
   ];
   let columns = [
@@ -57,7 +61,7 @@ const Page = () => {
       title: "Task",
       dataIndex: "name",
       fixed: "left",
-      width: 150,
+      width: 200,
       render: (col, record, index) => {
         return (
           <div className="truncate">
@@ -70,6 +74,11 @@ const Page = () => {
           </div>
         );
       },
+    },
+    {
+      title: "Group",
+      dataIndex: "group",
+      width: 150,
     },
     {
       title: "Total hours",
@@ -258,6 +267,7 @@ const Page = () => {
               summary={(currentData) => (
                 <Table.Summary>
                   <Table.Summary.Row>
+                    <Table.Summary.Cell />
                     <Table.Summary.Cell />
                     <Table.Summary.Cell>
                       <InputNumber
