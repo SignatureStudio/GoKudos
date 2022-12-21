@@ -30,6 +30,7 @@ import TimeLayout from "@/pages/Time/components/Layout";
 import Time from "@/pages/Time/Timesheet";
 import Attendance from "@/pages/Time/Attendance";
 import Project from "@/pages/Time/Project";
+import Member from "@/pages/Time/Member";
 import Invoices from "@/pages/Reports/Invoices";
 import InvoicesDetails from "@/pages/Reports/InvoicesDetails";
 import Shared from "@/pages/Shared/page";
@@ -77,6 +78,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="timesheet" element={<Time />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="project" element={<Project />} />
+            <Route path="member" element={<Member />} />
           </Route>
           <Route path="/reports" element={<Invoices />} />
           <Route path="/reports/details" element={<InvoicesDetails />} />
