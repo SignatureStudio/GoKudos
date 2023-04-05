@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Dashboard = () => {
   return (
     <div className="grid grid-cols-1 gap-4 p-4">
@@ -5,14 +7,14 @@ const Dashboard = () => {
         <h1>Demo Pages</h1>
 
         <ul className="list-disc px-8 py-4 text-lg">
-        <li>
-            <a href="/login">Log In</a>
+          <li>
+            <Link to="/login">Log In</Link>
           </li>
           <li>
-            <a href="/tasks">Cases</a>
+            <Link to="/tasks">Cases</Link>
           </li>
           <li>
-            <a href="/settings">Settings</a>
+            <Link to="/settings">Settings</Link>
           </li>
         </ul>
       </div>
