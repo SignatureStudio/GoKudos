@@ -111,7 +111,7 @@ const InvoicePreview = (props) => {
   const data = [
     {
       key: 1,
-      item: "Financial Statement",
+      item: "Appointment",
       planned: 1000,
       actual: 500,
       variance: 500,
@@ -121,7 +121,7 @@ const InvoicePreview = (props) => {
     },
     {
       key: 2,
-      item: "Completion Procedures",
+      item: "Pre-diagnosis",
       planned: 1000,
       actual: 1500,
       variance: -500,
@@ -131,7 +131,7 @@ const InvoicePreview = (props) => {
     },
     {
       key: 3,
-      item: "Audit Procedures/Execution",
+      item: "Discharge Summary",
       planned: 0,
       actual: 0,
       variance: 0,
@@ -168,7 +168,7 @@ const InvoicePreview = (props) => {
             <div className="flex mb-8">
               <div className="w-80">
                 <div className="text-sm font-bold text-gray-300">Bill To</div>
-                <div className="font-bold">TCH Sdn Bhd</div>
+                <div className="font-bold">CR0001Satish</div>
                 <div>Tee Chee Hong</div>
                 <div>55, Persiaran Batu Belah</div>
                 <div>Taman Sentosa</div>
@@ -239,7 +239,7 @@ const InvoicePreview = (props) => {
             </div>
             <div className="py-4 border-t border-gray-200">
               <div>
-                <span className="font-bold">TCH Sdn Bhd</span> (2020202020202)
+                <span className="font-bold">CR0001Satish</span> (2020202020202)
               </div>
               <div className="grid grid-cols-2">
                 <div>

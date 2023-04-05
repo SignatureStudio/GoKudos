@@ -89,25 +89,25 @@ const TasksTableWorkspace = (props) => {
           status: [
             {
               id: 1,
-              name: "To do",
+              name: "Consulted",
               color: "blue",
               value: 2,
             },
             {
               id: 2,
-              name: "Doing",
+              name: "Admitted",
               color: "gold",
               value: 2,
             },
             {
               id: 3,
-              name: "Done",
+              name: "Shared to Patient",
               color: "green",
               value: 1,
             },
             {
               id: 4,
-              name: "On hold",
+              name: "Scheduled Diagnosis",
               color: "red",
               value: 1,
             },
@@ -146,7 +146,7 @@ const TasksTableWorkspace = (props) => {
             },
           ],
           attachments: [],
-          company: "TCH Sdn Bhd",
+          company: "CR0001Satish",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -186,25 +186,25 @@ const TasksTableWorkspace = (props) => {
           status: [
             {
               id: 1,
-              name: "To do",
+              name: "Consulted",
               color: "blue",
               value: 2,
             },
             {
               id: 2,
-              name: "Doing",
+              name: "Admitted",
               color: "gold",
               value: 2,
             },
             {
               id: 3,
-              name: "Done",
+              name: "Shared to Patient",
               color: "green",
               value: 1,
             },
             {
               id: 4,
-              name: "On hold",
+              name: "Scheduled Diagnosis",
               color: "red",
               value: 1,
             },
@@ -267,7 +267,7 @@ const TasksTableWorkspace = (props) => {
               time: "1970-01-01T10:52:18.941Z",
             },
           ],
-          company: "TCH Sdn Bhd",
+          company: "CR0001Satish",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -313,25 +313,25 @@ const TasksTableWorkspace = (props) => {
           status: [
             {
               id: 1,
-              name: "To do",
+              name: "Consulted",
               color: "blue",
               value: 2,
             },
             {
               id: 2,
-              name: "Doing",
+              name: "Admitted",
               color: "gold",
               value: 2,
             },
             {
               id: 3,
-              name: "Done",
+              name: "Shared to Patient",
               color: "green",
               value: 1,
             },
             {
               id: 4,
-              name: "On hold",
+              name: "Scheduled Diagnosis",
               color: "red",
               value: 1,
             },
@@ -340,7 +340,7 @@ const TasksTableWorkspace = (props) => {
           endDate: "2022-12-26T00:23:00.000+08:00",
           comments: [],
           attachments: [],
-          company: "TCH Sdn Bhd",
+          company: "CR0001Satish",
           workspace: "A Workspace",
           project: "A Project",
           group: {
@@ -380,25 +380,25 @@ const TasksTableWorkspace = (props) => {
           status: [
             {
               id: 1,
-              name: "To do",
+              name: "Consulted",
               color: "blue",
               value: 2,
             },
             {
               id: 2,
-              name: "Doing",
+              name: "Admitted",
               color: "gold",
               value: 2,
             },
             {
               id: 3,
-              name: "Done",
+              name: "Shared to Patient",
               color: "green",
               value: 1,
             },
             {
               id: 4,
-              name: "On hold",
+              name: "Scheduled Diagnosis",
               color: "red",
               value: 1,
             },
@@ -419,7 +419,7 @@ const TasksTableWorkspace = (props) => {
             },
           ],
           attachments: [],
-          company: "TCH Sdn Bhd",
+          company: "CR0001Satish",
           workspace: "A Workspace",
           project: "A Project",
           group: {

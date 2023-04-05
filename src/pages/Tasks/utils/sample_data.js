@@ -9,30 +9,49 @@ const timeframe = {
 export const members = [
   {
     id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-    name: "A Member",
+    name: "Dr Ho, SJMC",
     avatar: "/dummy/face1.jpg",
   },
   {
     id: "0f160aa7-43c7-493c-99ea-eb059d92973e",
-    name: "B Member",
+    name: "Dr Jack, UMSC",
     avatar: "/dummy/face2.jpg",
   },
   {
     id: "72a856ad-7e55-4dcb-a1c0-d971631b5f44",
-    name: "C Member",
+    name: "Dr Jane, HKL",
+    avatar: "/dummy/face3.jpg",
+  },
+];
+export const watchers = [
+  {
+    id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
+    name: "Dr Loki",
+    avatar: "/dummy/face1.jpg",
+  },
+  {
+    id: "0f160aa7-43c7-493c-99ea-eb059d92973e",
+    name: "Dr Zaitun",
+    avatar: "/dummy/face2.jpg",
+  },
+  {
+    id: "72a856ad-7e55-4dcb-a1c0-d971631b5f44",
+    name: "Dr Hazi",
     avatar: "/dummy/face3.jpg",
   },
 ];
 const groups = [
   {
     id: faker.datatype.uuid(),
-    name: "Interim Audit",
+    name: "000001",
   },
   {
     id: faker.datatype.uuid(),
-    name: "Final Audit",
+    name: "000002",
   },
 ];
+
+const priorityLevel = ["Low", "Medium", "High"]
 const singleProject = (name, groups) => {
   return {
     id: faker.datatype.uuid(),
@@ -103,12 +122,12 @@ const singleTask = (
       .format("YYYY-MM-DDT00:23:00.000Z"),
     comments: comments,
     attachments: attachments,
-    company: "TCH Sdn Bhd",
+    company: "CR0001Satish",
     workspace: "Audit 2022",
     project: project,
     group: group,
     members: faker.helpers.arrayElements(members, 2),
-    watchers: [],
+    watchers: faker.helpers.arrayElements(watchers, 1),
     contacts: [],
     value: value,
     actualValue: value + actualvalue,
@@ -119,7 +138,7 @@ const singleTask = (
     recurrence: null,
     checklist: [],
     tracking: 0,
-    priority: "High",
+    priority: faker.helpers.arrayElement(priorityLevel),
     children: subtask,
   };
 };
@@ -130,34 +149,50 @@ export const tasksData = {
   members,
   groups,
   projects: [
-    singleProject("TCH Sdn Bhd", [
-      singleGroup("Interim Audit", [
-        singleTask("Financial Statement", 0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, 0, 100, []),
-        singleTask("Completion Procedures", 5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, 500, -100, []),
-        singleTask("Planning", 8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, 1000, 100, []),
-        singleTask("Audit Procedures/Execution", 10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, 0, 100, [
-          singleTask("Audit Procedures", 10, 5, TASK.STATUS[2], "TCH Sdn Bhd", "Interim Audit", 0, 0, 0, 100, []),
-          singleTask("Execution", 12, 8, TASK.STATUS[3], "TCH Sdn Bhd", "Interim Audit", 0, 0, 750, 100, []),
+    singleProject("CR0001Satish", [
+      singleGroup("000001", [
+        singleTask("Appointment", 0, 0, TASK.STATUS[0], "CR0001Satish", groups[0], 2, 0, 0, 100, [
+          singleTask("Last Physician: Dr Jack, UMSC", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Current Location: Subang Jaya, Selangor", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Patient Name: Mdm Anita", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Sex: Female", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Allergies: Desloratadine (Clarinex)", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Sympton: Extreme Fatique", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+        ]),
+        singleTask("Pre-diagnosis", 5, 15, TASK.STATUS[1], "CR0001Satish", groups[0], 0, 3, 500, -100, []),
+        singleTask("Admission", 8, 8, TASK.STATUS[2], "CR0001Satish", groups[0], 0, 0, 1000, 100, []),
+        singleTask("Discharge Summary", 10, 10, TASK.STATUS[3], "CR0001Satish", groups[0], 2, 2, 0, 100, [
+          singleTask("Diagnosis: Nausea", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Treatment Rendered: Kaopectate, Pepto-Bismol", 12, 8, TASK.STATUS[3], "CR0001Satish", "000001", 0, 0, 750, 100, []),
+          singleTask("Instruction to Patient: Please follow-up with your physician on Wednesday 3/1/23 as previously arranged by patient. Take codeine prescribed by PCP with food and water to prevent nausea.", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
         ]),
       ]),
-      singleGroup("Final Audit", [
-        singleTask("Financial Statement", 15, 10, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, 0, 100, []),
-        singleTask("Completion Procedures", 20, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 1, 0, 1500, -100, []),
-        singleTask("Planning", 25, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[1], 2, 3, 300, 100, []),
-        singleTask("Audit Procedures/Execution",30, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[1], 0, 2, 0, 100, [
-          singleTask("Audit Procedures",30, 5, TASK.STATUS[0], "TCH Sdn Bhd", groups[1], 0, 0, 1000, 100, []),
-          singleTask("Execution",32, 8, TASK.STATUS[1], "TCH Sdn Bhd", groups[1], 0, 0, 100, 100, []),
+      singleGroup("000002", [
+        singleTask("Appointment", 15, 10, TASK.STATUS[0], "CR0001Satish", groups[1], 0, 0, 0, 100, [
+          singleTask("Last Physician: Dr Jack, UMSC", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Current Location: Subang Jaya, Selangor", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Patient Name: Mdm Anita", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Sex: Female", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Allergies: Desloratadine (Clarinex)", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Sympton: Extreme Fatique", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+        ]),
+        singleTask("Pre-diagnosis", 20, 15, TASK.STATUS[1], "CR0001Satish", groups[1], 1, 0, 1500, -100, []),
+        singleTask("Admission", 25, 8, TASK.STATUS[2], "CR0001Satish", groups[1], 2, 3, 300, 100, []),
+        singleTask("Discharge Summary",30, 10, TASK.STATUS[3], "CR0001Satish", groups[1], 0, 2, 0, 100, [
+          singleTask("Diagnosis: Migraine", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
+          singleTask("Treatment Rendered: Tylenol (acetaminophen)", 12, 8, TASK.STATUS[3], "CR0001Satish", "000001", 0, 0, 750, 100, []),
+          singleTask("Instruction to Patient: Please follow-up with your physician on Wednesday 2/3/23 as previously arranged by patient.", 10, 5, TASK.STATUS[2], "CR0001Satish", "000001", 0, 0, 0, 100, []),
         ]),
       ]),
     ]),
     // singleProject("B Project", [
-    //   singleGroup("Interim Audit", [
+    //   singleGroup("000001", [
     //     singleTask(10, 10, TASK.STATUS[0], "B Project", groups[0], 0, 0, []),
     //     singleTask(15, 15, TASK.STATUS[1], "B Project", groups[0], 2, 0, []),
     //     singleTask(18, 8, TASK.STATUS[2], "B Project", groups[0], 0, 0, []),
     //     singleTask(20, 10, TASK.STATUS[3], "B Project", groups[0], 0, 2, []),
     //   ]),
-    //   singleGroup("Final Audit", [
+    //   singleGroup("000002", [
     //     singleTask(25, 10, TASK.STATUS[0], "B Project", groups[1], 0, 2, []),
     //     singleTask(30, 15, TASK.STATUS[1], "B Project", groups[1], 2, 2, []),
     //     singleTask(35, 8, TASK.STATUS[2], "B Project", groups[1], 2, 0, []),
@@ -167,13 +202,14 @@ export const tasksData = {
   ],
 };
 export const projectsData = [
-  singleProject("TCH Sdn Bhd", []),
-  singleProject("Nature Freight", []),
+  singleProject("CR0001Satish", []),
+  singleProject("CR0002Ahmad", []),
+  singleProject("CR0003Chan", []),
 ];
 
 export const subtasksData = [
-  singleTask(0, 0, TASK.STATUS[0], "TCH Sdn Bhd", groups[0], 2, 0, []),
-  singleTask(5, 15, TASK.STATUS[1], "TCH Sdn Bhd", groups[0], 0, 3, []),
-  singleTask(8, 8, TASK.STATUS[2], "TCH Sdn Bhd", groups[0], 0, 0, []),
-  singleTask(10, 10, TASK.STATUS[3], "TCH Sdn Bhd", groups[0], 2, 2, []),
+  singleTask(0, 0, TASK.STATUS[0], "CR0001Satish", groups[0], 2, 0, []),
+  singleTask(5, 15, TASK.STATUS[1], "CR0001Satish", groups[0], 0, 3, []),
+  singleTask(8, 8, TASK.STATUS[2], "CR0001Satish", groups[0], 0, 0, []),
+  singleTask(10, 10, TASK.STATUS[3], "CR0001Satish", groups[0], 2, 2, []),
 ];

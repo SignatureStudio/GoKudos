@@ -30,7 +30,7 @@ const KanbanBoard = (props) => {
       items: itemsFromBackend,
     },
     [faker.datatype.uuid()]: {
-      name: "To do",
+      name: "Consulted",
       items: [],
     },
     [faker.datatype.uuid()]: {
@@ -38,7 +38,7 @@ const KanbanBoard = (props) => {
       items: [],
     },
     [faker.datatype.uuid()]: {
-      name: "Done",
+      name: "Shared to Patient",
       items: [],
     },
   };
@@ -263,7 +263,7 @@ const KanbanBoard = (props) => {
   //   return result;
   // };
 
-  // const lists = ["todo", "inProgress", "done"];
+  // const lists = ["Consulted", "inProgress", "Shared to Patient"];
 
   // const generateLists = () =>
   //   lists.reduce(

@@ -41,14 +41,14 @@ const TasksSubnav = (props) => {
             <Link to="/time/project">
               <Menu.Item key="project" className="!p-0">
                 <div className=" bg-gray-100 hover:bg-gray-200 pl-2">
-                  TCH Sdn Bhd
+                  CR0001Satish
                 </div>
               </Menu.Item>
             </Link>
             <Link to="/time/project">
               <Menu.Item key="project1" className="!p-0">
                 <div className=" bg-gray-100 hover:bg-gray-200 pl-2">
-                  Nature Freight
+                  CR0002Ahmad
                 </div>
               </Menu.Item>
             </Link>

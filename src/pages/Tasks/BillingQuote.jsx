@@ -123,7 +123,7 @@ const TasksBillingQuote = (props) => {
   const data = [
     {
       key: 1,
-      item: "Financial Statement",
+      item: "Appointment",
       planned: 1000,
       actual: 500,
       variance: 500,
@@ -131,7 +131,7 @@ const TasksBillingQuote = (props) => {
     },
     {
       key: 2,
-      item: "Completion Procedures",
+      item: "Pre-diagnosis",
       planned: 1000,
       actual: 1500,
       variance: -500,
@@ -139,7 +139,7 @@ const TasksBillingQuote = (props) => {
     },
     {
       key: 3,
-      item: "Audit Procedures/Execution",
+      item: "Discharge Summary",
       planned: 0,
       actual: 0,
       variance: 0,

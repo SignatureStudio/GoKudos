@@ -8,6 +8,7 @@ import {
   IconSort,
   IconSubscribed,
   IconUser,
+  IconUserGroup,
 } from "@arco-design/web-react/icon";
 import { Link } from "react-router-dom";
 
@@ -32,17 +33,37 @@ const NavSettings = (props) => {
       <Menu.SubMenu
         title={
           <>
-            <IconUser className="ml-1" /> Company
+            <IconHome className="ml-1" /> Clinic
           </>
         }
         className="text-base"
       >
+        <Link to="/settings/company/clinicians">
+          <Menu.Item key="clinicians" className="text-base">
+            Clinicians
+          </Menu.Item>
+        </Link>
+        <Link to="/settings/company/group">
+          <Menu.Item key="group" className="text-base">
+            Group
+          </Menu.Item>
+        </Link>
         <Link to="/settings/company/subscription">
           <Menu.Item key="subscription" className="text-base">
             Subscription
           </Menu.Item>
         </Link>
       </Menu.SubMenu>
+      {/* <Link to="/clinicians">
+        <Menu.Item key="clinicians" className="text-base">
+          <IconUser className="w-4 h-4 mx-1" /> Clinicians
+        </Menu.Item>
+      </Link>
+      <Link to="/group">
+        <Menu.Item key="group" className="text-base">
+          <IconUserGroup className="w-4 h-4 mx-1" /> Group
+        </Menu.Item>
+      </Link> */}
       <Link to="/attendance">
         <Menu.Item key="attendance" className="text-base">
           <IconClockCircle className="w-4 h-4 mx-1" /> Time Attendance

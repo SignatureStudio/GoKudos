@@ -45,7 +45,7 @@ const TasksTableNav = (props) => {
               setModalTaskAdd(true);
             }}
           >
-            + Task
+            + Episode
           </Dropdown.Button>
         </div>
         <div className="flex-1 pl-2">
@@ -58,9 +58,9 @@ const TasksTableNav = (props) => {
             }}
             className="w-24"
           >
-            <Select.Option value="group">Group</Select.Option>
+            <Select.Option value="group">Case</Select.Option>
             <Select.Option value="status">Status</Select.Option>
-            <Select.Option value="member">Member</Select.Option>
+            <Select.Option value="member">Clinician</Select.Option>
           </Select>
         </div>
         <div>

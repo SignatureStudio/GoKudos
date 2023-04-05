@@ -28,14 +28,14 @@ const TaskDiscussion = (props) => {
       id: 1,
       user: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "Barry",
+        name: "Dr Ho, SJMC",
         avatar: "/dummy/face1.jpg",
       },
       date: "Sep 16, 2022",
-      message: "@Marcus, attaching the financial statement here as per your request",
+      message: "@Dr Jack, UMSC, attaching the Appointment here as per your request",
       file: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "Financial Statement.pdf",
+        name: "Appointment.pdf",
       },
       reply_to: null,
     },
@@ -43,7 +43,7 @@ const TaskDiscussion = (props) => {
       id: 2,
       user: {
         id: "0f160aa7-43c7-493c-99ea-eb059d92973e",
-        name: "Sherlyn",
+        name: "Dr Jane, HKL",
         avatar: "/dummy/face2.jpg",
       },
       date: "Sep 16, 2022",
@@ -53,14 +53,14 @@ const TaskDiscussion = (props) => {
         id: 1,
         user: {
           id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-          name: "Barry",
+          name: "Dr Ho, SJMC",
           avatar: "/dummy/face1.jpg",
         },
         date: "Sep 16, 2022",
-        message: "@Sherlyn, kindly proceed with the work",
+        message: "@Dr Jane, HKL, I am on the way to SJMC",
         file: {
           id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-          name: "Financial Statement.pdf",
+          name: "patient.jpg",
         },
         reply_to: null,
       },
@@ -69,11 +69,11 @@ const TaskDiscussion = (props) => {
       id: 3,
       user: {
         id: "72a856ad-7e55-4dcb-a1c0-d971631b5f44",
-        name: "Marcus",
+        name: "Dr Jack, UMSC",
         avatar: "/dummy/face3.jpg",
       },
       date: "Sep 16, 2022",
-      message: "@Marcus, I've downloaded and compiled the documents. Kindly review. Thank you.",
+      message: "@Dr Jack, UMSC, attaching the ptient photo here as per your request",
       file: null,
       reply_to: null,
     },
@@ -87,7 +87,7 @@ const TaskDiscussion = (props) => {
         }}
       >
         {showContent ? <IconCaretDown /> : <IconCaretRight />}
-        <span className="ml-1">Discussion</span>
+        <span className="ml-1">Dialogue</span>
       </div>
       {showContent && (
         <div>

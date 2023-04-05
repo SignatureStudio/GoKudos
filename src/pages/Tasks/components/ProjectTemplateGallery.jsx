@@ -59,7 +59,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Source 1", "Source 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -103,7 +103,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Problem 1", "Problem 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -119,7 +119,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Key Result 1", "Key Result 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Results"]
         },
         {
@@ -143,7 +143,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Appendix 1", "Appendix 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Budget value"]
         },
       ]
@@ -158,34 +158,34 @@ const ProjectTemplateGallery = (props) => {
           groups: [
             {
               name: "Monday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Tuesday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Wednesday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Thursday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Friday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Saturday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
             {
               name: "Sunday",
-              tasks: ["Todo 1", "Todo 2"]
+              tasks: ["Consulted 1", "Consulted 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Priority"]
         },
         {
@@ -259,7 +259,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Budget 1", "Budget 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority", "Budget value", "Budget hours"]
         },
         {
@@ -303,7 +303,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Final"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority", "Budget value", "Budget hours"]
         },
       ]
@@ -333,7 +333,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Lesson 1", "Lesson 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -365,7 +365,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Appendix 1", "Appendix 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
       ]
@@ -395,7 +395,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["GoKudos"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -415,7 +415,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Basic Salary", "Allowances"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
       ]
@@ -465,7 +465,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Network 1", "Network 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -473,7 +473,7 @@ const ProjectTemplateGallery = (props) => {
           title: "Development: Add a Project Name",
           groups: [
             {
-              name: "Planning",
+              name: "Admission",
               tasks: ["Objective", "Research"]
             },
             {
@@ -493,7 +493,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Server 1", "Server 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
       ]
@@ -555,7 +555,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Post 1", "Post 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee"]
         },
         {
@@ -579,7 +579,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Business Card", "Letterhead"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee"]
         },
         {
@@ -611,7 +611,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Impression", "Conversion"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee"]
         },
       ]
@@ -645,7 +645,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Prospect 1", "Prospect 2"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee", "Priority"]
         },
         {
@@ -673,7 +673,7 @@ const ProjectTemplateGallery = (props) => {
               tasks: ["Why Us", "Free Consultation"]
             },
           ],
-          status: ["Todo", "Doing", "Done", "KIV"],
+          status: ["Consulted", "Admitted", "Shared to Patient", "Scheduled Diagnosis"],
           fields: ["Due Date", "Assignee"]
         },
       ]

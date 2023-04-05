@@ -8,38 +8,38 @@ import WorkspaceAdd from "./WorkspaceAdd";
 const workspaces = {
   selected: {
     id: 1,
-    name: "Audit 2022",
+    name: "Central Region",
     avatar: "",
   },
   list: [
     {
       id: 1,
-      name: "Audit 2022",
+      name: "Central Region",
       avatar: "",
     },
     {
       id: 2,
-      name: "Audit 2021",
+      name: "Northern Region",
       avatar: "",
     },
     {
       id: 3,
-      name: "Audit 2020",
+      name: "Southern Region",
       avatar: "",
     },
     {
       id: 4,
-      name: "Audit 2019",
+      name: "East Coast",
       avatar: "",
     },
     {
       id: 5,
-      name: "Audit 2018",
+      name: "Sarawak",
       avatar: "",
     },
     {
       id: 6,
-      name: "Audit 2017",
+      name: "Sabah & Labuan",
       avatar: "",
     },
   ],
@@ -71,7 +71,7 @@ const SubnavWorkspace = (props) => {
       <Menu className="w-72">
         <Menu.Item onClick={() => setModalWorkspace(true)}>
           <div>
-            <IconPlus /> <span className="menu-text">Add workspace</span>
+            <IconPlus /> <span className="menu-text">Add area</span>
           </div>
         </Menu.Item>
       </Menu>

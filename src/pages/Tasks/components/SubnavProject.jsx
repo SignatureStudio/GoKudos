@@ -30,17 +30,17 @@ const SubnavProject = () => {
   const menuWorkspace = (
     <Menu>
       <Menu.Item key="1" onClick={() => setModalWorkspace(true)}>
-        Edit workspace
+        Edit area
       </Menu.Item>
       <hr />
       <Menu.Item key="2">
         <Link to="/tasks/archivedprojects" className="flex-1">
-          View archived projects
+          View archived patients
         </Link>
       </Menu.Item>
       <hr />
       <Menu.Item key="4" onClick={() => setModalWorkspaceDelete(true)}>
-        Delete workspace
+        Delete area
       </Menu.Item>
     </Menu>
   );
@@ -48,13 +48,13 @@ const SubnavProject = () => {
   const menuProject = (
     <Menu>
       <Menu.Item key="1" onClick={() => setModalProject(true)}>
-        Edit project
+        Edit patient
       </Menu.Item>
       <Menu.Item key="2" onClick={() => setModalProjectMove(true)}>
-        Move project
+        Move patient
       </Menu.Item>
       <Menu.Item key="3" onClick={() => setModalProjectDuplicate(true)}>
-        Duplicate project
+        Duplicate patient
       </Menu.Item>
       <hr />
       <Menu.Item key="4">
@@ -64,7 +64,7 @@ const SubnavProject = () => {
       </Menu.Item>
       <hr />
       <Menu.Item key="5" onClick={() => setModalProjectDelete(true)}>
-        Delete project
+        Delete patient
       </Menu.Item>
     </Menu>
   );
@@ -78,13 +78,13 @@ const SubnavProject = () => {
           onClick={() => setModalProject(true)}
         >
           <div className="bg-gray-100 hover:bg-gray-200">
-            <IconPlus className="w-4 h-4 ml-2" /> Add Project
+            <IconPlus className="w-4 h-4 ml-2" /> Add Patient
           </div>
         </Menu.Item> */}
         <Menu.Item className="text-base" style={{ padding: 0 }}>
           <div className="bg-gray-100 hover:bg-gray-200 pl-2 flex items-center">
             <Link to="/tasks/workspace" className="flex-1">
-              All projects
+              All patients
             </Link>
             <Dropdown droplist={menuWorkspace} trigger="click">
               <div className="-mr-4 px-1">
@@ -102,7 +102,7 @@ const SubnavProject = () => {
           icon={<IconPlus className="w-3 h-3 ml-2" />}
           onClick={() => setModalProject(true)}
         >
-          Add Project
+          Add Patient
         </Button>
         <Button
           long
@@ -112,7 +112,7 @@ const SubnavProject = () => {
           // icon={<IconApps className="w-3 h-3 ml-2" />}
           onClick={() => setModalProjectTemplate(true)}
         >
-          Project Templates
+          Patient Templates
         </Button>
       </div>
       <hr className="my-2" />

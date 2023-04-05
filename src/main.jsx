@@ -8,6 +8,7 @@ import { ConfigProvider } from "@arco-design/web-react";
 import enUS from "@arco-design/web-react/es/locale/en-US";
 
 import AppLayout from "@/layouts/AppLayout";
+import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard/page";
 import TasksLayout from "@/pages/Tasks/components/Layout";
 import TasksTable from "@/pages/Tasks/Table";
@@ -92,6 +93,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={<SettingsCompanySubscription />}
           />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </ConfigProvider>

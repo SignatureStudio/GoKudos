@@ -103,11 +103,11 @@ const TaskAttachment = (props) => {
       key: 1,
       file: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "file.pdf",
+        name: "x-ray.pdf",
       },
       user: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "A Member",
+        name: "Dr Ho, SJMC",
         avatar: "/dummy/face1.jpg",
       },
       source: "googledrive",
@@ -117,11 +117,11 @@ const TaskAttachment = (props) => {
       key: 2,
       file: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "word.docx",
+        name: "discharge summary.docx",
       },
       user: {
         id: "0f160aa7-43c7-493c-99ea-eb059d92973e",
-        name: "B Member",
+        name: "Dr Jack, UMSC",
         avatar: "/dummy/face2.jpg",
       },
       source: "onedrive",
@@ -131,11 +131,11 @@ const TaskAttachment = (props) => {
       key: 3,
       file: {
         id: "6f55ca23-0363-4aec-8ea1-add6d8d512e1",
-        name: "excel.xlsx",
+        name: "patient.jpg",
       },
       user: {
         id: "72a856ad-7e55-4dcb-a1c0-d971631b5f44",
-        name: "C Member",
+        name: "Dr Jane, HKL",
         avatar: "/dummy/face3.jpg",
       },
       source: null,
@@ -204,7 +204,7 @@ const TaskAttachment = (props) => {
     <Menu>
       <Menu.Item key="1">View</Menu.Item>
       <Menu.Item key="2">Download</Menu.Item>
-      <Menu.Item key="3">Add e-Signature</Menu.Item>
+      {/* <Menu.Item key="3">Add e-Signature</Menu.Item> */}
       <hr />
       <Menu.Item key="4" className="text-red-500">
         Delete
@@ -234,7 +234,7 @@ const TaskAttachment = (props) => {
         }}
       >
         {showContent ? <IconCaretDown /> : <IconCaretRight />}
-        <span className="ml-1">Attachments</span>
+        <span className="ml-1">Medical Documents</span>
       </div>
       {showContent && (
         <div className="bg-gray-100 rounded p-0.5 mt-2">

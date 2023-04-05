@@ -20,11 +20,11 @@ const Page = () => {
   const projects = [
     {
       key: "p1",
-      name: "TCH Sdn Bhd",
+      name: "CR0001Satish",
     },
     {
       key: "p2",
-      name: "Nature Freight",
+      name: "CR0002Ahmad",
     },
   ];
   const totaltasks = [

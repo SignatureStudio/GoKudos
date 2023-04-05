@@ -2,8 +2,8 @@ import { Modal, Cascader, Select, Input } from "@arco-design/web-react";
 const QuoteAdd = (props) => {
   const CustomerOptions = [
     {
-      value: "TCH Sdn Bhd",
-      label: "TCH Sdn Bhd",
+      value: "CR0001Satish",
+      label: "CR0001Satish",
       children: [
         {
           value: "A Customer",

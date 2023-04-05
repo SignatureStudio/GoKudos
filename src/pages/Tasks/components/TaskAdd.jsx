@@ -6,9 +6,9 @@ import InputSelectMember from "./InputSelectMember";
 const TaskAdd = (props) => {
   return (
     <Modal
-      title="Add Task"
+      title="Add Episode"
       visible={props.visible}
-      okText="Add Task"
+      okText="Add Episode"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
@@ -18,10 +18,10 @@ const TaskAdd = (props) => {
       <div>
         <div className="pb-4">
           <label>
-            <div className="mb-1">Task name</div>
+            <div className="mb-1">Episode name</div>
             <Input
               allowClear
-              placeholder="Add a task name"
+              placeholder="Add a episode name"
               // className="bg-white large font-semibold"
             />
           </label>
@@ -30,8 +30,28 @@ const TaskAdd = (props) => {
           <div className="mb-1">Properties</div>
           <div className="p-0.5 bg-gray-100">
             <div className="border border-gray-200 rounded divide-y divide-gray-200 bg-white">
+            <div className="px-2 py-3 flex items-center">
+                <div className="flex-1">Area</div>
+                <div className="w-40">
+                  <Select>
+                    <Select.Option value="1">A Group</Select.Option>
+                    <Select.Option value="2">B Group</Select.Option>
+                    <Select.Option value="3">C Group</Select.Option>
+                  </Select>
+                </div>
+              </div>
               <div className="px-2 py-3 flex items-center">
-                <div className="flex-1">Group</div>
+                <div className="flex-1">Patient</div>
+                <div className="w-40">
+                  <Select>
+                    <Select.Option value="1">A Group</Select.Option>
+                    <Select.Option value="2">B Group</Select.Option>
+                    <Select.Option value="3">C Group</Select.Option>
+                  </Select>
+                </div>
+              </div>
+              <div className="px-2 py-3 flex items-center">
+                <div className="flex-1">Case</div>
                 <div className="w-40">
                   <Select>
                     <Select.Option value="1">A Group</Select.Option>
@@ -53,7 +73,7 @@ const TaskAdd = (props) => {
                 </div>
               </div>
               <div className="px-2 py-3 flex items-center">
-                <div className="flex-1">Assignee</div>
+                <div className="flex-1">Clinician</div>
                 <div className="w-40">
                   <InputSelectMember data={[]} />
                 </div>

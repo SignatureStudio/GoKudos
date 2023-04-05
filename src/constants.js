@@ -6,25 +6,25 @@ export const TASK = {
   STATUS: [
     {
       id: 1,
-      name: "To do",
+      name: "Consulted",
       color: "blue",
       description: "Represent new task, default status for all tasks"
     },
     {
       id: 2,
-      name: "Doing",
+      name: "Admitted",
       color: "gold",
       description: "Represent in progress task"
     },
     {
       id: 3,
-      name: "Done",
+      name: "Shared to Patient",
       color: "green",
       description: "Represent completed task"
     },
     {
       id: 4,
-      name: "On hold",
+      name: "Scheduled Diagnosis",
       color: "red",
       description: "Represent problem, stuck, or rejected task"
     },

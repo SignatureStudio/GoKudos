@@ -160,7 +160,7 @@ const TasksBillingInvoiceDetails = (props) => {
   const data = [
     {
       key: 1,
-      item: "Financial Statement",
+      item: "Appointment",
       planned: 1000,
       actual: 500,
       variance: 500,
@@ -170,7 +170,7 @@ const TasksBillingInvoiceDetails = (props) => {
     },
     {
       key: 2,
-      item: "Completion Procedures",
+      item: "Pre-diagnosis",
       planned: 1000,
       actual: 1500,
       variance: -500,
@@ -180,7 +180,7 @@ const TasksBillingInvoiceDetails = (props) => {
     },
     {
       key: 3,
-      item: "Audit Procedures/Execution",
+      item: "Discharge Summary",
       planned: 0,
       actual: 0,
       variance: 0,
@@ -235,7 +235,7 @@ const TasksBillingInvoiceDetails = (props) => {
           <div className="grid grid-cols-2 md:grid-cols-4  divide-x divide-gray-200 mb-2">
             <div className="col-span-2 p-2">
               <div className="text-xs text-gray-500">Customer</div>
-              <div>TCH Sdn Bhd</div>
+              <div>CR0001Satish</div>
             </div>
             <div className="p-2">
               <div className="text-xs text-gray-500">Terms</div>

@@ -13,17 +13,17 @@ const NavModule = (props) => {
       </Link>
       <Link to="/tasks">
         <Menu.Item key="tasks" className="text-base">
-          <IconNav className="w-4 h-4 mx-1" /> Tasks
+          <IconNav className="w-4 h-4 mx-1" /> Cases
         </Menu.Item>
       </Link>
-      <Link to="/shared">
+      {/* <Link to="/shared">
         <Menu.Item key="shared" className="text-base">
           <IconSubscribed className="w-4 h-4 mx-1" /> Shared with me
         </Menu.Item>
-      </Link>
+      </Link> */}
       <Link to="/contacts">
         <Menu.Item key="contacts" className="text-base">
-          <IconUser className="w-4 h-4 mx-1" /> Contacts
+          <IconUser className="w-4 h-4 mx-1" /> Clients
         </Menu.Item>
       </Link>
       <Link to="/time">

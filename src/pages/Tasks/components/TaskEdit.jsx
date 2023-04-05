@@ -47,7 +47,7 @@ const TaskEdit = (props) => {
     <Modal
       title={
         <div className="flex items-center pr-4">
-          <div className="flex-1">Edit Task</div>
+          <div className="flex-1">Edit Episode</div>
           {/* <div>
             <Button
               size="mini"
@@ -103,7 +103,7 @@ const TaskEdit = (props) => {
                       setModalTaskSubtask(true);
                     }}
                   >
-                    Add Subtask
+                    Add Task
                   </Menu.Item>
                   <hr />
                   <Menu.Item
@@ -149,7 +149,7 @@ const TaskEdit = (props) => {
                 {/* <div>Task name</div> */}
                 <Input
                   allowClear
-                  placeholder="Add a task name"
+                  placeholder="Appointment"
                   className="bg-white large font-semibold"
                 />
               </label>
@@ -172,15 +172,15 @@ const TaskEdit = (props) => {
               <TaskAttachment />
               <TaskDiscussion />
             </Tabs.TabPane>
-            <Tabs.TabPane key="2" title="Subtasks">
+            <Tabs.TabPane key="2" title="Task">
               <TableSubtask data={subtasksData} />
             </Tabs.TabPane>
             <Tabs.TabPane key="3" title="Activities">
               <TaskActivities />
             </Tabs.TabPane>
-            <Tabs.TabPane key="4" title="Signature">
+            {/* <Tabs.TabPane key="4" title="Signature">
               <TaskSignature />
-            </Tabs.TabPane>
+            </Tabs.TabPane> */}
           </Tabs>
         </div>
         <div className="col-span-1 overflow-auto md:h-screen md:max-h-[60vh] p-2 bg-gray-100">
@@ -198,13 +198,13 @@ const TaskEdit = (props) => {
               </div>
             </div>
             <div className="px-2 py-3 flex">
-              <div className="flex-1">Assignee</div>
+              <div className="flex-1">Clinicians</div>
               <div className="w-40">
                 <InputSelectMember data={[]} />
               </div>
             </div>
             <div className="px-2 py-3 flex">
-              <div className="flex-1">Watchers</div>
+              <div className="flex-1">Concierge</div>
               <div className="w-40">
                 <InputSelectMember data={[]} />
               </div>

@@ -114,7 +114,7 @@ const TasksBillingTimeCost = (props) => {
   const data = [
     {
       key: 1,
-      task: "Financial Statement",
+      task: "Appointment",
       member: {
         id: faker.datatype.uuid(),
         name: "A Member",
@@ -127,7 +127,7 @@ const TasksBillingTimeCost = (props) => {
     },
     {
       key: 2,
-      task: "Completion Procedures",
+      task: "Pre-diagnosis",
       member: {
         id: faker.datatype.uuid(),
         name: "B Member",
@@ -140,7 +140,7 @@ const TasksBillingTimeCost = (props) => {
     },
     {
       key: 3,
-      task: "Audit Procedures/Execution",
+      task: "Discharge Summary",
       member: {
         id: faker.datatype.uuid(),
         name: "C Member",

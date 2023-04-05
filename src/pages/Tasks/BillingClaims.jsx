@@ -154,7 +154,7 @@ const TasksBillingClaims = (props) => {
     {
       key: 1,
       date: "Dec 12, 2022",
-      item: "Financial Statement",
+      item: "Appointment",
       description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
@@ -167,7 +167,7 @@ const TasksBillingClaims = (props) => {
     {
       key: 2,
       date: "Dec 18, 2022",
-      item: "Completion Procedures",
+      item: "Pre-diagnosis",
       description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
@@ -180,7 +180,7 @@ const TasksBillingClaims = (props) => {
     {
       key: 3,
       date: "Dec 24, 2022",
-      item: "Audit Procedures/Execution",
+      item: "Discharge Summary",
       description: "Mileage Claim",
       member: {
         id: faker.datatype.uuid(),
