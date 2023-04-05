@@ -109,7 +109,7 @@ const TableSubtask = (props) => {
                 <Table.Summary.Cell colSpan={4}>
                   <Input.Group className="flex">
                     <Input
-                      placeholder="+ Add new subtask"
+                      placeholder="+ Add new tasks"
                       className="ml-6 flex-1 peer"
                     />
                     <Button

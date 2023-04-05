@@ -19,7 +19,7 @@ const TasksTableNav = (props) => {
           setModalGroupAdd(true);
         }}
       >
-        Add group
+        Add case ID
       </Menu.Item>
       <Menu.Item
         key="2"
@@ -27,7 +27,7 @@ const TasksTableNav = (props) => {
           setModalTaskImport(true);
         }}
       >
-        Import tasks
+        Import episodes
       </Menu.Item>
     </Menu>
   );

@@ -3,9 +3,9 @@ import { Modal, Button, Upload, Avatar } from "@arco-design/web-react";
 const GroupAdd = (props) => {
   return (
     <Modal
-      title="Import Tasks"
+      title="Import Episodes"
       visible={props.visible}
-      okText="Import Tasks"
+      okText="Import Episodes"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       autoFocus={false}

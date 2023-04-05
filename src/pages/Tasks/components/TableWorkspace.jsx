@@ -515,7 +515,7 @@ const TasksTableWorkspace = (props) => {
               setModalTaskEdit(true);
             }}
           >
-            Add Group
+            Add case ID
           </Button>
         )}
       </div>

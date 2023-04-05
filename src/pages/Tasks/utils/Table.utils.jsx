@@ -46,7 +46,7 @@ export const utils = {
   columns: {
     name: {
       dataIndex: "name",
-      title: "Name",
+      title: "Episode",
       width: 300,
       render: (col, record, index) => {
         return <InputTaskName data={col} record={record} />;
@@ -80,7 +80,7 @@ export const utils = {
     },
     members: {
       dataIndex: "members",
-      title: "Assignee",
+      title: "Clinician",
       width: 160,
       render: (col, record, index) => {
         return <InputSelectMember data={getAllSelectedId(col)} />;
@@ -88,7 +88,7 @@ export const utils = {
     },
     watchers: {
       dataIndex: "watchers",
-      title: "Watchers",
+      title: "Concierge",
       width: 160,
       render: (col, record, index) => {
         return <InputSelectMember data={getAllSelectedId(col)} />;

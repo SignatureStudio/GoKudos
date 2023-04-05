@@ -124,7 +124,7 @@ const TasksTableTable = (props) => {
                         <Table.Summary.Cell colSpan={4}>
                           <Input.Group className="flex">
                             <Input
-                              placeholder="+ Add new task"
+                              placeholder="+ Add episode"
                               className="ml-6 flex-1 peer"
                             />
                             <Button
@@ -158,7 +158,7 @@ const TasksTableTable = (props) => {
               setModalTaskEdit(true);
             }}
           >
-            Add Group
+            Add case ID
           </Button>
         )}
       </div>

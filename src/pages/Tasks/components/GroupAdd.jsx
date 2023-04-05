@@ -3,9 +3,9 @@ import { Modal, Input } from "@arco-design/web-react";
 const GroupAdd = (props) => {
   return (
     <Modal
-      title="Add Group"
+      title="Add case ID"
       visible={props.visible}
-      okText="Add Group"
+      okText="Add case ID"
       onOk={() => props.setVisible(false)}
       onCancel={() => props.setVisible(false)}
       autoFocus={false}
